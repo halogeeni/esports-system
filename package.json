@@ -5,9 +5,9 @@
   "scripts": {
     "start": "node ./bin/www"
   },
-  "engines" : {
-    "node" : "~6.4.0",
-    "npm" : "~3.10.3"
+  "engines": {
+    "node": "~6.4.0",
+    "npm": "~3.10.3"
   },
   "dependencies": {
     "body-parser": "~1.15.1",
@@ -17,6 +17,7 @@
     "express": "~4.13.4",
     "jade": "~1.11.0",
     "mongoose": "^4.6.0",
+    "mongoose-type-email": "^1.0.2",
     "morgan": "~1.7.0",
     "serve-favicon": "~2.3.0"
   }
