@@ -30,13 +30,13 @@ var userSchema = new mongoose.Schema(
     ],
     pastTeams: [
       {
-        type: mongoose.Schema.Types.ObectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Team'
       }
     ],
     pastTournaments: [
       {
-        type: mongoose.Schema.Types.ObectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Tournament'
       }
     ],
