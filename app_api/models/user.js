@@ -5,7 +5,14 @@ var mongoose = require('mongoose');
 
 var userSchema = new mongoose.Schema(
   {
-    name: String
+    firstname: {
+      type: String,
+      required: true
+    },
+    lastname: {
+      type: String,
+      required: true
+    }
   }
 );
 
