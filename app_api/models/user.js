@@ -3,7 +3,7 @@
 
 var mongoose = require('mongoose');
 
-var videoSchema = new mongoose.Schema(
+var userSchema = new mongoose.Schema(
   {
     name: String
   }
