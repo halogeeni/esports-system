@@ -38,4 +38,4 @@ var teamSchema = new mongoose.Schema(
   }
 );
 
-mongoose.model('Team', teamSchema, 'teams');
+mongoose.model('Team', teamSchema);
