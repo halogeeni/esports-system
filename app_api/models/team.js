@@ -30,11 +30,10 @@ var teamSchema = new mongoose.Schema(
         ref: 'tournament'
         //and somehow the result
       }
-    ],
-    registerDate: {
-      type: Date,
-      required: true
-    }
+    ]
+  },
+  {
+    timestamps: true
   }
 );
 
