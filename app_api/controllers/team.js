@@ -10,6 +10,7 @@ var sendJsonResponse = function(res, status, content) {
 };
 
 // TODO: addTeam niids teh captain player men to be added once you add neu team :>
+// Check that this works :p
 
 module.exports.addTeam = function(req, res) {
   Team.create({
