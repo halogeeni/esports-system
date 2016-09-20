@@ -9,16 +9,20 @@ var teamSchema = new mongoose.Schema(
       type: String,
       required: true
     },
+    admin: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
     players: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'user'
+        ref: 'User'
       }
     ],
     pastUsers: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'user'
+        ref: 'User'
       }
     ],
     additionalInfo: {
@@ -27,8 +31,8 @@ var teamSchema = new mongoose.Schema(
     teamStats: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'tournament'
-        //and somehow the result
+        ref: 'Tournament'
+      
       }
     ]
   },

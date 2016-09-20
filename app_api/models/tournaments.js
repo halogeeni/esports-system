@@ -79,15 +79,15 @@ var tournamentSchema = new mongoose.Schema(
     checkInEndDate: {
       type: Date
     },
-    chekedInTeams: [
+    checkedInTeams: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Team'
       }
-    ],
-    creationDate: {
-      type: Date
-    }
+    ]
+  },
+  {
+    timestamps: true
   }
 );
 

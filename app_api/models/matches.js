@@ -63,6 +63,9 @@ var matchSchema = new mongoose.Schema(
         ]
       }
     ]
+  },
+  {
+    timestamps: true
   }
 );
 
