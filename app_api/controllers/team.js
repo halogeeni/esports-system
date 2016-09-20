@@ -25,7 +25,7 @@ module.exports.addTeam = function(req, res) {
 
 module.exports.deleteTeam = function(req, res) {
   var teamid = req.params.teamid;
-  
+
   if (teamid) {
     Team
       .findByIdAndRemove(teamid).exec(
@@ -38,14 +38,14 @@ module.exports.deleteTeam = function(req, res) {
       });
   } else {
     sendJsonResponse(res, 404, {
-      "message": "No teamid in request."
+      "message": "no teamid in request."
     });
   }
 };
 
 module.exports.getTeam = function(req, res) { 
   var teamid = req.params.teamid;
-  
+
   if (req.params && teamid) {
     Team
       .findById(teamid).exec(
@@ -63,7 +63,7 @@ module.exports.getTeam = function(req, res) { 
       });
   } else {
     sendJsonResponse(res, 404, {
-      "message": "No teamid in request"
+      "message": "no teamid in request"
     });
   }
 };

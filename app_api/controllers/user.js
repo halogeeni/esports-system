@@ -67,7 +67,7 @@ module.exports.deleteUser = function(req, res) {
   }
 };
 
-// get single video by id
+// get single user by id
 module.exports.getUser = function(req, res) { 
   if (req.params && req.params.userid) {
     User
@@ -111,7 +111,45 @@ module.exports.getUsers = function(req, res) {
 
 /*
 
-TODO update user by id
+-WIP-
+
+module.exports.updateUser = function(req, res) {
+    if (!req.params.userid) {
+        sendJsonResponse(res, 404, {
+            "messsage": "userid is required"
+        });
+        return;
+    }
+
+    Vid
+        .findById(req.params.userid)
+        .exec(
+            function(err, user) {
+                if (!vuser) {
+                    sendJsonResponse(res, 404, {
+                        "message": "userid not found"
+                    });
+                    return;
+                } else if (err) {
+                    sendJsonResponse(res, 404, err);
+                    return;
+                }
+
+                video.title = req.body.title;
+                video.description = req.body.description;
+                video.save(function(err, video) {
+                    if (err) {
+                        sendJsonResponse(res, 404, err);
+                    } else {
+                        sendJsonResponse(res, 200, video);
+                    }
+                });
+            });
+};
+
+
+
+EXAMPLE CODE
 
 // update existing video by id
 module.exports.videosUpdateOne = function(req, res) {
