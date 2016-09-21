@@ -1,11 +1,4 @@
-body {
-  background-image: url('../images/background1.jpg');
-  background-position: center center fixed;
-  background-repeat: no-repeat;
-}
-
-/* Navigation */
-/* Remove the navbar's default margin-bottom and rounded borders */ 
+/* ----- Navigation ----- */
 .navbar {
   margin-bottom: 10px;
   border-radius: 0;
@@ -17,29 +10,12 @@ body {
   margin-right: 10px;
 }
 
+/* ----- Alert box ----- */
 #alertbox {
   margin-bottom: 10px;
 }
 
-/*img {
-  display: block;
-  max-width:50px;
-  max-height:50px;
-  width: auto;
-  height: auto;
-}*/
-
-/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-.row.content {
-  height: 800px;
-}
-
-.sidenav {
-  height: 100%;
-  background-color: dimgray;
-}
-
-/* Content */
+/* ----- Content ----- */
 #wrapper {
   background-color: #ccc;
   margin-bottom: 10px;
@@ -49,12 +25,37 @@ body {
   background-color: azure;
 }
 
+.row.content {
+  height: 800px;
+}
+
+.sidenav {
+  height: 100%;
+  border-radius: 0;
+  background-color: dimgray;
+}
+
+/* ----- Common tags ----- */
+body {
+  background-image: url('../images/background1.jpg');
+  background-position: center center fixed;
+  background-repeat: no-repeat;
+}
+
 footer {
   background-color: #555;
   color: white;
   padding: 15px;
   height: 200px;
 }
+
+/*img {
+  display: block;
+  max-width:50px;
+  max-height:50px;
+  width: auto;
+  height: auto;
+}*/
 
 /* On small screens, set height to 'auto' for sidenav and grid */
 @media screen and (max-width: 767px) {
