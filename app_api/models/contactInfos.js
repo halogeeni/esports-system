@@ -33,8 +33,7 @@ var contactInfoSchema = new mongoose.Schema(
       required: true
     },
     website: {
-      type: String,
-      required: true
+      type: String
     }
   }
 );

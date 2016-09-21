@@ -9,7 +9,7 @@ var sendJsonResponse = function(res, status, content) {
 
 // insert new user to database
 module.exports.addUser = function(req, res) {
-  var contactInfoId;
+  console.log('in addUser');
 
   ContactInfo.create({
     email: req.body.email,
@@ -23,26 +23,23 @@ module.exports.addUser = function(req, res) {
     if (err) {
       sendJsonResponse(res, 404, err);
     } else {
-      contactInfoId = contactInfo._id;
+      console.log('in addUser - ContactInfo ' + contactInfo._id + ' was created');
+      User.create({
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        nickname: req.body.nickname,
+        birthday: req.body.birthday,
+        _contactInfo: contactInfo._id
+      }, function(err, user) {
+        if (err) {
+          sendJsonResponse(res, 400, err);
+        } else {
+          console.log('in addUser - User ' + user._id + ' was created');
+          sendJsonResponse(res, 201, user);
+        }
+      });
     }
   });
-
-  // attempt to create user only if contactinfo was created
-  if (contactInfoId) {
-    User.create({
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
-      nickname: req.body.nickname,
-      birthday: req.body.birthday,
-      _contactInfo: contactInfoId
-    }, function(err, user) {
-      if (err) {
-        sendJsonResponse(res, 400, err);
-      } else {
-        sendJsonResponse(res, 201, user);
-      }
-    });
-  }
 };
 
 module.exports.deleteUser = function(req, res) {
@@ -69,9 +66,9 @@ module.exports.deleteUser = function(req, res) {
 
 // get single user by id
 module.exports.getUser = function(req, res) { 
-  if (req.params && req.params.userid) {
+  if (req.params && req.params.id) {
     User
-      .findById(req.params.userid)
+      .findById(req.params.id)
       .populate('_contactInfo')
       .exec(function(err, user) {
         if (!user) {
@@ -99,14 +96,14 @@ module.exports.getUsers = function(req, res) {
       sort: {
         nickname: 1
       }
-      .populate('_contactInfo')
     }, function(err, users) {
       if (err) {
         sendJsonResponse(res, 404, err);
       } else {
         sendJsonResponse(res, 200, users);
       }
-    });
+    })
+    .populate('_contactInfo');
 };
 
 /*

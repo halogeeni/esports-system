@@ -4,12 +4,13 @@
 var express = require('express');
 var router = express.Router();
 
-var ctrlEvents = require('../controllers/events');
-var ctrlGames = require('../controllers/games');
+//var ctrlEvents = require('../controllers/events');
+//var ctrlGames = require('../controllers/games');
 var ctrlTeams = require('../controllers/teams');
 var ctrlUsers = require('../controllers/users');
 
 // /api/events
+/*
 router.get('/events', ctrlEvents.getEvents);
 router.post('/events', ctrlEvents.addEvent);
 
@@ -38,13 +39,15 @@ router.delete('/games/:id', ctrlGames.deleteGame);
 router.get('/games/:id', ctrlGames.getGame);
 router.put('/games/:id', ctrlGames.updateGame);
 
+*/
+
 // /api/teams
 router.get('/teams', ctrlTeams.getTeams);
 router.post('/teams', ctrlTeams.addTeam);
 
 router.delete('/teams/:id', ctrlTeams.deleteTeam);
 router.get('/teams/:id', ctrlTeams.getTeam);
-router.put('/teams/:id', ctrlTeams.updateTeam);
+//router.put('/teams/:id', ctrlTeams.updateTeam);
 
 // /api/users
 router.get('/users', ctrlUsers.getUsers);
@@ -52,6 +55,6 @@ router.post('/users', ctrlUsers.addUser);
 
 router.delete('/users/:id', ctrlUsers.deleteUser);
 router.get('/users/:id', ctrlUsers.getUser);
-router.put('/users/:id', ctrlUsers.updateUser);
+//router.put('/users/:id', ctrlUsers.updateUser);
 
 module.exports = router;
