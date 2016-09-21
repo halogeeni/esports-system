@@ -1,0 +1,80 @@
+/*jslint node: true */
+'use strict';
+
+var mongoose = require('mongoose');
+var Game = mongoose.model('Game');
+
+var sendJsonResponse = function (res, status, content) {
+  res.status(status);
+  res.json(content);
+};
+
+module.exports.postGame = function (req, res) {
+  Game.create({
+    name: req.body.name
+  }, function (err, game) {
+    if (err) {
+      sendJsonResponse(res, 400, err);
+    } else {
+      sendJsonResponse(res, 201, game);
+    }
+  });
+};
+
+module.exports.deleteGame = function (req, res) {
+  var gameid = req.params.gameid;
+
+  if (gameid) {
+    Game
+      .findByIdAndRemove(gameid).exec(function (err, game) {
+        if (err) {
+          sendJsonResponse(res, 404, err);
+          return;
+        }
+        sendJsonResponse(res, 204, null);
+      });
+  } else {
+    sendJsonResponse(res, 404, {
+      "message": "No game id in request."
+    });
+  }
+};
+
+module.exports.getGame = function (req, res) {
+  var gameid = req.params.gameid;
+
+  if (req.params && gameid) {
+    Game
+      .findById(gameid).exec(
+        function (err, game) {
+          if (!game) {
+            sendJsonResponse(res, 404, {
+              "message": "No game id in request"
+            });
+            return;
+          } else if (err) {
+            sendJsonResponse(res, 404, err);
+            return;
+          }
+          sendJsonResponse(res, 200, game);
+        });
+  } else {
+    sendJsonResponse(res, 404, {
+      "message": "No game id in request"
+    });
+  }
+};
+
+module.exports.getGames = function (req, res) {
+  Game.find({}, null, {
+    sort: {
+      name: 1
+    }
+  }, function (err, games) {
+    if (err) {
+      sendJsonResponse(res, 404, err);
+    } else {
+      sendJsonResponse(res, 200, games);
+    }
+  });
+};
