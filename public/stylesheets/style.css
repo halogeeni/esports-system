@@ -19,6 +19,10 @@ body {
   margin-right: 10px;
 }
 
+#alertbox {
+  margin-bottom: 10px;
+}
+
 img {
   display: block;
   max-width:50px;
@@ -33,7 +37,6 @@ img {
 }
 
 .sidenav {
-  padding-top: 20px;
   height: 100%;
   background-color: dimgray;
 }
@@ -44,8 +47,8 @@ img {
   margin-bottom: 10px;
 }
 
-#alertbox {
-  margin-bottom: 10px;
+#main_content {
+  background-color: azure;
 }
 
 footer {
