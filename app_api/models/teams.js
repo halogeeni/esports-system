@@ -9,7 +9,7 @@ var teamSchema = new mongoose.Schema(
       type: String,
       required: true
     },
-    admin: {
+    adminUser: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
     },
@@ -32,7 +32,6 @@ var teamSchema = new mongoose.Schema(
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Tournament'
-      
       }
     ]
   },
