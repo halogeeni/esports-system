@@ -29,7 +29,7 @@ module.exports.deleteTeam = function(req, res) {
   if (teamid) {
     Team
       .findByIdAndRemove(teamid).exec(
-      function(err, user) {
+      function(err, team) {
         if (err) {
           sendJsonResponse(res, 404, err);
           return;
