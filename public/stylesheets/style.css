@@ -1,25 +1,53 @@
+body {
+  background-image: url('../images/background1.jpg');
+  background-position: center center fixed;
+  background-repeat: no-repeat;
+  
+}
+
+
+/* Navigation */
 /* Remove the navbar's default margin-bottom and rounded borders */ 
 .navbar {
-  margin-bottom: 0;
+  margin-bottom: 10px;
   border-radius: 0;
+  font-size: 16px;
+}
+
+.navbar-brand {
+  /*padding: 0px;*/
+  margin-right: 10px;
+}
+
+img {
+  display: block;
+  max-width:50px;
+  max-height:50px;
+  width: auto;
+  height: auto;
 }
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-.row.content {height: 450px}
+.row.content {
+  height: 800px;
+}
 
-/* Set gray background color and 100% height */
 .sidenav {
   padding-top: 20px;
-  background-color: #f1f1f1;
   height: 100%;
+  background-color: dimgray;
 }
 
-/* Main parts */
+/* Content */
 #wrapper {
-  background-color: aqua;
+  background-color: #ccc;
+  margin-bottom: 10px;
 }
 
-/* Set black background color, white text and some padding */
+#alertbox {
+  margin-bottom: 10px;
+}
+
 footer {
   background-color: #555;
   color: white;
@@ -33,5 +61,7 @@ footer {
     height: auto;
     padding: 15px;
   }
-  .row.content {height:auto;} 
+  .row.content {
+    height:auto;
+  } 
 }
