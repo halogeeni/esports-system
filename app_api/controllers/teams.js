@@ -9,11 +9,12 @@ var sendJsonResponse = function(res, status, content) {
   res.json(content);
 };
 
-// TODO: addTeam niids teh captain player men to be added once you add neu team :>
-
 module.exports.addTeam = function(req, res) {
   Team.create({
-    name: req.body.name
+    name: req.body.name,
+    _adminUser: req.body.adminUser,
+    players: req.body.adminUser,
+    additionalInfo: req.body.additionalInfo
   }, function(err, team) {
     if (err) {
       sendJsonResponse(res, 400, err);
@@ -24,7 +25,7 @@ module.exports.addTeam = function(req, res) {
 };
 
 module.exports.deleteTeam = function(req, res) {
-  var teamid = req.params.teamid;
+  var teamid = req.params.id;
 
   if (teamid) {
     Team
@@ -38,17 +39,22 @@ module.exports.deleteTeam = function(req, res) {
       });
   } else {
     sendJsonResponse(res, 404, {
-      "message": "no teamid in request."
+      "message": "no teamid in request"
     });
   }
 };
 
 module.exports.getTeam = function(req, res) { 
-  var teamid = req.params.teamid;
+  var teamid = req.params.id;
 
   if (req.params && teamid) {
     Team
-      .findById(teamid).exec(
+      .findById(teamid)
+      //.populate('_adminUser')
+      .populate('players')
+      .populate('pastPlayers')
+      //.populate('teamStats')
+      .exec(
       function(err, team) {
         if (!team) {
           sendJsonResponse(res, 404, {
@@ -68,6 +74,7 @@ module.exports.getTeam = function(req, res) { 
   }
 };
 
+// no population here (yet) -> less payload
 module.exports.getTeams = function(req, res) {
   Team.find({}, null, {
     sort: {

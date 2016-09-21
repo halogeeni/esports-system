@@ -90,6 +90,7 @@ module.exports.getUser = function(req, res) { 
 };
 
 // get all users sorted alphabetically by nickname ( case sensitive :D )
+// no population here (yet) -> less payload
 module.exports.getUsers = function(req, res) {
   User
     .find({}, null, {
@@ -102,8 +103,7 @@ module.exports.getUsers = function(req, res) {
       } else {
         sendJsonResponse(res, 200, users);
       }
-    })
-    .populate('_contactInfo');
+    });
 };
 
 /*

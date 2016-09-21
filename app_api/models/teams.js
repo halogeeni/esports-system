@@ -9,12 +9,14 @@ var teamSchema = new mongoose.Schema(
       type: String,
       required: true
     },
-    adminUser: {
+    _adminUser: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
+      ref: 'User',
+      required: true
     },
     players: [
       {
+        // should this be required: true?
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
       }
@@ -28,12 +30,13 @@ var teamSchema = new mongoose.Schema(
     additionalInfo: {
       type: String
     },
-    teamStats: [
+    /*teamStats: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Tournament'
       }
     ]
+    */
   },
   {
     timestamps: true
