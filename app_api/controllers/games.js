@@ -12,7 +12,7 @@ var sendJsonResponse = function (res, status, content) {
 module.exports.addGame = function (req, res) {
   Game.create({
     name: req.body.name,
-    maps: { name: req.body.maps },
+    maps: req.body.maps,
     minPlayerCount: req.body.minPlayerCount,
     maxPlayerCount: req.body.maxPlayerCount
   }, function (err, game) {

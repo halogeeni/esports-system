@@ -3,9 +3,28 @@
 
 var mongoose = require('mongoose');
 
+var roundTeamSchema = new mongoose.Schema(
+  {
+    _team: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Team'
+    },
+    score: {
+      type: Number
+    }
+  }
+);
+
+var roundSchema = new mongoose.Schema(
+  {
+    winnerTeam: roundTeamSchema,
+    loserTeam: roundTeamSchema
+  }
+);
+
 var matchSchema = new mongoose.Schema(
   {
-    game: {
+    _game: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Game',
       required: true
@@ -18,7 +37,7 @@ var matchSchema = new mongoose.Schema(
     teams: [
       {
         // a reference to the teamid
-        team: {
+        _team: {
           type: mongoose.Schema.Types.ObjectId,
           ref: 'Team',
           required: true
@@ -46,23 +65,7 @@ var matchSchema = new mongoose.Schema(
       type: Date,
       required: true
     },
-    // TODO how to reference to the winning team?
-    rounds: [
-      {
-        // now referencing to array of teams ( teams[0], teams[1] )
-        winnerTeam: {
-          type: Number,
-          required: true
-        },
-        // scores are referenced same way
-        scores: [
-          {
-            type: Number,
-            required: true
-          }
-        ]
-      }
-    ]
+    rounds: [roundSchema]
   },
   {
     timestamps: true

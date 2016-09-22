@@ -3,13 +3,25 @@
 
 var mongoose = require('mongoose');
 
+var groupSchema = new mongoose.Schema(
+  {
+    name: String,
+    teams: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Team'
+      }
+    ]
+  }
+);
+
 var tournamentSchema = new mongoose.Schema(
   {
     name: {
       type: String,
       required: true
     },
-    game: {
+    _game: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Game',
       required: true
@@ -32,22 +44,12 @@ var tournamentSchema = new mongoose.Schema(
       default: 'Single elimination',
       required: true
     },
-    groupStage: {
+    hasGroupStage: {
       type: Boolean,
       default: false
     },
-    groups: [
-      {
-        name: String,
-        teams: [
-          {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Team'
-          }
-        ]
-      }
-    ],
-    tournament_finished: {
+    groups: [groupSchema],
+    isFinished: {
       type: Boolean,
       required: true,
       default: false
@@ -64,7 +66,7 @@ var tournamentSchema = new mongoose.Schema(
     endDate: {
       type: Date
     },
-    max_teams: {
+    maxTeams: {
       type: Number
     },
     teams: [

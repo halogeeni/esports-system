@@ -30,13 +30,12 @@ var teamSchema = new mongoose.Schema(
     additionalInfo: {
       type: String
     },
-    /*teamStats: [
+    pastTournaments: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Tournament'
       }
     ]
-    */
   },
   {
     timestamps: true

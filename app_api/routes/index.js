@@ -18,22 +18,17 @@ router.delete('/events/:id', ctrlEvents.deleteEvent);
 router.get('/events/:id', ctrlEvents.getEvent);
 //router.put('/events/:id', ctrlEvents.updateEvent);
 
-/*
-
 router.get('/events/:id/tournaments', ctrlEvents.getTournaments);
 router.post('/events/:id/tournaments', ctrlEvents.addTournament);
 
 router.delete('/events/:id/tournaments/:id', ctrlEvents.deleteTournament);
 router.get('/events/:id/tournaments/:id', ctrlEvents.getTournament);
-router.put('/events/:id/tournaments/:id', ctrlEvents.updateTournament);
-
-
+//router.put('/events/:id/tournaments/:id', ctrlEvents.updateTournament);
 
 router.get('/events/:id/tournaments/:id/matches', ctrlEvents.getMatches);
 router.delete('/events/:id/tournaments/:id/matches/:id', ctrlEvents.deleteMatch);
 router.get('/events/:id/tournaments/:id/matches/:id', ctrlEvents.getMatch);
-router.put('/events/:id/tournaments/:id/matches/:id', ctrlEvents.updateMatch);
-*/
+//router.put('/events/:id/tournaments/:id/matches/:id', ctrlEvents.updateMatch);
 
 // /api/games
 router.get('/games', ctrlGames.getGames);
