@@ -17,11 +17,12 @@
 
 /* ----- Content ----- */
 #wrapper {
-  background-color: #ccc;
+  /*background-color: #ccc;*/
   margin-bottom: 10px;
 }
 
 #main_content {
+  min-height: 800px;
   background-color: azure;
 }
 
@@ -32,7 +33,35 @@
 .sidenav {
   height: 100%;
   border-radius: 0;
-  background-color: dimgray;
+  /*background-color: dimgray;*/
+}
+
+.panel {
+  border-radius: 0 !important;
+  border: none !important;
+  margin-bottom: 10px;
+}
+
+/* Panel heading colours */
+.custom-colors {
+  background-color: #067499 !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+.panel-body {
+  height: auto;
+  border: 
+}
+
+.list-group {
+  margin: 0;
+}
+
+.list-group-item {
+  font-size: 13px;
+  border-radius: 0 !important;
 }
 
 /* ----- Common tags ----- */
