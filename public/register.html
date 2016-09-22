@@ -41,6 +41,7 @@
             <li><a href="#">Turnaukset</a></li>
             <li><a href="#">Liigat</a></li>
             <li><a href="#">Rekisteri</a></li>
+            <li><a href="register.html">Rekisteröidy</a></li>
           </ul>
         
           <!-- Userpanel -->
@@ -80,23 +81,37 @@
           <h2>Rekisteröidy</h2>
           <form class="form-horizontal">
             <div class="form-group">
+              <label class="control-label col-md-4" for="email">Etunimi:</label>
+              <div class="col-md-5">
+                <input type="text" class="form-control" id="name" placeholder="Etunimi">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="control-label col-md-4" for="email">Sukunimi:</label>
+              <div class="col-md-5">
+                <input type="text" class="form-control" id="lastname" placeholder="Sukunimi">
+              </div>
+            </div>
+            
+            <div class="form-group">
               <label class="control-label col-md-4" for="email">Sähköposti:</label>
               <div class="col-md-5">
-                <input type="email" class="form-control" id="email" placeholder="Enter email">
+                <input type="email" class="form-control" id="email" placeholder="Sähköposti">
               </div>
             </div>
             
             <div class="form-group">
-              <label class="control-label col-md-4" for="email">Kirjoita sähköposti uudelleen:</label>
-              <div class="col-md-5">
-                <input type="email" class="form-control" id="email" placeholder="Enter email">
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <label class="control-label col-md-4" for="pwd">Password:</label>
+              <label class="control-label col-md-4" for="pwd">Salasana:</label>
               <div class="col-md-5">          
-                <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                <input type="password" class="form-control" id="pwd" placeholder="Salasana">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="control-label col-md-4" for="pwd">Kirjoita salasana uudelleen:</label>
+              <div class="col-md-5">          
+                <input type="password2" class="form-control" id="pwd" placeholder="Salasana">
               </div>
             </div>
             
@@ -116,9 +131,10 @@
           </form>
         </div>
         
+        <!-- Sidenav -->
         <div class="col-md-3 sidenav">
           <div class="panel panel-default">
-            <div class="panel-heading">
+            <div class="panel-heading custom-colors">
               <h3 class="panel-title">
                 Tulevat LAN tapahtumat
               </h3>
@@ -139,7 +155,7 @@
           </div>
           
           <div class="panel panel-default">
-            <div class="panel-heading">
+            <div class="panel-heading custom-colors">
               <h3 class="panel-title">
                 Tulevat online kilpailut
               </h3>
@@ -157,7 +173,7 @@
               Näytä lisää
             </div>
           </div>
-        </div>
+        </div><!-- /.sidenav -->
       </div>
     </div>
 
