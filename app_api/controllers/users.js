@@ -1,3 +1,6 @@
+/*jslint node: true */
+'use strict';
+
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var ContactInfo = mongoose.model('ContactInfo');
@@ -9,8 +12,6 @@ var sendJsonResponse = function(res, status, content) {
 
 // insert new user to database
 module.exports.addUser = function(req, res) {
-  console.log('in addUser');
-
   ContactInfo.create({
     email: req.body.email,
     streetAddress: req.body.streetAddress,
@@ -23,7 +24,6 @@ module.exports.addUser = function(req, res) {
     if (err) {
       sendJsonResponse(res, 404, err);
     } else {
-      console.log('in addUser - ContactInfo ' + contactInfo._id + ' was created');
       User.create({
         firstname: req.body.firstname,
         lastname: req.body.lastname,
@@ -46,7 +46,7 @@ module.exports.deleteUser = function(req, res) {
   // TODO related ContactInfo should be deleted as well
   var userid = req.params.userid;
   if (userid) {
-    Vid
+    User
       .findByIdAndRemove(userid)
       .exec(
         function(err, user) {

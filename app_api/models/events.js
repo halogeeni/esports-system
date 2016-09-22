@@ -5,39 +5,36 @@ var mongoose = require('mongoose');
 
 var eventSchema = new mongoose.Schema(
   {
-    eventName: {
+    name: {
       type: String,
       required: true
     },
-    eventInfo: {
+    info: {
       type: String,
       required: true
     },
-    eventContactInfo: {
-      type: String,
+    _contactInfo: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'ContactInfo',
       required: true
     },
-    eventTournaments: [
+    tournaments: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Tournament'
       }
     ],
-    eventSponsors: [
+    sponsors: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Sponsor'
       }
     ],
-    eventCreationDate: {
+    startDate: {
       type: Date,
       required: true
     },
-    eventStartDate: {
-      type: Date,
-      required: true
-    },
-    eventEndDate: {
+    endDate: {
       type: Date,
       required: true
     }

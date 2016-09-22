@@ -9,9 +9,12 @@ var sendJsonResponse = function (res, status, content) {
   res.json(content);
 };
 
-module.exports.postGame = function (req, res) {
+module.exports.addGame = function (req, res) {
   Game.create({
-    name: req.body.name
+    name: req.body.name,
+    maps: { name: req.body.maps },
+    minPlayerCount: req.body.minPlayerCount,
+    maxPlayerCount: req.body.maxPlayerCount
   }, function (err, game) {
     if (err) {
       sendJsonResponse(res, 400, err);
@@ -22,7 +25,7 @@ module.exports.postGame = function (req, res) {
 };
 
 module.exports.deleteGame = function (req, res) {
-  var gameid = req.params.gameid;
+  var gameid = req.params.id;
 
   if (gameid) {
     Game
@@ -35,13 +38,13 @@ module.exports.deleteGame = function (req, res) {
       });
   } else {
     sendJsonResponse(res, 404, {
-      "message": "No game id in request."
+      "message": "no game id in request"
     });
   }
 };
 
 module.exports.getGame = function (req, res) {
-  var gameid = req.params.gameid;
+  var gameid = req.params.id;
 
   if (req.params && gameid) {
     Game
@@ -49,7 +52,7 @@ module.exports.getGame = function (req, res) {
         function (err, game) {
           if (!game) {
             sendJsonResponse(res, 404, {
-              "message": "No game id in request"
+              "message": "no gameid in request"
             });
             return;
           } else if (err) {
@@ -60,7 +63,7 @@ module.exports.getGame = function (req, res) {
         });
   } else {
     sendJsonResponse(res, 404, {
-      "message": "No game id in request"
+      "message": "no gameid in request"
     });
   }
 };
