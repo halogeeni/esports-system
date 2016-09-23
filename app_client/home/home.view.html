@@ -1,0 +1,21 @@
+<h1>Home Page</h1>
+<p>
+    <a ng-show="vm.isLoggedIn" href="/#/add-video">Add a video</a>
+</p>
+<ul>
+    <li ng-repeat='video in videos'>
+        <a href="/#/video/{{video._id}}">
+      {{video.title}}
+    </a>
+        <a ng-show="vm.isLoggedIn" href="/#/video/delete/{{video._id}}">
+            <i class="glyphicon glyphicon-remove">&nbsp;</i>
+        </a>
+    </li>
+</ul>
+<p>
+    <a ng-hide="vm.isLoggedIn" href="/#login">Sign in</a>
+    <input ng-show="vm.isLoggedIn" type="button" class="btn btn-primary" value="Log out" ng-click="vm.logout()" />
+</p>
+<p>
+    <a ng-hide="vm.isLoggedIn" href="/#register">Register</a>
+</p>
