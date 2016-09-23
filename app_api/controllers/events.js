@@ -117,6 +117,7 @@ module.exports.addTournament = function(req, res) {
   Tournament.create({
     name: req.body.name,
     _game: req.body.game,
+    _event: req.body.event,
     matches: req.body.matches,
     info: req.body.info,
     rules: req.body.rules,
@@ -161,7 +162,7 @@ module.exports.deleteTournament = function(req, res) {
 };
 
 module.exports.getTournament = function(req, res) { 
-  var tournamentId = req.params.id;
+  var tournamentId = req.params.tournamentId;
 
   if (req.params && tournamentId) {
     Tournament
@@ -190,7 +191,9 @@ module.exports.getTournament = function(req, res) { 
 };
 
 module.exports.getTournaments = function(req, res) {
-  Tournament.find({}, null, {
+  var eventId = req.params.tournamentId;
+
+  Tournament.find({ _event : eventId }, null, {
     sort: {
       name: 1
     }
@@ -207,22 +210,13 @@ module.exports.getTournaments = function(req, res) {
 
 module.exports.addMatch = function(req, res) {
   Match.create({
-    name: req.body.name,
     _game: req.body.game,
-    matches: req.body.matches,
-    info: req.body.info,
-    rules: req.body.rules,
-    tournamentStructure: req.body.tournamentStructure,
-    hasGroupStage: req.body.hasGroupStage,
-    groups: req.body.groups,
-    isFinished: req.body.isFinished,
-    sponsors: req.body.sponsors,
+    _tournament: req.body.tournament,
+    bestOf: req.body.bestOf,
+    teams: req.body.teams,
     startDate: req.body.startDate,
     endDate: req.body.endDate,
-    maxTeams: req.body.maxTeams,
-    teams: req.body.teams,
-    checkInStartDate: req.body.checkInStartDate,
-    checkInEndDate: req.body.checkInEndDate
+    rounds: req.body.rounds
   }, function(err, team) {
     if (err) {
       sendJsonResponse(res, 400, err);
@@ -282,16 +276,22 @@ module.exports.getMatch = function(req, res) { 
 };
 
 module.exports.getMatches = function(req, res) {
-  // TODO so far this returns all matches in the db
-  Match.find({}, null, {
-    sort: {
-      name: 1
-    }
-  }, function(err, match) {
-    if (err) {
-      sendJsonResponse(res, 404, err);
-    } else {
-      sendJsonResponse(res, 200, match);
-    }
-  });
+  var tournamentId = req.params.tournamentId;
+
+  console.log('in getMatches');
+
+  if(req.params && tournamentId) {
+    // TODO so far this returns all matches in the db
+    Match.find({ _tournament: tournamentId }, null, {
+      sort: {
+        name: 1
+      }
+    }, function(err, match) {
+      if (err) {
+        sendJsonResponse(res, 404, err);
+      } else {
+        sendJsonResponse(res, 200, match);
+      }
+    });
+  }
 };

@@ -26,6 +26,11 @@ var tournamentSchema = new mongoose.Schema(
       ref: 'Game',
       required: true
     },
+    _event: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Game',
+      required: true
+    },
     matches: [
       {
         type: mongoose.Schema.Types.ObjectId,

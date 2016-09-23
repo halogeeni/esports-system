@@ -29,6 +29,11 @@ var matchSchema = new mongoose.Schema(
       ref: 'Game',
       required: true
     },
+    _tournament: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Tournament',
+      required: true
+    },
     bestOf: {
       type: Number,
       enum: [1, 2, 3, 5],

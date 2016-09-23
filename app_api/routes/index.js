@@ -21,13 +21,13 @@ router.get('/events/:id', ctrlEvents.getEvent);
 router.get('/events/:id/tournaments', ctrlEvents.getTournaments);
 router.post('/events/:id/tournaments', ctrlEvents.addTournament);
 
-router.delete('/events/:id/tournaments/:id', ctrlEvents.deleteTournament);
-router.get('/events/:id/tournaments/:id', ctrlEvents.getTournament);
+router.delete('/events/:eventId/tournaments/:tournamentId', ctrlEvents.deleteTournament);
+router.get('/events/:eventId/tournaments/:tournamentId', ctrlEvents.getTournament);
 //router.put('/events/:id/tournaments/:id', ctrlEvents.updateTournament);
 
-router.get('/events/:id/tournaments/:id/matches', ctrlEvents.getMatches);
-router.delete('/events/:id/tournaments/:id/matches/:id', ctrlEvents.deleteMatch);
-router.get('/events/:id/tournaments/:id/matches/:id', ctrlEvents.getMatch);
+router.get('/events/:eventId/tournaments/:tournamentId/matches', ctrlEvents.getMatches);
+router.delete('/events/:eventId/tournaments/:tournamentId/matches/:matchId', ctrlEvents.deleteMatch);
+router.get('/events/:eventId/tournaments/:tournamentId/matches/:matchId', ctrlEvents.getMatch);
 //router.put('/events/:id/tournaments/:id/matches/:id', ctrlEvents.updateMatch);
 
 // /api/games
