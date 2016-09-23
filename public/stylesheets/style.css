@@ -1,8 +1,98 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* ----- Navigation ----- */
+.navbar {
+  margin-bottom: 10px;
+  border-radius: 0;
+  font-size: 16px;
 }
 
-a {
-  color: #00B7FF;
+.navbar-brand {
+  /*padding: 0px;*/
+  margin-right: 10px;
+}
+
+/* ----- Alert box ----- */
+#alertbox {
+  margin-bottom: 10px;
+}
+
+/* ----- Content ----- */
+#wrapper {
+  /*background-color: #ccc;*/
+  margin-bottom: 10px;
+}
+
+#main_content {
+  min-height: 800px;
+  background-color: #fff;
+}
+
+.row.content {
+  height: 800px;
+}
+
+.sidenav {
+  height: 100%;
+  border-radius: 0;
+  /*background-color: dimgray;*/
+}
+
+.panel {
+  border-radius: 0 !important;
+  border: none !important;
+  margin-bottom: 10px;
+}
+
+/* Panel heading colours */
+.custom-colors {
+  background-color: #067499 !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+.panel-body {
+  height: auto;
+  border: 
+}
+
+.list-group {
+  margin: 0;
+}
+
+.list-group-item {
+  font-size: 13px;
+  border-radius: 0 !important;
+}
+
+/* ----- Common tags ----- */
+body {
+  background-image: url('../images/background1.jpg');
+  background-position: center center fixed;
+  background-repeat: no-repeat;
+}
+
+footer {
+  background-color: #555;
+  color: white;
+  padding: 15px;
+  height: 200px;
+}
+
+/*img {
+  display: block;
+  max-width:50px;
+  max-height:50px;
+  width: auto;
+  height: auto;
+}*/
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+  .row.content {
+    height:auto;
+  } 
 }
