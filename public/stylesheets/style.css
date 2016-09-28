@@ -13,7 +13,8 @@
 }
 
 .navbar-nav a {
-  color: pink !important;
+  color: #fff !important;
+  font-weight: bold;
 }
 
 /* ----- Alert box ----- */
