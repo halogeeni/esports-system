@@ -4,7 +4,7 @@
 (function() {
 
     angular
-        .module('Vidzy')
+        .module('washbear')
         .controller('homeCtrl', homeCtrl);
 
     homeCtrl.$inject = ['$scope', '$resource', '$location', 'authentication'];
@@ -18,11 +18,6 @@
             authentication.logout();
             $location.path('/#/');
         };
-
-        vm.Videos = $resource('/api/videos');
-        vm.Videos.query(function(videos) {
-            $scope.videos = videos;
-        });
     }
 
 })();

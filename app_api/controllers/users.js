@@ -2,6 +2,7 @@
 'use strict';
 
 var mongoose = require('mongoose');
+var crypto = require('crypto');
 var User = mongoose.model('User');
 var ContactInfo = mongoose.model('ContactInfo');
 
@@ -12,6 +13,25 @@ var sendJsonResponse = function(res, status, content) {
 
 // insert new user to database
 module.exports.addUser = function(req, res) {
+  if (!req.body.firstname ||
+      !req.body.lastname ||
+      !req.body.nickname ||
+      !req.body.email ||
+      /* !req.body.birthday */
+      !req.body.streetAddress ||
+      !req.body.postalCode ||
+      !req.body.city ||
+      !req.body.country ||
+      !req.body.phone ||
+      !req.body.website ||
+      !req.body.password)
+  {
+      sendJsonResponse(res, 400, {
+          "message": "all fields are required"
+      });
+      return;
+  }
+
   ContactInfo.create({
     email: req.body.email,
     streetAddress: req.body.streetAddress,
@@ -24,18 +44,22 @@ module.exports.addUser = function(req, res) {
     if (err) {
       sendJsonResponse(res, 404, err);
     } else {
+      var _salt = crypto.randomBytes(32).toString('hex');
       User.create({
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         nickname: req.body.nickname,
         birthday: req.body.birthday,
-        _contactInfo: contactInfo._id
+        _contactInfo: contactInfo._id,
+        salt: _salt,
+        hash: crypto.pbkdf2Sync(req.body.password, _salt, 10000, 512, 'sha512')
+                    .toString('hex')
       }, function(err, user) {
         if (err) {
           sendJsonResponse(res, 400, err);
         } else {
-          console.log('in addUser - User ' + user._id + ' was created');
-          sendJsonResponse(res, 201, user);
+          // we shouldn't return any payload on successful creation, only 201
+          sendJsonResponse(res, 201, { "message" : "user created" });
         }
       });
     }

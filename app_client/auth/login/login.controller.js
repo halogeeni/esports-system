@@ -1,7 +1,7 @@
 (function() {
 
     angular
-        .module('Vidzy')
+        .module('washbear')
         .controller('loginCtrl', loginCtrl);
 
     loginCtrl.$inject = ['$location', 'authentication'];
@@ -10,7 +10,7 @@
         var vm = this;
 
         vm.pageHeader = {
-            title: 'Sign in to Vidzy'
+            title: 'Kirjaudu Washbeariin'
         };
 
         vm.credentials = {
@@ -23,7 +23,7 @@
         vm.onSubmit = function() {
             vm.formError = "";
             if (!vm.credentials.email || !vm.credentials.password) {
-                vm.formError = "All fields required, please try again";
+                vm.formError = "Vaadittavia tietoja puuttuu";
                 return false;
             } else {
                 vm.doLogin();

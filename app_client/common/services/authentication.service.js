@@ -1,7 +1,7 @@
 (function() {
 
     angular
-        .module('Vidzy')
+        .module('washbear')
         .service('authentication', authentication);
 
     authentication.$inject = ['$http', '$window'];
@@ -9,11 +9,11 @@
     function authentication($http, $window) {
 
         var saveToken = function(token) {
-            $window.localStorage['vidzy-token'] = token;
+            $window.localStorage['washbear-token'] = token;
         };
 
         var getToken = function() {
-            return $window.localStorage['vidzy-token'];
+            return $window.localStorage['washbear-token'];
         };
 
         var isLoggedIn = function() {
@@ -40,8 +40,8 @@
         };
 
         register = function(user) {
-            return $http.post('/api/register', user).success(function(data) {
-                saveToken(data.token);
+            return $http.post('/api/users', user).success(function(data) {
+                //saveToken(data.token);
             });
         };
 
@@ -52,7 +52,7 @@
         };
 
         logout = function() {
-            $window.localStorage.removeItem('vidzy-token');
+            $window.localStorage.removeItem('washbear-token');
         };
 
         return {
