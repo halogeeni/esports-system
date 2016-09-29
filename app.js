@@ -31,7 +31,8 @@ var appClientFiles = [
   'app_client/auth/login/login.controller.js',
   'app_client/common/directives/footer/footerGeneric.directive.js',
   'app_client/common/directives/navigation/navigation.directive.js',
-  'app_client/common/directives/sidenav/sideNavigation.directive.js'
+  'app_client/common/directives/sidenav/sideNavigation.directive.js',
+  'app_client/common/directives/notification/notification.directive.js'
 ];
 
 new compressor.minify({
