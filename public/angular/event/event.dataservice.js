@@ -4,16 +4,16 @@
   angular
     .module('bfpdb')
     .factory('eventDataservice', eventDataservice);
-  
+
   eventDataservice.$inject = ['$http', 'logger'];
 
   function eventDataservice($http, logger) {
     var baseURL = '/api/events';
-    
+
     return {
       getEvents: getEvents
     };
-    
+
     ////
 
     function getEvents() {

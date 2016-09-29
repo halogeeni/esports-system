@@ -1,10 +1,10 @@
-(function () {
+(function() {
 
   angular
     .module('washbear')
     .directive('navigation', navigation);
 
-  function navigation () {
+  function navigation() {
     return {
       restrict: 'EA',
       templateUrl: '/common/directives/navigation/navigation.template.html'

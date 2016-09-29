@@ -3,21 +3,21 @@
 
 (function() {
 
-    angular
-        .module('washbear')
-        .controller('homeCtrl', homeCtrl);
+  angular
+    .module('washbear')
+    .controller('homeCtrl', homeCtrl);
 
-    homeCtrl.$inject = ['$scope', '$resource', '$location', 'authentication'];
+  homeCtrl.$inject = ['$scope', '$resource', '$location', 'authentication'];
 
-    function homeCtrl($scope, $resource, $location, authentication) {
-        var vm = this;
+  function homeCtrl($scope, $resource, $location, authentication) {
+    var vm = this;
 
-        vm.isLoggedIn = authentication.isLoggedIn();
+    vm.isLoggedIn = authentication.isLoggedIn();
 
-        vm.logout = function() {
-            authentication.logout();
-            $location.path('/#/');
-        };
-    }
+    vm.logout = function() {
+      authentication.logout();
+      $location.path('/#/');
+    };
+  }
 
 })();

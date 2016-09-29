@@ -3,7 +3,9 @@ var router = express.Router();
 
 /* GET home page */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Project Washbear' });
+  res.render('index', {
+    title: 'Project Washbear'
+  });
 });
 
 module.exports = router;

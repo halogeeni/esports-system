@@ -1,69 +1,69 @@
 (function() {
 
-    angular
-        .module('washbear')
-        .service('authentication', authentication);
+  angular
+    .module('washbear')
+    .service('authentication', authentication);
 
-    authentication.$inject = ['$http', '$window'];
+  authentication.$inject = ['$http', '$window'];
 
-    function authentication($http, $window) {
+  function authentication($http, $window) {
 
-        var saveToken = function(token) {
-            $window.localStorage['washbear-token'] = token;
-        };
+    var saveToken = function(token) {
+      $window.localStorage['washbear-token'] = token;
+    };
 
-        var getToken = function() {
-            return $window.localStorage['washbear-token'];
-        };
+    var getToken = function() {
+      return $window.localStorage['washbear-token'];
+    };
 
-        var isLoggedIn = function() {
-            var token = getToken();
+    var isLoggedIn = function() {
+      var token = getToken();
 
-            if (token) {
-                var payload = JSON.parse($window.atob(token.split('.')[1]));
+      if (token) {
+        var payload = JSON.parse($window.atob(token.split('.')[1]));
 
-                return payload.exp > Date.now() / 1000;
-            } else {
-                return false;
-            }
-        };
+        return payload.exp > Date.now() / 1000;
+      } else {
+        return false;
+      }
+    };
 
-        var currentUser = function() {
-            if (isLoggedIn()) {
-                var token = getToken();
-                var payload = JSON.parse($window.atob(token.split('.')[1]));
-                return {
-                    email: payload.email,
-                    name: payload.name
-                };
-            }
-        };
-
-        register = function(user) {
-            return $http.post('/api/users', user).success(function(data) {
-                //saveToken(data.token);
-            });
-        };
-
-        login = function(user) {
-            return $http.post('/api/login', user).success(function(data) {
-                saveToken(data.token);
-            });
-        };
-
-        logout = function() {
-            $window.localStorage.removeItem('washbear-token');
-        };
-
+    var currentUser = function() {
+      if (isLoggedIn()) {
+        var token = getToken();
+        var payload = JSON.parse($window.atob(token.split('.')[1]));
         return {
-            currentUser: currentUser,
-            saveToken: saveToken,
-            getToken: getToken,
-            isLoggedIn: isLoggedIn,
-            register: register,
-            login: login,
-            logout: logout
+          email: payload.email,
+          name: payload.name
         };
-    }
+      }
+    };
+
+    register = function(user) {
+      return $http.post('/api/users', user).success(function(data) {
+        //saveToken(data.token);
+      });
+    };
+
+    login = function(user) {
+      return $http.post('/api/login', user).success(function(data) {
+        saveToken(data.token);
+      });
+    };
+
+    logout = function() {
+      $window.localStorage.removeItem('washbear-token');
+    };
+
+    return {
+      currentUser: currentUser,
+      saveToken: saveToken,
+      getToken: getToken,
+      isLoggedIn: isLoggedIn,
+      register: register,
+      login: login,
+      logout: logout
+    };
+  }
 
 })();

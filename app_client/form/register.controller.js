@@ -34,19 +34,18 @@
     vm.onSubmit = function() {
       vm.formError = "";
       if (!vm.credentials.firstname ||
-          !vm.credentials.lastname ||
-          !vm.credentials.nickname ||
-          !vm.credentials.email ||
-          /* !vm.credentials.birthday */
-          !vm.credentials.streetAddress ||
-          !vm.credentials.postalCode ||
-          !vm.credentials.city ||
-          !vm.credentials.country ||
-          !vm.credentials.phone ||
-          !vm.credentials.website ||
-          !vm.credentials.password  ||
-          !vm.credentials.verifyPassword)
-      {
+        !vm.credentials.lastname ||
+        !vm.credentials.nickname ||
+        !vm.credentials.email ||
+        /* !vm.credentials.birthday */
+        !vm.credentials.streetAddress ||
+        !vm.credentials.postalCode ||
+        !vm.credentials.city ||
+        !vm.credentials.country ||
+        !vm.credentials.phone ||
+        !vm.credentials.website ||
+        !vm.credentials.password  ||
+        !vm.credentials.verifyPassword) {
         vm.formError = "Täytä kaikki kentät";
         return false;
       } else {
