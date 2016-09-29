@@ -1,6 +1,6 @@
 (function() {
 
-    angular.module('Vidzy', ['ngResource', 'ngRoute']);
+    angular.module('washbear', ['ngResource', 'ngRoute']);
 
     function config($routeProvider) {
         // endpoints are declared here
@@ -10,29 +10,19 @@
                 controller: 'homeCtrl',
                 controllerAs: 'vm'
             })
-            .when('/add-video', {
-                templateUrl: '/form/video-form.view.html',
-                controller: 'addVideoCtrl',
-                controllerAs: 'vm'
-            })
-            .when('/video/:id', {
-                templateUrl: '/form/video-form.view.html',
-                controller: 'editVideoCtrl',
-                controllerAs: 'vm'
-            })
-            .when('/video/delete/:id', {
-                templateUrl: '/delete/video-delete.view.html',
-                controller: 'deleteVideoCtrl',
-                controllerAs: 'vm'
-            })
-            .when('/register', {
-                templateUrl: '/auth/register/register.view.html',
-                controller: 'registerCtrl',
-                controllerAs: 'vm'
-            })
             .when('/login', {
                 templateUrl: '/auth/login/login.view.html',
                 controller: 'loginCtrl',
+                controllerAs: 'vm'
+            })
+            .when('/register', {
+                templateUrl: '/form/register.view.html',
+                controller: 'registerCtrl',
+                controllerAs: 'vm'
+            })
+            .when('/user', {
+                templateUrl: '/user/user.view.html',
+                //controller: 'loginCtrl',
                 controllerAs: 'vm'
             })
             .otherwise({
@@ -41,7 +31,7 @@
     }
 
     angular
-        .module('Vidzy')
+        .module('washbear')
         .config(['$routeProvider', config]);
 
 })();

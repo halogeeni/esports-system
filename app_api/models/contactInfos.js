@@ -35,13 +35,10 @@ var contactInfoSchema = new mongoose.Schema(
     website: {
       type: String
     }
-  }
-  /*
-  MAYBE NOT NEED
+  },
   {
     timestamps: true
   }
-  */
 );
 
 mongoose.model('ContactInfo', contactInfoSchema);
