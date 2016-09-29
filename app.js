@@ -14,7 +14,7 @@ require('./app_api/config/passport');
 
 var compressor = require('node-minify');
 
-var routes = require('./app_server/routes/index');
+//var routes = require('./app_server/routes/index');
 var routesApi = require('./app_api/routes/index');
 
 var app = express();
@@ -30,7 +30,8 @@ var appClientFiles = [
   'app_client/form/register.controller.js',
   'app_client/auth/login/login.controller.js',
   'app_client/common/directives/footer/footerGeneric.directive.js',
-  'app_client/common/directives/navigation/navigation.directive.js'
+  'app_client/common/directives/navigation/navigation.directive.js',
+  'app_client/common/directives/sidenav/sideNavigation.directive.js'
 ];
 
 new compressor.minify({
