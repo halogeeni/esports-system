@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('bfpdb')
+    .module('washbear')
     .factory('eventDataservice', eventDataservice);
 
   eventDataservice.$inject = ['$http', 'logger'];

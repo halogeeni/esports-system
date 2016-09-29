@@ -1,7 +1,9 @@
 (function() {
   'use strict';
 
-  angular.module('bfpdb').controller('EventController', EventController);
+  angular
+    .module('washbear')
+    .controller('EventController', EventController);
 
   EventController.$inject = ['$scope', '$http', 'eventDataservice'];
 
