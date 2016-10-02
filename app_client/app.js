@@ -26,7 +26,7 @@
         controllerAs: 'vm'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/#/'
       });
   }
 

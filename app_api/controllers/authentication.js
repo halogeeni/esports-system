@@ -9,7 +9,7 @@ var sendJsonResponse = function(res, status, content) {
 
 // user login controller
 module.exports.login = function(req, res) {
-    if (!req.body.email ||  !req.body.password) {
+    if (!req.body.username ||  !req.body.password) {
         sendJsonResponse(res, 400, {
             "message": "all fields are required"
         });

@@ -29,6 +29,7 @@ var appClientFiles = [
   'app_client/home/home.controller.js',
   'app_client/form/register.controller.js',
   'app_client/auth/login/login.controller.js',
+  'app_client/common/directives/navigation/navigation.controller.js',
   'app_client/common/directives/footer/footerGeneric.directive.js',
   'app_client/common/directives/navigation/navigation.directive.js',
   'app_client/common/directives/sidenav/sideNavigation.directive.js',

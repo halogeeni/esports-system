@@ -14,7 +14,7 @@
     };
 
     vm.credentials = {
-      email: "",
+      username: "",
       password: ""
     };
 
@@ -22,7 +22,7 @@
 
     vm.onSubmit = function() {
       vm.formError = "";
-      if (!vm.credentials.email || !vm.credentials.password) {
+      if (!vm.credentials.username || !vm.credentials.password) {
         vm.formError = "Vaadittavia tietoja puuttuu";
         return false;
       } else {
