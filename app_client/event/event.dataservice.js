@@ -5,9 +5,9 @@
     .module('washbear')
     .factory('eventDataservice', eventDataservice);
 
-  eventDataservice.$inject = ['$http', 'logger'];
+  eventDataservice.$inject = ['$http'];
 
-  function eventDataservice($http, logger) {
+  function eventDataservice($http) {
     var baseURL = '/api/events';
 
     return {
@@ -26,7 +26,7 @@
       }
 
       function getEventsFailed(error) {
-        logger.error('XHR Failed for getAvengers.' + error.data);
+        //logger.error('XHR Failed for getAvengers.' + error.data);
       }
     }
 

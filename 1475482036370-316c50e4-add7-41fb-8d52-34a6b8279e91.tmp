@@ -27,7 +27,7 @@
       })
       .when('/players', {
         templateUrl: '/players/players.view.html',
-        //controller: 'loginCtrl',
+        controller: 'playersCtrl',
         controllerAs: 'vm'
       })
       .otherwise({
@@ -253,6 +253,70 @@
 
 })();
 
+(function() {
+  'use strict';
+
+  angular
+    .module('washbear')
+    .controller('playersCtrl', playersCtrl);
+
+  playersCtrl.$inject = ['$scope', 'playersDataservice'];
+
+  function playersCtrl($scope, playersDataservice) {
+    
+    console.error(playersDataservice);
+    
+    console.error('This is playersController');
+
+    var vm = this;
+
+    vm.players = playersDataservice.getPlayers();
+    
+    console.error(vm.players);
+
+    ////
+
+
+  }
+
+}());
+(function() {
+  'use strict';
+
+  angular
+    .module('washbear')
+    .factory('playersDataservice', playersDataservice);
+
+  playersDataservice.$inject = ['$http'];
+
+  function playersDataservice($http) {
+    
+    console.error('This is playersDataservice ');
+    
+    var baseURL = '/api/users';
+
+    function getPlayers() {
+      console.error('This is getPlayers');
+      return $http.get(baseURL)
+        .then(getPlayersComplete)
+        .catch(getPlayersFailed);
+
+      function getPlayersComplete(response) {
+        console.error('This is getPlayersComplete');
+        return response.data.results;
+      }
+
+      function getPlayersFailed(error) {
+        console.error('This is getPlayersFailed');
+        //log.error('XHR Failed for getPlayers.' + error.data);
+      }
+    }
+    
+    return getPlayers();
+
+  }
+})();
+
 (function () {
   angular
     .module('washbear')
@@ -260,12 +324,11 @@
 
   navigationCtrl.$inject = ['$location', 'authentication'];
   function navigationCtrl($location, authentication) {
+    
     var vm = this;
 
     vm.currentPath = $location.path();
-
     vm.isLoggedIn = authentication.isLoggedIn();
-
     vm.currentUser = authentication.currentUser();
 
     vm.logout = function() {
