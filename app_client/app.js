@@ -25,6 +25,11 @@
         //controller: 'loginCtrl',
         controllerAs: 'vm'
       })
+      .when('/players', {
+        templateUrl: '/players/players.view.html',
+        controller: 'playersListCtrl',
+        controllerAs: 'vm'
+      })
       .otherwise({
         redirectTo: '/#/'
       });

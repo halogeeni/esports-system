@@ -29,11 +29,16 @@ var appClientFiles = [
   'app_client/home/home.controller.js',
   'app_client/form/register.controller.js',
   'app_client/auth/login/login.controller.js',
+  'app_client/players/playersList.controller.js',
+  'app_client/event/eventList.controller.js',
+  'app_client/common/services/event.dataservice.js',
+  'app_client/common/services/player.dataservice.js',
   'app_client/common/directives/navigation/navigation.controller.js',
   'app_client/common/directives/footer/footerGeneric.directive.js',
   'app_client/common/directives/navigation/navigation.directive.js',
   'app_client/common/directives/sidenav/sideNavigation.directive.js',
-  'app_client/common/directives/notification/notification.directive.js'
+  'app_client/common/directives/notification/notification.directive.js',
+  'app_client/common/directives/ads/adbannerLeft/adbannerLeft.directive.js'
 ];
 
 new compressor.minify({
