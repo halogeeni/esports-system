@@ -2,7 +2,7 @@
 <navigation></navigation>
 
 <!-- Alert / info / notification -->
-<!-- <notification></notification> -->
+<notification></notification>
 
 <!-- Main content -->
 <div id="wrapper" class="container text-center">
@@ -10,7 +10,9 @@
     
     <!-- Content -->
     <div id="main_content" class="col-md-9 text-left">
-      This is player listing
+      <ul ng-repeat="player in vm.players">
+        <li><a href="">{{ player.firstname }} <strong>"{{ player.nickname }}"</strong> {{ player.lastname }}</a></li>
+      </ul>
     </div>
 
     <!-- Sidenav -->

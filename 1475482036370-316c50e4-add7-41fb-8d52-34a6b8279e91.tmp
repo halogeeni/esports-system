@@ -27,7 +27,7 @@
       })
       .when('/players', {
         templateUrl: '/players/players.view.html',
-        controller: 'playersListCtrl',
+        controller: 'playersCtrl',
         controllerAs: 'vm'
       })
       .otherwise({
@@ -258,69 +258,61 @@
 
   angular
     .module('washbear')
-    .controller('playersListCtrl', playersListCtrl);
+    .controller('playersCtrl', playersCtrl);
 
-  playersListCtrl.$inject = ['$scope', 'playerDataservice'];
+  playersCtrl.$inject = ['$scope', 'playersDataservice'];
 
-  function playersListCtrl($scope, playerDataservice) {
+  function playersCtrl($scope, playersDataservice) {
     
+    console.error(playersDataservice);
+    
+    console.error('This is playersController');
+
     var vm = this;
+
+    vm.players = playersDataservice.getPlayers();
     
-    vm.players = [];
+    console.error(vm.players);
 
-    activate();
+    ////
 
-    function activate() {
-      return getPlayers().then(function() {
-        console.info('Activated Players View');
-      });
-    }
-
-    function getPlayers() {
-      return playerDataservice.getPlayers().then(function(data) {
-        vm.players = data;
-        return vm.players;
-      });
-    }
 
   }
 
 }());
-
 (function() {
   'use strict';
 
   angular
     .module('washbear')
-    .factory('playerDataservice', playerDataservice);
+    .factory('playersDataservice', playersDataservice);
 
-  playerDataservice.$inject = ['$http'];
+  playersDataservice.$inject = ['$http'];
 
-  function playerDataservice($http) {
+  function playersDataservice($http) {
+    
+    console.error('This is playersDataservice ');
     
     var baseURL = '/api/users';
-    
-    ////
-    
-    return {
-      getPlayers: getPlayers
-    };
-    
-    ////
 
     function getPlayers() {
+      console.error('This is getPlayers');
       return $http.get(baseURL)
         .then(getPlayersComplete)
         .catch(getPlayersFailed);
 
       function getPlayersComplete(response) {
-        return response.data;
+        console.error('This is getPlayersComplete');
+        return response.data.results;
       }
 
       function getPlayersFailed(error) {
-        console.error('XHR Failed for getPlayers.' + error.data);
+        console.error('This is getPlayersFailed');
+        //log.error('XHR Failed for getPlayers.' + error.data);
       }
     }
+    
+    return getPlayers();
 
   }
 })();
