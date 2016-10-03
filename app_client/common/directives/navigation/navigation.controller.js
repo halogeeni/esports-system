@@ -15,6 +15,7 @@
 
     vm.logout = function() {
       authentication.logout();
+      vm.isLoggedIn = false;
       $location.path('/');
     };
 
