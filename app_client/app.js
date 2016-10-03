@@ -27,7 +27,7 @@
       })
       .when('/players', {
         templateUrl: '/players/players.view.html',
-        //controller: 'loginCtrl',
+        controller: 'playersListCtrl',
         controllerAs: 'vm'
       })
       .otherwise({

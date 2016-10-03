@@ -1,0 +1,416 @@
+(function() {
+
+  angular.module('washbear', ['ngResource', 'ngRoute']);
+
+  function config($routeProvider) {
+    // endpoints are declared here
+    $routeProvider
+      .when('/', {
+        templateUrl: '/home/home.view.html',
+        controller: 'homeCtrl',
+        controllerAs: 'vm'
+      })
+      .when('/login', {
+        templateUrl: '/auth/login/login.view.html',
+        controller: 'loginCtrl',
+        controllerAs: 'vm'
+      })
+      .when('/register', {
+        templateUrl: '/form/register.view.html',
+        controller: 'registerCtrl',
+        controllerAs: 'vm'
+      })
+      .when('/user', {
+        templateUrl: '/user/user.view.html',
+        //controller: 'loginCtrl',
+        controllerAs: 'vm'
+      })
+      .when('/players', {
+        templateUrl: '/players/players.view.html',
+        controller: 'playersCtrl',
+        controllerAs: 'vm'
+      })
+      .otherwise({
+        redirectTo: '/#/'
+      });
+  }
+
+  angular
+    .module('washbear')
+    .config(['$routeProvider', config]);
+
+})();
+
+(function() {
+
+  angular
+    .module('washbear')
+    .service('authentication', authentication);
+
+  authentication.$inject = ['$http', '$window'];
+
+  function authentication($http, $window) {
+
+    var saveToken = function(token) {
+      $window.localStorage['washbear-token'] = token;
+    };
+
+    var getToken = function() {
+      return $window.localStorage['washbear-token'];
+    };
+
+    var isLoggedIn = function() {
+      var token = getToken();
+
+      if (token) {
+        var payload = JSON.parse($window.atob(token.split('.')[1]));
+        return payload.exp > Date.now() / 1000;
+      } else {
+        return false;
+      }
+    };
+
+    var currentUser = function() {
+      if (isLoggedIn()) {
+        var token = getToken();
+        var payload = JSON.parse($window.atob(token.split('.')[1]));
+        return {
+          email: payload.email,
+          name: payload.name
+        };
+      }
+    };
+
+    register = function(user) {
+      return $http.post('/api/users', user).success(function(data) {
+        //saveToken(data.token);
+      });
+    };
+
+    login = function(user) {
+      return $http.post('/api/login', user).success(function(data) {
+        saveToken(data.token);
+      });
+    };
+
+    logout = function() {
+      $window.localStorage.removeItem('washbear-token');
+    };
+
+    return {
+      currentUser: currentUser,
+      saveToken: saveToken,
+      getToken: getToken,
+      isLoggedIn: isLoggedIn,
+      register: register,
+      login: login,
+      logout: logout
+    };
+  }
+
+})();
+
+// controller wrapped in anonymous function
+// to isolate the code from global scope
+
+(function() {
+
+  angular
+    .module('washbear')
+    .controller('homeCtrl', homeCtrl);
+
+  homeCtrl.$inject = ['$scope', '$resource', '$location', 'authentication'];
+
+  function homeCtrl($scope, $resource, $location, authentication) {
+    var vm = this;
+
+    vm.isLoggedIn = authentication.isLoggedIn();
+
+    vm.logout = function() {
+      authentication.logout();
+      $location.path('/#/');
+    };
+  }
+
+})();
+(function() {
+
+  angular
+    .module('washbear')
+    .controller('registerCtrl', registerCtrl);
+
+  registerCtrl.$inject = ['$location', 'authentication'];
+
+  function registerCtrl($location, authentication) {
+    var vm = this;
+
+    vm.pageHeader = {
+      title: 'Uusi pelaajatili'
+    };
+
+    vm.credentials = {
+      firstname: "",
+      lastname: "",
+      nickname: "",
+      /*birthday: "",*/
+      email: "",
+      streetAddress: "",
+      postalCode: "",
+      city: "",
+      country: "",
+      phone: "",
+      website: "",
+      password: "",
+      verifyPassword: ""
+    };
+
+    vm.returnPage = $location.search().page || '/';
+
+    vm.onSubmit = function() {
+      vm.formError = "";
+      if (!vm.credentials.firstname ||
+        !vm.credentials.lastname ||
+        !vm.credentials.nickname ||
+        !vm.credentials.email ||
+        /* !vm.credentials.birthday */
+        !vm.credentials.streetAddress ||
+        !vm.credentials.postalCode ||
+        !vm.credentials.city ||
+        !vm.credentials.country ||
+        !vm.credentials.phone ||
+        !vm.credentials.website ||
+        !vm.credentials.password  ||
+        !vm.credentials.verifyPassword) {
+        vm.formError = "Täytä kaikki kentät";
+        return false;
+      } else {
+        vm.doRegister();
+      }
+    };
+
+    vm.doRegister = function() {
+      vm.formError = "";
+      authentication
+        .register(vm.credentials)
+        .error(function(err) {
+          vm.formError = err;
+        })
+        .then(function() {
+          $location.search('page', null);
+          $location.path(vm.returnPage);
+        });
+    };
+
+  }
+
+})();
+(function() {
+
+  angular
+    .module('washbear')
+    .controller('loginCtrl', loginCtrl);
+
+  loginCtrl.$inject = ['$location', 'authentication'];
+
+  function loginCtrl($location, authentication) {
+    var vm = this;
+
+    vm.pageHeader = {
+      title: 'Kirjaudu Washbeariin'
+    };
+
+    vm.credentials = {
+      username: "",
+      password: ""
+    };
+
+    vm.returnPage = $location.search().page || '/';
+
+    vm.onSubmit = function() {
+      vm.formError = "";
+      if (!vm.credentials.username || !vm.credentials.password) {
+        vm.formError = "Vaadittavia tietoja puuttuu";
+        return false;
+      } else {
+        vm.doLogin();
+      }
+    };
+
+    vm.doLogin = function() {
+      vm.formError = "";
+      authentication
+        .login(vm.credentials)
+        .error(function(err) {
+          vm.formError = err;
+        })
+        .then(function() {
+          $location.search('page', null);
+          $location.path(vm.returnPage);
+        });
+    };
+
+  }
+
+})();
+
+(function() {
+  'use strict';
+
+  angular
+    .module('washbear')
+    .controller('playersCtrl', playersCtrl);
+
+  playersCtrl.$inject = ['$scope', 'playersDataservice'];
+
+  function playersCtrl($scope, playersDataservice) {
+    
+    console.error(playersDataservice);
+    
+    console.error('This is playersController');
+
+    var vm = this;
+
+    vm.players = playersDataservice.getPlayers();
+    
+    console.error(vm.players);
+
+    ////
+
+
+  }
+
+}());
+(function() {
+  'use strict';
+
+  angular
+    .module('washbear')
+    .factory('playersDataservice', playersDataservice);
+
+  playersDataservice.$inject = ['$http'];
+
+  function playersDataservice($http) {
+    
+    console.error('This is playersDataservice ');
+    
+    var baseURL = '/api/users';
+
+    function getPlayers() {
+      console.error('This is getPlayers');
+      return $http.get(baseURL)
+        .then(getPlayersComplete)
+        .catch(getPlayersFailed);
+
+      function getPlayersComplete(response) {
+        console.error('This is getPlayersComplete');
+        return response.data.results;
+      }
+
+      function getPlayersFailed(error) {
+        console.error('This is getPlayersFailed');
+        //log.error('XHR Failed for getPlayers.' + error.data);
+      }
+    }
+    
+    return getPlayers();
+
+  }
+})();
+
+(function () {
+  angular
+    .module('washbear')
+    .controller('navigationCtrl', navigationCtrl);
+
+  navigationCtrl.$inject = ['$location', 'authentication'];
+  function navigationCtrl($location, authentication) {
+    
+    var vm = this;
+
+    vm.currentPath = $location.path();
+    vm.isLoggedIn = authentication.isLoggedIn();
+    vm.currentUser = authentication.currentUser();
+
+    vm.logout = function() {
+      authentication.logout();
+      $location.path('/#/');
+    };
+
+  }
+})();
+
+(function() {
+
+  angular
+    .module('washbear')
+    .directive('footerGeneric', footerGeneric);
+
+  function footerGeneric() {
+    return {
+      restrict: 'EA',
+      templateUrl: '/common/directives/footer/footerGeneric.template.html'
+    };
+  }
+
+})();
+
+(function() {
+
+  angular
+    .module('washbear')
+    .directive('navigation', navigation);
+
+  function navigation() {
+    return {
+      restrict: 'EA',
+      templateUrl: '/common/directives/navigation/navigation.template.html',
+      controller: 'navigationCtrl as navvm'
+    };
+  }
+
+})();
+
+(function() {
+
+  angular
+    .module('washbear')
+    .directive('sideNavigation', sideNavigation);
+
+  function sideNavigation() {
+    return {
+      restrict: 'EA',
+      templateUrl: '/common/directives/sidenav/sideNavigation.template.html'
+    };
+  }
+
+})();
+
+(function() {
+
+  angular
+    .module('washbear')
+    .directive('notification', notification);
+
+  function notification() {
+    return {
+      restrict: 'EA',
+      templateUrl: '/common/directives/notification/notification.template.html'
+    };
+  }
+
+})();
+
+(function() {
+
+  angular
+    .module('washbear')
+    .directive('adbannerLeft', adbannerLeft);
+
+  function adbannerLeft() {
+    return {
+      restrict: 'EA',
+      templateUrl: '/common/directives/ads/adBannerLeft/adBannerLeft.template.html'
+    };
+  }
+
+})();
