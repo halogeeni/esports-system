@@ -30,6 +30,8 @@ var appClientFiles = [
   'app_client/form/register.controller.js',
   'app_client/auth/login/login.controller.js',
   'app_client/players/playersList.controller.js',
+  'app_client/event/eventList.controller.js',
+  'app_client/common/services/event.dataservice.js',
   'app_client/common/services/player.dataservice.js',
   'app_client/common/directives/navigation/navigation.controller.js',
   'app_client/common/directives/footer/footerGeneric.directive.js',
