@@ -5,7 +5,7 @@
     margin-bottom: 0;
     border-radius: 0;
     border-color: #555;
-    font-size: 16px;
+    font-size: 16px
 }
 
 .navbar-brand {
@@ -19,8 +19,9 @@
 }
 
 .navbar .dropdown-menu {
-  background-color: #555 !important;
+    background-color: #555 !important;
 }
+
 
 /* ----- Alert box ----- */
 
@@ -29,9 +30,11 @@
     margin-top: 10px;
 }
 
+
 /* ----- Content ----- */
 
 #wrapper {
+    margin-top: 10px
     /*background-color: #ccc;*/
     /*margin-bottom: 10px;*/
 }
@@ -41,6 +44,13 @@
     background-color: #fff;
 }
 
+
+/*
+#adbanner-left {
+  margin-top:10px;
+}
+*/
+
 .row.content {
     height: 800px;
 }
@@ -48,6 +58,7 @@
 .sidenav {
     height: 100%;
     border-radius: 0;
+    /*margin-top:10px;*/
     /*background-color: dimgray;*/
 }
 
@@ -86,6 +97,7 @@
 
 body {
     background-image: url('../images/background1.jpg');
+    background-attachment: fixed;
     background-position: center center fixed;
     background-repeat: no-repeat;
 }
