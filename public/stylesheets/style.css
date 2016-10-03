@@ -1,47 +1,47 @@
 /* ----- Navigation ----- */
 
 .navbar {
-    background-color: #555;
-    margin-bottom: 0;
-    border-radius: 0;
-    border-color: #555;
-    font-size: 16px
+  background-color: #555;
+  margin-bottom: 0;
+  border-radius: 0;
+  border-color: #555;
+  font-size: 16px
 }
 
 .navbar-brand {
-    /*padding: 0px;*/
-    margin-right: 10px;
+  /*padding: 0px;*/
+  margin-right: 10px;
 }
 
 .navbar-nav a {
-    color: #fff !important;
-    font-weight: bold;
+  color: #fff !important;
+  font-weight: bold;
 }
 
 .navbar .dropdown-menu {
-    background-color: #555 !important;
+  background-color: #555 !important;
 }
 
 
 /* ----- Alert box ----- */
 
 #alertbox {
-    margin-bottom: 10px;
-    margin-top: 10px;
+  margin-bottom: 0px;
+  margin-top: 10px;
 }
 
 
 /* ----- Content ----- */
 
 #wrapper {
-    margin-top: 10px
-    /*background-color: #ccc;*/
-    /*margin-bottom: 10px;*/
+  margin-top: 10px
+  /*background-color: #ccc;*/
+  /*margin-bottom: 10px;*/
 }
 
 #main_content {
-    min-height: 800px;
-    background-color: #fff;
+  min-height: 800px;
+  background-color: #fff;
 }
 
 
@@ -52,63 +52,67 @@
 */
 
 .row.content {
-    height: 800px;
+  height: 800px;
 }
 
 .sidenav {
-    height: 100%;
-    border-radius: 0;
-    /*margin-top:10px;*/
-    /*background-color: dimgray;*/
+  height: 100%;
+  border-radius: 0;
+  /*margin-top:10px;*/
+  /*background-color: dimgray;*/
 }
 
 .panel {
-    border-radius: 0 !important;
-    border: none !important;
-    margin-bottom: 10px;
+  border-radius: 0 !important;
+  border: none !important;
+  margin-bottom: 10px;
 }
 
 
 /* Panel heading colours */
 
 .custom-colors {
-    background-color: #067499 !important;
-    color: #fff !important;
-    border: none !important;
-    border-radius: 0 !important;
+  background-color: #067499 !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 0 !important;
 }
 
 .panel-body {
-    height: auto;
-    border:
+  height: auto;
+  border:
 }
 
 .list-group {
-    margin: 0;
+  margin: 0;
 }
 
 .list-group-item {
-    font-size: 13px;
-    border-radius: 0 !important;
+  font-size: 13px;
+  border-radius: 0 !important;
 }
 
 
 /* ----- Common tags ----- */
 
 body {
-    background-image: url('../images/background1.jpg');
-    background-attachment: fixed;
-    background-position: center center fixed;
-    background-repeat: no-repeat;
+  background-image: url('../images/background1.jpg');
+  background-attachment: fixed;
+  background-position: center center fixed;
+  background-repeat: no-repeat;
 }
 
 footer {
-    background-color: #555;
-    color: white;
-    padding: 15px;
-    height: 200px;
+  background-color: #555;
+  color: white;
+  padding: 15px;
 }
 
+.footer-sponsor-logo-container {
+  max-width: 50%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
 /*img {
   display: block;
@@ -122,11 +126,11 @@ footer {
 /* On small screens, set height to 'auto' for sidenav and grid */
 
 @media screen and (max-width: 767px) {
-    .sidenav {
-        height: auto;
-        padding: 15px;
-    }
-    .row.content {
-        height: auto;
-    }
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+  .row.content {
+    height: auto;
+  }
 }
