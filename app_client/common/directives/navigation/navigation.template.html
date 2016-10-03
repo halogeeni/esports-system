@@ -9,7 +9,10 @@
           <span class="icon-bar"></span>
         </button>
         <!--<a class="navbar-brand" href="/#/"><img src="images/testi.png" /></a>-->
-        <a class="navbar-brand" href="/#/"><i class="fa fa-gamepad"></i></a>
+        <a class="navbar-brand" href="/#/">
+          <!--<i class="fa fa-gamepad"></i>-->
+          <img id="navbar-brand" src="images/washbear_logo.png" />
+        </a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -28,7 +31,7 @@
             <a ng-show="!navvm.isLoggedIn" href="#login">Kirjaudu sisään</a>
           </li>
           <li ng-show="navvm.isLoggedIn" class="dropdown">
-            <a href="" class="dropdown-toggle" data-toggle="dropdown" 
+            <a href="" class="dropdown-toggle" data-toggle="dropdown"
                role="button" aria-haspopup="true" aria-expanded="false">Käyttäjänimi <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="#user">Profiili</a></li>
