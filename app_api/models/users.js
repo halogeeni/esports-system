@@ -49,8 +49,8 @@ var userSchema = new mongoose.Schema({
   }],
   platforms: [userPlatformSchema],
   birthday: {
-    type: Date/*,
-    required: true*/
+    type: Date,
+    required: true
   },
   bans: [userBanSchema],
   hash: {

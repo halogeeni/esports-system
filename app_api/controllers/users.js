@@ -17,7 +17,7 @@ module.exports.addUser = function(req, res) {
       !req.body.lastname ||
       !req.body.nickname ||
       !req.body.email ||
-      /* !req.body.birthday */
+      !req.body.birthday ||
       !req.body.streetAddress ||
       !req.body.postalCode ||
       !req.body.city ||

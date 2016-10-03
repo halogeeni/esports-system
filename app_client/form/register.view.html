@@ -25,9 +25,11 @@
                     </div>
                 </div>
 
+                
                 <hr>
 
                 <!-- Contact info -->
+            
                 <div class="form-group">
                     <label class="control-label col-md-4" for="address">Osoite:</label>
                     <div class="col-md-5">
@@ -53,7 +55,20 @@
                 <div class="form-group">
                     <label class="control-label col-md-4" for="country">Maa:</label>
                     <div class="col-md-5">
-                        <input type="text" class="form-control" id="country" placeholder="Maa" ng-model="vm.credentials.country">
+                      <select type="text" class="form-control" id="country" ng-model="vm.credentials.country">
+                        <option value="finland">Finland</option>
+                        <option value="sweden">Sweden</option>
+                        <option value="norway">Norway</option>
+                        <option value="denmark">Denmark</option>
+                        <option value="estonia">Estonia</option>
+                      </select>
+                    </div>
+                </div>
+              
+                <div class="form-group">
+                    <label class="control-label col-md-4" for="birthday">Syntymäpäivä:</label>
+                    <div class="col-md-5">
+                        <input type="date" class="form-control" id="address" ng-model="vm.credentials.birthday">
                     </div>
                 </div>
 
