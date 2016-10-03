@@ -87,3 +87,6 @@ jspm_packages
 
 # Environment variables (dotenv)
 .env
+
+# Dynamically generated, minified Angular app
+public/angular/washbear.min.js
