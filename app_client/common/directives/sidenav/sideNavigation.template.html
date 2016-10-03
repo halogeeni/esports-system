@@ -1,19 +1,19 @@
 <!-- Sidenav -->
-<div class="col-md-3 sidenav">
+<div class="col-md-3 sidenav" ng-controller="eventListCtrl as vm">
   <div class="panel panel-default">
     <div class="panel-heading custom-colors">
       <h3 class="panel-title">
-    Tulevat LAN tapahtumat
+    Tulevat tapahtumat
   </h3>
     </div>
     <div class="panel-body">
-      <ul class="list-group text-left">
-        <li class="list-group-item">Connection Lan</li>
-        <li class="list-group-item">Gyostage IIII</li>
+      <ul class="list-group text-left" ng-repeat="event in vm.events">
+        <li class="list-group-item"><a href="">{{ event.name }}</a></li>
+        <!--<li class="list-group-item">Gyostage IIII</li>
         <li class="list-group-item">Snooze Qralanit</li>
         <li class="list-group-item">ViikkiLan 2016</li>
         <li class="list-group-item">Joke-LAN</li>
-        <li class="list-group-item">Insomnia XVIII</li>
+        <li class="list-group-item">Insomnia XVIII</li>-->
       </ul>
     </div>
     <div class="panel-footer">
@@ -24,16 +24,16 @@
   <div class="panel panel-default">
     <div class="panel-heading custom-colors">
       <h3 class="panel-title">
-    Tulevat online kilpailut
+    Tulevat turnaukset
   </h3>
     </div>
     <div class="panel-body">
       <ul class="list-group text-left">
-        <li class="list-group-item">King of Nordit karsinta #9</li>
-        <li class="list-group-item">King of Nordit karsinta #10</li>
-        <li class="list-group-item">King of Nordit karsinta #11</li>
-        <li class="list-group-item">Taurora 9001</li>
-        <li class="list-group-item">King of Nordit karsinta #12</li>
+        <li class="list-group-item"><a href="">King of Nordit karsinta #9</a></li>
+        <li class="list-group-item"><a href="">King of Nordit karsinta #10</a></li>
+        <li class="list-group-item"><a href="">King of Nordit karsinta #11</a></li>
+        <li class="list-group-item"><a href="">Taurora 9001</a></li>
+        <li class="list-group-item"><a href="">King of Nordit karsinta #12</a></li>
       </ul>
     </div>
     <div class="panel-footer">

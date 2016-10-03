@@ -8,7 +8,10 @@
   eventDataservice.$inject = ['$http'];
 
   function eventDataservice($http) {
+    
     var baseURL = '/api/events';
+    
+    ////
 
     return {
       getEvents: getEvents
@@ -22,11 +25,11 @@
         .catch(getEventsFailed);
 
       function getEventsComplete(response) {
-        return response.data.results;
+        return response.data;
       }
 
       function getEventsFailed(error) {
-        //logger.error('XHR Failed for getAvengers.' + error.data);
+        console.error('XHR Failed for getEvents.' + error.data);
       }
     }
 
