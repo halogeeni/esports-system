@@ -30,6 +30,21 @@
         controller: 'playersListCtrl',
         controllerAs: 'vm'
       })
+      .when('/leagues', {
+        templateUrl: '/league/league.view.html',
+        //controller: 'playersListCtrl',
+        controllerAs: 'vm'
+      })
+      .when('/tournaments', {
+        templateUrl: '/tournament/tournament.view.html',
+        //controller: 'playersListCtrl',
+        controllerAs: 'vm'
+      })
+      .when('/teams', {
+        templateUrl: '/teams/teams.view.html',
+        controller: 'teamsListCtrl',
+        controllerAs: 'vm'
+      })
       .otherwise({
         redirectTo: '/#/'
       });
