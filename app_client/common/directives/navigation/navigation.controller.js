@@ -11,6 +11,7 @@
     vm.currentPath = $location.path();
     vm.isLoggedIn = authentication.isLoggedIn();
     vm.currentUser = authentication.currentUser();
+    vm.currentUserId = authentication.currentUserId();
 
     vm.logout = function() {
       authentication.logout();

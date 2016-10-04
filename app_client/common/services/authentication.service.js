@@ -35,6 +35,14 @@
       }
     };
 
+    var currentUserId = function() {
+      if (isLoggedIn()) {
+        var token = getToken();
+        var payload = JSON.parse($window.atob(token.split('.')[1]));
+        return payload._id;
+      }
+    }
+
     register = function(user) {
       return $http.post('/api/users', user).success(function(data) {
         //saveToken(data.token);
@@ -53,6 +61,7 @@
 
     return {
       currentUser: currentUser,
+      currentUserId: currentUserId,
       saveToken: saveToken,
       getToken: getToken,
       isLoggedIn: isLoggedIn,
