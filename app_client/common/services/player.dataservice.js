@@ -15,7 +15,8 @@
 
     return {
       getPlayers: getPlayers,
-      getPlayer: getPlayer
+      getPlayerById: getPlayerById,
+      getPlayerByNickname: getPlayerByNickname
     };
 
     ////
