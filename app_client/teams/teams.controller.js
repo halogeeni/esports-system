@@ -3,14 +3,14 @@
 
   angular
     .module('washbear')
-    .controller('teamsListCtrl', teamsListCtrl);
+    .controller('teamsCtrl', teamsCtrl);
 
-  teamsListCtrl.$inject = ['$scope', 'teamDataservice'];
+  teamsCtrl.$inject = ['$scope', 'teamDataservice'];
 
-  function teamsListCtrl($scope, teamDataservice) {
-    
+  function teamsCtrl($scope, teamDataservice) {
+
     var vm = this;
-    
+
     vm.teams = [];
 
     activate();

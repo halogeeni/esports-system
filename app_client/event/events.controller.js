@@ -3,22 +3,22 @@
 
   angular
     .module('washbear')
-    .controller('eventListCtrl', eventListCtrl);
+    .controller('eventsCtrl', eventsCtrl);
 
-  eventListCtrl.$inject = ['$scope', 'eventDataservice'];
+  eventsCtrl.$inject = ['$scope', 'eventDataservice'];
 
-  function eventListCtrl($scope, eventDataservice) {
-    
+  function eventsCtrl($scope, eventDataservice) {
+
     var vm = this;
-    
+
     vm.events = [];
-    
+
     ////
 
     activate();
 
     ////
-    
+
     function activate() {
       return getEvents().then(function() {
         console.info('Activated Events View');

@@ -20,14 +20,14 @@
         controller: 'registerCtrl',
         controllerAs: 'vm'
       })
-      .when('/user', {
+      .when('/user/:id', {
         templateUrl: '/user/user.view.html',
-        //controller: 'loginCtrl',
+        controller: 'userCtrl',
         controllerAs: 'vm'
       })
       .when('/players', {
         templateUrl: '/players/players.view.html',
-        controller: 'playersListCtrl',
+        controller: 'playersCtrl',
         controllerAs: 'vm'
       })
       .when('/leagues', {
@@ -42,7 +42,7 @@
       })
       .when('/teams', {
         templateUrl: '/teams/teams.view.html',
-        controller: 'teamsListCtrl',
+        controller: 'teamsCtrl',
         controllerAs: 'vm'
       })
       .otherwise({
