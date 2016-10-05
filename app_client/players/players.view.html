@@ -13,7 +13,7 @@
       <h2>Pelaajarekisteri</h2>
       <ul ng-repeat="player in vm.players">
         <li>
-          <a ng-href="#/user/{{ player._id }}">
+          <a ng-href="/user/{{ player._id }}">
             {{ player.firstname }} <strong>"{{ player.nickname }}"</strong> {{ player.lastname }}
           </a>
         </li>
