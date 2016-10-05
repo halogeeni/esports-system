@@ -10,7 +10,6 @@
             <!-- Register form -->
             <h2>Rekisteröidy</h2>
             <form ng-submit="vm.onSubmit()" class="form-horizontal">
-                <div role="alert" ng-show="vm.formError" class="alert alert-danger">{{ vm.formError }}</div>
                 <div class="form-group">
                     <label class="control-label col-md-4" for="name">Etunimi:</label>
                     <div class="col-md-5">
@@ -120,14 +119,14 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="terms">Käyttöehdot:</label>
+                    <label class="control-label col-md-4">Käyttöehdot:</label>
                     <div class="col-md-5">
                         <div class="checkbox">
                           <label><input type="checkbox" name="terms" required> <a href="" data-toggle="modal" data-target="#terms">Hyväksyn käyttöehdot</a></label>
                         </div>
                     </div>
                 </div>
-              
+            
               <div class="form-group">
                     <label class="control-label col-md-4" for="rules">Säännöt:</label>
                     <div class="col-md-5">
@@ -138,7 +137,7 @@
                 </div>
 
               
-              <!-- Modal for terms of use -->
+              <!-- Modal for terms -->
               <div class="modal fade" id="terms">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
@@ -151,14 +150,13 @@
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Selvä</button>
+                      <button type="button" id="checkboxterms" class="btn btn-default" data-dismiss="modal">Selvä</button>
                     </div>
                   </div>
                 </div>
               </div>
-              
-              
-               <!-- Modal for terms of service -->
+               
+               <!-- Modal for rules -->
               <div class="modal fade" id="rules">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
@@ -171,7 +169,7 @@
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Selvä</button>
+                      <button type="button" id="checkboxrules" class="btn btn-default" data-dismiss="modal">Selvä</button>
                     </div>
                   </div>
                 </div>
@@ -182,10 +180,25 @@
                         <button type="submit" class="btn btn-default">Lähetä</button>
                     </div>
                 </div>
+              
+              <div role="alert" ng-show="vm.formError" class="alert alert-danger">{{ vm.formError }}</div>
+              
+               <script>
+                 $('#checkboxterms').click(function() {
+                    $('input[name=terms]').prop('checked', true);
+                 });
+                
+                 $('#checkboxrules').click(function() {
+                    $('input[name=rules]').prop('checked', true);
+                 });
+              </script>
+              
             </form>
             <!-- /.form-horizontal -->
         </div>
     </div>
 </div>
+
+
 
 <footer-generic></footer-generic>
