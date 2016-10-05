@@ -9,10 +9,29 @@
   <div class="row content">
 
     <adbanner-left></adbanner-left>
-    
+
     <!-- Main content -->
-    <div id="main_content" class="col-md-9 text-left">
-      This is user page
+    <div id="main_content" class="col-md-7 text-left">
+      <h2>User information</h2>
+      <h3>{{vm.player.nickname}}</h3>
+      <p>
+        User# {{vm.player._id}}
+      </p>
+      <img src="http://placehold.it/184x184?text=Avatar">
+      <div>
+        <p>
+          {{vm.player.firstname}} {{vm.player.lastname}}
+        </p>
+        <p>
+          {{vm.player._contactInfo.city}}, {{vm.player._contactInfo.country}}
+        </p>
+        <p>
+          <small><i>Registered: {{vm.player.createdAt}}</i></small>
+        </p>
+        <p>
+          <small><i>Profile updated: {{vm.player.updatedAt}}</i></small>
+        </p>
+      </div>
     </div>
 
     <!-- Sidenav -->
