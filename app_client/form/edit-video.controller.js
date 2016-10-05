@@ -30,7 +30,7 @@
 
     $scope.save = function() {
       vm.Videos.update($scope.video, function() {
-        $location.path('/#/');
+        $location.path('/');
       });
     };
   }
