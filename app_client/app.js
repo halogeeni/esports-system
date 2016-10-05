@@ -2,7 +2,7 @@
 
   angular.module('washbear', ['ngResource', 'ngRoute']);
 
-  function config($routeProvider) {
+  function config($routeProvider, $locationProvider) {
     // endpoints are declared here
     $routeProvider
       .when('/', {
@@ -46,12 +46,15 @@
         controllerAs: 'vm'
       })
       .otherwise({
-        redirectTo: '/#/'
+        redirectTo: '/'
       });
+
+      $locationProvider.html5Mode(true);
+
   }
 
   angular
     .module('washbear')
-    .config(['$routeProvider', config]);
+    .config(['$routeProvider', '$locationProvider', config]);
 
 })();
