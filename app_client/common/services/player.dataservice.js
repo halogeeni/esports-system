@@ -42,7 +42,6 @@
         .catch(getPlayerByNicknameFailed);
 
       function getPlayerByNicknameComplete(response) {
-
         return $filter('filter')(response, { nickname : nick }, false);
       }
 
