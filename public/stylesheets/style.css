@@ -15,7 +15,7 @@
 
 .navbar-nav a {
   color: #fff !important;
-  font-weight: bold;
+  /*font-weight: bold;*/
 }
 
 .navbar .dropdown-menu {
@@ -24,6 +24,16 @@
 
 .nav-avatar {
   margin-top: 10px;
+}
+
+.dropdown-toggle:active, .open .dropdown-toggle {
+  background: #555 !important; 
+  color: #ccc !important;
+}
+
+.dropdown-toggle:active, a:hover {
+  background: #555 !important; 
+  color: #ccc !important;
 }
 
 /* ----- Alert box ----- */
@@ -112,7 +122,7 @@ footer {
 }
 
 .footer-sponsor-logo-container {
-  max-width: 50%;
+  max-width: 30%;
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -126,16 +136,8 @@ footer {
   max-height:50px;
 }
 
-.footer-sponsor-logo {
+/*.footer-sponsor-logo {
   border-radius: 50%;
-}
-
-/*img {
-  display: block;
-  max-width:50px;
-  max-height:50px;
-  width: auto;
-  height: auto;
 }*/
 
 
