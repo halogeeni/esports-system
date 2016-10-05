@@ -15,7 +15,8 @@
 
     return {
       getPlayers: getPlayers,
-      getPlayer: getPlayer
+      getPlayerById: getPlayerById,
+      getPlayerByNickname: getPlayerByNickname
     };
 
     ////
@@ -41,7 +42,6 @@
         .catch(getPlayerByNicknameFailed);
 
       function getPlayerByNicknameComplete(response) {
-
         return $filter('filter')(response, { nickname : nick }, false);
       }
 

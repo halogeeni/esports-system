@@ -22,7 +22,7 @@
 
     $scope.save = function() {
       vm.Videos.save($scope.video, function() {
-        $location.path('/#/');
+        $location.path('/');
       });
     };
   }

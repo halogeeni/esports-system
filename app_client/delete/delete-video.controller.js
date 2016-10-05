@@ -30,7 +30,7 @@
       vm.Videos.delete({
         id: $routeParams.id
       }, function(video) {
-        $location.path('/#/');
+        $location.path('/');
       });
     };
   }

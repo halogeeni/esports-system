@@ -9,7 +9,24 @@
 
   function playersCtrl($scope, playerDataservice) {
 
-    // work in progress
+    var vm = this;
+
+    vm.players = [];
+
+    activate();
+
+    function activate() {
+      return getPlayers().then(function() {
+        console.info('Activated Players View');
+      });
+    }
+
+    function getPlayers() {
+      return playerDataservice.getPlayers().then(function(data) {
+        vm.players = data;
+        return vm.players;
+      });
+    }
 
   }
 

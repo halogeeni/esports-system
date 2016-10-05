@@ -15,7 +15,7 @@
 
     vm.logout = function() {
       authentication.logout();
-      $location.path('/#/');
+      $location.path('/');
     };
 
   }

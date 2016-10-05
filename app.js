@@ -32,6 +32,7 @@ var appClientFiles = [
   'app_client/players/players.controller.js',
   'app_client/event/events.controller.js',
   'app_client/teams/teams.controller.js',
+  'app_client/user/user.controller.js',
   'app_client/common/services/event.dataservice.js',
   'app_client/common/services/player.dataservice.js',
   'app_client/common/services/team.dataservice.js',
