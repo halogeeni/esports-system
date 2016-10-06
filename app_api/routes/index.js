@@ -51,6 +51,8 @@ router.post('/teams', ctrlTeams.addTeam);
 router.delete('/teams/:id', ctrlTeams.deleteTeam);
 router.get('/teams/:id', ctrlTeams.getTeam);
 //router.put('/teams/:id', ctrlTeams.updateTeam);
+router.post('/teams/:id/addplayer', ctrlTeams.addPlayer);
+//router.post('/teams/:id/removeplayer', ctrlTeams.removePlayer);
 
 // /api/users
 router.get('/users', ctrlUsers.getUsers);
