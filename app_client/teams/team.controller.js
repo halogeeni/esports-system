@@ -16,6 +16,8 @@
     vm.joinTeam = joinTeam;
     vm.leaveTeam = leaveTeam;
 
+    vm.isLoggedIn = authentication.isLoggedIn();
+
     ////
 
     activate();
