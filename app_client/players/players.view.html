@@ -18,7 +18,7 @@
         </div>
         <div class="panel-body">
           <div class="list-group" ng-repeat="player in vm.players">
-            <a ng-href="/user/{{ player._id }}" class="list-group-item">
+            <a ng-href="/user/{{ player._id }}" class="list-group-item" style="margin-bottom: 2px;">
               {{ player.firstname }} <strong>"{{ player.nickname }}"</strong> {{ player.lastname }}
             </a>
           </div>
