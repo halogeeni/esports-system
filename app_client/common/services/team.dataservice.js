@@ -8,8 +8,26 @@
   teamDataservice.$inject = ['$http'];
 
   function teamDataservice($http) {
-
     var baseURL = '/api/teams';
+
+    var createTeam = function(team) {
+      return $http.post(baseURL, team).success(function(data) {
+        // should we do something here?
+      });
+    };
+
+    ////
+
+    return {
+      addPlayer: addPlayer,
+      createTeam: createTeam,
+      getTeam: getTeam,
+      getTeams: getTeams,
+      getTeamByName: getTeamByName,
+      removePlayer: removePlayer
+    };
+
+    ////
 
     function addPlayer(playerId) {
       var teamURL = (baseURL + '/addPlayer/' + playerId);
@@ -26,20 +44,6 @@
         console.error('XHR Failed for addPlayer.' + error.data);
       }
     }
-
-    function createTeam(team) {
-      return $http.post(baseURL, team)
-        .then(createTeamComplete)
-        .catch(createTeamFailed);
-
-      function createTeamComplete(response) {
-        return response.data;
-      }
-
-      function createTeamFailed(error) {
-        console.error('XHR Failed for createTeam.' + error.data);
-      }
-    };
 
     function getTeam(id) {
       var teamURL = (baseURL + '/' + id);
@@ -99,19 +103,5 @@
         console.error('XHR Failed for removePlayer.' + error.data);
       }
     }
-
-    ////
-
-    return {
-      addPlayer: addPlayer,
-      createTeam: createTeam,
-      getTeam: getTeam,
-      getTeams: getTeams,
-      getTeamByName: getTeamByName,
-      removePlayer: removePlayer
-    };
-
-    ////
-
   }
 })();

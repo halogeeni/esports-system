@@ -5,19 +5,25 @@
     .module('washbear')
     .controller('teamsCtrl', teamsCtrl);
 
-  teamsCtrl.$inject = ['$scope', 'teamDataservice','$location', 'authentication'];
+  teamsCtrl.$inject = ['$scope', '$location', 'teamDataservice', 'authentication'];
 
-  function teamsCtrl($scope, teamDataservice, $location, authentication) {
-
+  function teamsCtrl($scope, $location, teamDataservice, authentication) {
     var vm = this;
 
     vm.teams = [];
-    vm.returnPage = $location.search().page || '/';
+
+    vm.credentials = {
+      name: "",
+      adminUser: "",
+      additionalInfo: ""
+    };
+
+    //vm.returnPage = $location.search().page || '/';
 
     ////
-    
+
     activate();
-    
+
     ////
 
     function activate() {
@@ -32,17 +38,11 @@
         return vm.teams;
       });
     }
-    
-    vm.credentials = {
-      name: "",
-      adminUser: "",
-      additionalInfo: ""
-    };
-    
+
     vm.onSubmit = function onSubmit() {
       vm.formError = "";
       vm.credentials.adminUser = authentication.currentUserId();
-      
+
       if (!vm.credentials.name || !vm.credentials.adminUser || !vm.credentials.additionalInfo) {
         vm.formError = "Täytä kaikki kentät";
         return false;
@@ -50,7 +50,7 @@
         vm.doCreateTeam();
       }
     }
-    
+
     vm.doCreateTeam = function() {
       vm.formError = "";
       teamDataservice
@@ -59,11 +59,12 @@
           vm.formError = err;
         })
         .then(function() {
-          $location.search('page', null);
-          $location.path(vm.returnPage);
+          /*$location.search('page', null);
+          $location.path('/teams');*/
+          activate();
         });
-    }
+    };
 
   }
 
-}());
+})();
