@@ -29,8 +29,8 @@
 
     ////
 
-    function addPlayer(playerId) {
-      var teamURL = (baseURL + '/addPlayer/' + playerId);
+    function addPlayer(playerId, teamId) {
+      var teamURL = (baseURL + '/' + teamId + '/addplayer/' + playerId);
 
       return $http.post(teamURL)
         .then(addPlayerComplete)
@@ -41,7 +41,7 @@
       }
 
       function addPlayerFailed(error) {
-        console.error('XHR Failed for addPlayer.' + error.data);
+        console.error('XHR Failed for addplayer.' + error.data);
       }
     }
 
@@ -88,8 +88,8 @@
       }
     }
 
-    function removePlayer(playerId) {
-      var teamURL = (baseURL + '/removePlayer/' + playerId);
+    function removePlayer(playerId, teamId) {
+      var teamURL = (baseURL + '/' + teamId + '/removeplayer/' + playerId);
 
       return $http.delete(teamURL)
         .then(removePlayerComplete)

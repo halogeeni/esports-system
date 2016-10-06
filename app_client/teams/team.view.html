@@ -32,8 +32,8 @@
       </p>
 
       <div class="btn-group" role="group" aria-label="..." ng-show="vm.isLoggedIn">
-        <button type="button" class="btn btn-success" ng-click="vm.joinTeam()" ng-disabled="vm.userAlreadyInTeam()">Liity</button>
-        <button type="button" class="btn btn-danger" ng-click="vm.leaveTeam()">Poistu</button>
+        <button type="button" class="btn btn-success" ng-click="vm.joinTeam()" ng-hide="vm.userAlreadyInTeam()">Liity</button>
+        <button type="button" class="btn btn-danger" ng-click="vm.leaveTeam()" ng-show="vm.userAlreadyInTeam()">Poistu</button>
       </div>
     </div>
 

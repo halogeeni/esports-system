@@ -48,11 +48,18 @@
     }
 
     function joinTeam() {
-      teamDataservice.addPlayer(loggedInUser());
+      teamDataservice.addPlayer(loggedInUser(), vm.team._id)
+        .then(function() {
+          activate();
+        }
+      );
     }
 
     function leaveTeam() {
-      teamDataservice.removePlayer(loggedInUser());
+      teamDataservice.removePlayer(loggedInUser(), vm.team._id)
+        .then(function() {
+          activate();
+      });
     }
 
     function loggedInUser() {

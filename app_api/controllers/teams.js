@@ -91,10 +91,13 @@ module.exports.getTeams = function(req, res) {
 };
 
 module.exports.addPlayer = function(req, res) {
-  var teamId = req.params.id;
-  var playerId = req.body.playerId;
+  var teamId = req.params.teamid;
+  var playerId = req.params.playerid;
+
+  console.log('in addPlayer - teamId: ' + teamId + ', playerId: ' + playerId);
 
   if (req.params && playerId && teamId) {
+    console.log('in addPlayer - passed param check');
     Team
       .findByIdAndUpdate(teamId, {
           $push: {
