@@ -53,7 +53,7 @@
                 </div>
                 <div class="panel-body">
                   <div class="list-group" ng-repeat="team in vm.player.teams">
-                    <a ng-href="team/{{ team }}" class="list-group-item">{{ team }}</a>
+                    <a ng-href="team/{{ team._id }}" class="list-group-item">{{ team.name }}</a>
                   </div>
                 </div>
               </div>
