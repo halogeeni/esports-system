@@ -12,7 +12,6 @@
     <div id="main_content" class="col-md-9 text-left">
       <h2>{{ vm.team.name }}</h2>
       <ul>
-        <!-- <a ng-href="user/{{ vm.team.captain._id }}">{{ vm.team.captain.nickname }}</a> -->
         <li>Players
           <ul ng-repeat="player in vm.team.players">
             <li><a ng-href="user/{{ player._id }}">{{ player.nickname }}</a><span ng-if="vm.team.captain._id === player._id"> (Kapteeni)</span></li>
@@ -20,6 +19,17 @@
         </li>
         <li>Info: {{ vm.team.additionalInfo }}</li>
       </ul>
+      
+      <p>
+        <small>
+          <i>Registered: {{ vm.team.createdAt }}</i>
+        </small>
+      </p>
+      <p>
+        <small>
+          <i>Team updated: {{ vm.team.updatedAt }}</i>
+        </small>
+      </p>
     </div>
 
     <!-- Sidenav -->
