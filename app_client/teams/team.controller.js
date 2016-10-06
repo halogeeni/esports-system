@@ -14,6 +14,7 @@
     var teamId = $routeParams.id;
     vm.joinTeam = joinTeam;
     vm.leaveTeam = leaveTeam;
+    vm.userAlreadyInTeam = userAlreadyInTeam;
     
     ////
 
@@ -52,6 +53,17 @@
     
     function loggedInUser() {
       return authentication.currentUserId();
+    }
+    
+    function userAlreadyInTeam() {
+      for (var i = 0; i < vm.team.players.length; i++) {
+        if (vm.team.players[i]._id === loggedInUser()) {
+          console.log('User found.'); 
+          return true; 
+        }
+      }
+      console.log('User NOT found.');
+      return false;
     }
 
   }

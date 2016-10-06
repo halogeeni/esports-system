@@ -27,7 +27,7 @@
       }
     }
 
-    createTeam = function(team) {
+    function createTeam(team) {
       return $http.post(baseURL, team)
         .then(createTeamComplete)
         .catch(createTeamFailed);
