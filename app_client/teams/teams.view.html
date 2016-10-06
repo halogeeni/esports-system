@@ -11,9 +11,17 @@
     <!-- Content -->
     <div id="main_content" class="col-md-9 text-left">
       <h2>Joukkuerekisteri</h2>
-      <ul ng-repeat="team in vm.teams">
-        <li><a ng-href="team/{{ team._id }}">{{ team.name }}</a></li>
-      </ul>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading custom-colors">
+          <h3 class="panel-title">Joukkueet</h3>
+        </div>
+        <div class="panel-body">
+          <div class="list-group" ng-repeat="team in vm.teams">
+            <a ng-href="team/{{ team._id }}" class="list-group-item">{{ team.name }}</a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Sidenav -->
