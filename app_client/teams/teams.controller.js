@@ -5,14 +5,16 @@
     .module('washbear')
     .controller('teamsCtrl', teamsCtrl);
 
-  teamsCtrl.$inject = ['$scope', 'teamDataservice'];
+  teamsCtrl.$inject = ['$scope', 'teamDataservice','$location', 'authentication'];
 
-  function teamsCtrl($scope, teamDataservice) {
+  function teamsCtrl($scope, teamDataservice, $location, authentication) {
 
     var vm = this;
 
     vm.teams = [];
 
+    vm.loggedInUserId =authentication.currentUserId();
+    
     activate();
 
     function activate() {
@@ -35,23 +37,25 @@
       
     };
     
-     vm.returnPage = $location.search().page || '/';
+    vm.returnPage = $location.search().page || '/';
     
     vm.onSubmit = function() {
       vm.formError = "";
+      vm.credentials.adminUser=vm.loggedInUserId;
+      
       if (!vm.credentials.name ||
-          !vm.credentials.adminuser ||
+          !vm.credentials.adminUser ||
           !cm.credentials.additionalInfo)
           
       {
         vm.formError = "Täytä kaikki kentät";
         return false;
       } else {
-        vm.doRegister();
+        vm.doCreateTeam();
       }
     };
     
-    vm.doRegister = function() {
+    vm.doCreateTeam = function() {
       vm.formError = "";
       authentication
         .register(vm.credentials)
