@@ -11,11 +11,9 @@
 
     var vm = this;
 
-    vm.doCreateTeam = doCreateTeam;
-    vm.onSubmit = onSubmit;
     vm.teams = [];
     vm.returnPage = $location.search().page || '/';
-    
+
     ////
     
     activate();
@@ -41,11 +39,11 @@
       additionalInfo: ""
     };
     
-    function onSubmit() {
+    vm.onSubmit = function onSubmit() {
       vm.formError = "";
       vm.credentials.adminUser = authentication.currentUserId();
       
-      if (!vm.credentials.name || !vm.credentials.adminUser || !cm.credentials.additionalInfo) {
+      if (!vm.credentials.name || !vm.credentials.adminUser || !vm.credentials.additionalInfo) {
         vm.formError = "Täytä kaikki kentät";
         return false;
       } else {
@@ -53,10 +51,10 @@
       }
     }
     
-    function doCreateTeam() {
+    vm.doCreateTeam = function() {
       vm.formError = "";
-      authentication
-        .register(vm.credentials)
+      teamDataservice
+        .createTeam(vm.credentials)
         .error(function(err) {
           vm.formError = err;
         })

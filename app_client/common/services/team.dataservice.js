@@ -11,19 +11,6 @@
     
     var baseURL = '/api/teams';
     
-    ////
-    
-    return {
-      addPlayer: addPlayer,
-      createTeam: createTeam,
-      getTeam: getTeam,
-      getTeams: getTeams,
-      getTeamByName: getTeamByName,
-      removePlayer: removePlayer
-    };
-    
-    ////
-    
     function addPlayer(playerId) {
       var teamURL = (baseURL + '/addPlayer/' + playerId);
       
@@ -40,8 +27,8 @@
       }
     }
     
-    function createTeam(team) {
-      return $http.post(baseURL)
+    createTeam = function(team) {
+      return $http.post(baseURL, team)
         .then(createTeamComplete)
         .catch(createTeamFailed);
       
@@ -112,6 +99,19 @@
         console.error('XHR Failed for removePlayer.' + error.data);
       }
     }
+    
+    ////
+    
+    return {
+      addPlayer: addPlayer,
+      createTeam: createTeam,
+      getTeam: getTeam,
+      getTeams: getTeams,
+      getTeamByName: getTeamByName,
+      removePlayer: removePlayer
+    };
+    
+    ////
 
   }
 })();
