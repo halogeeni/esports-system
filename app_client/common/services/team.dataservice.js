@@ -39,7 +39,7 @@
       function createTeamFailed(error) {
         console.error('XHR Failed for createTeam.' + error.data);
       }
-    }
+    };
 
     function getTeam(id) {
       var teamURL = (baseURL + '/' + id);
