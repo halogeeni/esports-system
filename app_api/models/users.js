@@ -52,6 +52,9 @@ var userSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
+  additionalInfo: {
+    type: String
+  },
   bans: [userBanSchema],
   hash: {
     type: String,
