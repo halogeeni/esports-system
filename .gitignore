@@ -89,4 +89,4 @@ jspm_packages
 .env
 
 # Dynamically generated, minified Angular app
-# public/angular/washbear.min.js
+public/angular/washbear.min.js
