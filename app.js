@@ -70,14 +70,12 @@ app.use(express.static(path.join(__dirname, 'app_client')));
 //app.use('/', routes);
 app.use('/api', routesApi);
 
-/*
 // catch all unidentified requests and respond with index.html
 // KILLS HEROKU !!!
 
 app.use(function(req, res) {
   res.sendFile(path.join(__dirname, 'app_client', 'index.html'));
 });
-*/
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
