@@ -2,8 +2,8 @@
 
   angular.module('washbear', ['ngResource', 'ngRoute']);
 
+  // endpoints are declared here
   function config($routeProvider, $locationProvider) {
-    // endpoints are declared here
     $routeProvider
       .when('/', {
         templateUrl: '/home/home.view.html',
@@ -43,6 +43,11 @@
       .when('/teams', {
         templateUrl: '/teams/teams.view.html',
         controller: 'teamsCtrl',
+        controllerAs: 'vm'
+      })
+      .when('/team/:id', {
+        templateUrl: '/teams/team.view.html',
+        controller: 'teamCtrl',
         controllerAs: 'vm'
       })
       .otherwise({
