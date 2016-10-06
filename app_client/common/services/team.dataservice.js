@@ -8,15 +8,15 @@
   teamDataservice.$inject = ['$http'];
 
   function teamDataservice($http) {
-    
+
     var baseURL = '/api/teams';
-    
+
     ////
-    
+
     return {
       getTeams: getTeams
     };
-    
+
     ////
 
     function getTeams() {
