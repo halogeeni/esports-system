@@ -6,43 +6,179 @@
 
 <!-- Main content -->
 <div id="wrapper" class="container text-center">
-  <div class="row content">
+    <div class="row content">
 
-    <adbanner-left></adbanner-left>
+        <adbanner-left></adbanner-left>
 
-    <!-- Main content -->
-    <div id="main_content" class="col-md-7 text-left">
-      <h2>User information</h2>
-      
-      <h3>{{vm.player.nickname}}</h3>
-      
-      <p>
-        User# {{vm.player._id}}
-      </p>
-      
-      <img src="http://placehold.it/184x184?text=Avatar">
-      
-      <div>
-        <p>
-          {{vm.player.firstname}} {{vm.player.lastname}}
-        </p>
-        <p>
-          {{vm.player._contactInfo.city}}, {{vm.player._contactInfo.country}}
-        </p>
-        <p>
-          <small><i>Registered: {{vm.player.createdAt}}</i></small>
-        </p>
-        <p>
-          <small><i>Profile updated: {{vm.player.updatedAt}}</i></small>
-        </p>
-      </div>
+        <!-- Main content -->
+        <div id="main_content" class="col-md-7 text-left">
+            <div ng-hide="vm.isEditable()">
+                <h2>Pelaajaprofiili</h2>
+                <h3>{{vm.player.nickname}}</h3>
+
+                <p>
+                    User#
+                    {{vm.player._id}}
+                </p>
+
+                <img src="http://placehold.it/184x184?text=Avatar">
+
+                <div>
+                    <p>
+                        {{vm.player.firstname}}
+                        {{vm.player.lastname}}
+                    </p>
+                    <p>
+                        {{vm.player._contactInfo.city}},
+                        {{vm.player._contactInfo.country}}
+                    </p>
+                    <p>
+                        <small>
+                            <i>Registered:
+                                {{vm.player.createdAt}}</i>
+                        </small>
+                    </p>
+                    <p>
+                        <small>
+                            <i>Profile updated:
+                                {{vm.player.updatedAt}}</i>
+                        </small>
+                    </p>
+                </div>
+            </div>
+
+            <div ng-show="vm.isEditable()">
+              <h2>Oma profiili ({{vm.player.nickname}})</h2>
+                <form ng-submit="vm.onSubmit()" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="name">Etunimi:</label>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" id="name" placeholder="Etunimi" ng-model="vm.credentials.firstname" ng-value="vm.player.firstname">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="lastname">Sukunimi:</label>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" id="lastname" placeholder="Sukunimi" ng-model="vm.credentials.lastname" ng-value="vm.player.lastname">
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Contact info -->
+
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="address">Osoite:</label>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" id="address" placeholder="Osoite" ng-model="vm.credentials.streetAddress" ng-value="vm.player._contactInfo.streetAddress">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="postalcode">Postinumero:</label>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" id="postalcode" placeholder="Postinumero" ng-model="vm.credentials.postalCode" ng-value="vm.player._contactInfo.postalCode">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="city">Postitoimipaikka:</label>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" id="city" placeholder="Postitoimipaikka" ng-model="vm.credentials.city" ng-value="vm.player._contactInfo.city">
+                        </div>
+                    </div>
+
+                    <!-- Populate dropdown from country list in DB -->
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="country">Maa:</label>
+                        <div class="col-md-5">
+                            <select type="text" class="form-control" id="country" ng-model="vm.credentials.country" ng-value="vm.player._contactInfo.country">
+                                <option value="finland">Finland</option>
+                                <option value="sweden">Sweden</option>
+                                <option value="norway">Norway</option>
+                                <option value="denmark">Denmark</option>
+                                <option value="estonia">Estonia</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="birthday">Syntymäpäivä:</label>
+                        <div class="col-md-5">
+                            <input type="date" class="form-control" id="address" ng-model="vm.credentials.birthday" ng-value="vm.player.birthday">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="phonenumber">Puhelinnumero:</label>
+                        <div class="col-md-5">
+                            <input type="tel" class="form-control" id="phonenumber" placeholder="Puhelinnumero" ng-model="vm.credentials.phone" ng-value="vm.player._contactInfo.phone">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="webpage">Kotisivut:</label>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" id="webpage" placeholder="Kotisivut" ng-model="vm.credentials.website" ng-value="vm.player._contactInfo.website">
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Nickname, add check that if already in use -->
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="nickname">Käyttäjänimi:</label>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" id="nickname" placeholder="Käyttäjänimi" ng-model="vm.credentials.nickname" ng-value="vm.player.nickname">
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="email">Sähköposti:</label>
+                        <div class="col-md-5">
+                            <input type="email" class="form-control" id="email" placeholder="Sähköposti" ng-model="vm.credentials.email" ng-value="vm.player._contactInfo.email">
+                        </div>
+                    </div>
+
+                    <!-- Implement password changing?
+
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="pwd">Salasana:</label>
+                        <div class="col-md-5">
+                            <input type="password" class="form-control" id="pwd" placeholder="Salasana" ng-model="vm.credentials.password">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="pwd2">Kirjoita salasana uudelleen:</label>
+                        <div class="col-md-5">
+                            <input type="password" class="form-control" id="pwd2" placeholder="Salasana" ng-model="vm.credentials.verifyPassword">
+                        </div>
+                    </div>
+
+                    -->
+
+                    <div class="form-group">
+                        <div class="col-md-offset-4 col-md-5">
+                            <button type="submit" class="btn btn-default">Päivitä</button>
+                        </div>
+                    </div>
+
+                    <div role="alert" ng-show="vm.formError" class="alert alert-danger">{{ vm.formError }}</div>
+
+                </form>
+                <!-- /.form-horizontal -->
+            </div>
+        </div>
+
+        <!-- Sidenav -->
+        <side-navigation></side-navigation>
+
     </div>
-
-    <!-- Sidenav -->
-    <side-navigation></side-navigation>
-
-  </div>
-  <!-- /.row content -->
+    <!-- /.row content -->
 </div>
 <!-- /#wrapper -->
 
