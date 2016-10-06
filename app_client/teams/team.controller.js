@@ -12,6 +12,8 @@
     var vm = this;
     
     var teamId = $routeParams.id;
+    vm.joinTeam = joinTeam;
+    vm.leaveTeam = leaveTeam;
     
     ////
 
@@ -38,6 +40,18 @@
           return vm.team;
         });
       }
+    }
+    
+    function joinTeam() {
+      teamDataservice.addPlayer(loggedInUser());
+    }
+    
+    function leaveTeam() {
+      teamDataservice.removePlayer(loggedInUser());
+    }
+    
+    function loggedInUser() {
+      return authentication.currentUserId();
     }
 
   }

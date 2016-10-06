@@ -30,6 +30,11 @@
           <i>Team updated: {{ vm.team.updatedAt }}</i>
         </small>
       </p>
+      
+      <div class="btn-group" role="group" aria-label="...">
+        <button type="button" class="btn btn-success" ng-click="vm.joinTeam()">Liity</button>
+        <button type="button" class="btn btn-danger" ng-click="vm.leaveTeam()">Poistu</button>
+      </div>
     </div>
 
     <!-- Sidenav -->
