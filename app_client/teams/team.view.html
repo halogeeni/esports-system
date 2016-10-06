@@ -10,8 +10,11 @@
 
     <!-- Content -->
     <div id="main_content" class="col-md-9 text-left">
-      <h2>Joukkue</h2>
-      <p>Test</p>
+      <h2>{{ vm.team.name }}</h2>
+      <ul>
+        <li>Captain: {{ vm.team._adminUser }}</li>
+        <li>Info: {{ vm.team.additionalInfo }}</li>
+      </ul>
     </div>
 
     <!-- Sidenav -->
