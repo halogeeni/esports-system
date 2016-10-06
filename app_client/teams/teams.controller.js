@@ -20,6 +20,8 @@
 
     //vm.returnPage = $location.search().page || '/';
 
+    var isLoggedIn = authentication.isLoggedIn();
+
     ////
 
     activate();

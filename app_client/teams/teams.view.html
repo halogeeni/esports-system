@@ -6,108 +6,79 @@
 
 <!-- Main content -->
 <div id="wrapper" class="container text-center">
-  <div class="row content">
+    <div class="row content">
 
-    <!-- Content -->
-    <div id="main_content" class="col-md-9 text-left">
-      <h2>Joukkuerekisteri</h2>
-      
-      
-      
-      <!-- Button trigger modal -->
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalNorm">
-    Luo uusi tiimi
-</button>
+        <!-- Content -->
+        <div id="main_content" class="col-md-9 text-left">
+            <h2>Joukkuerekisteri</h2>
 
-<!-- Modal -->
-<div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog" 
-     aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-              
-                <button type="button" class="close" 
-                   data-dismiss="modal">
-                       <span aria-hidden="true">&times;</span>
-                       <span class="sr-only">Close</span>
-                </button>
-              
-                <h4 class="modal-title" id="myModalLabel">
-                    Luo uusi tiimi
-                </h4>
+            <!-- Button trigger modal -->
+            <button class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModalNorm" ng-show="vm.isLoggedIn">
+                Luo uusi tiimi
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Close</span>
+                            </button>
+
+                            <h4 class="modal-title" id="myModalLabel">
+                                Luo uusi tiimi
+                            </h4>
+                        </div>
+
+                        <!-- Modal Body -->
+                        <div class="modal-body">
+
+                            <form ng-submit="vm.onSubmit()" role="form">
+                                <div class="form-group">
+                                    <label for="teamName">Tiimin nimi</label>
+                                    <input type="text" class="form-control" id="teamName" placeholder="Tiimi nimi" ng-model="vm.credentials.name"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="additionalInfo">Info</label>
+                                    <input type="text" class="form-control" id="additionalInfo" placeholder="Info" ng-model="vm.credentials.additionalInfo"/>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-default" class="col-md-offset-4 col-md-5">Submit</button>
+                                </div>
+                            </form>
+
+                        </div>
+
+                        <!-- Modal Footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Close
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <!-- Modal Body -->
-            <div class="modal-body">
-                
-                <form ng-submit="vm.onSubmit()" role="form">
-                  <div class="form-group">
-                    <label for="teamName">Tiimin nimi</label>
-                      <input type="text" class="form-control"
-                      id="teamName" placeholder="Tiimi nimi" ng-model="vm.credentials.name"/>
-                  </div>
-                                
-                  <div class="form-group">
-                    <label for="additionalInfo">Info</label>
-                      <input type="text" class="form-control"
-                          id="additionalInfo" placeholder="Info"
-                             ng-model="vm.credentials.additionalInfo"/>
-                  </div>
-                  <div class="form-group">
-                  <button type="submit" class="btn btn-default" class="col-md-offset-4 col-md-5">Submit</button>
-                  </div>
-                </form>
-                
-                
-            </div>
-            
-            <!-- Modal Footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default"
-                        data-dismiss="modal">
-                            Close
-                </button>
-              
-            </div>
+
+            <ul ng-repeat="team in vm.teams">
+                <li>
+                    <a ng-href="team/{{ team._id }}">{{ team.name }}</a>
+                </li>
+            </ul>
         </div>
-    </div>
-  </div>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <ul ng-repeat="team in vm.teams">
-        <li><a ng-href="team/{{ team._id }}">{{ team.name }}</a></li>
-      </ul>
-    </div>
 
-    <!-- Sidenav -->
-    <side-navigation></side-navigation>
+        <!-- Sidenav -->
+        <side-navigation></side-navigation>
 
-  </div><!-- /.row content -->
-</div><!-- /#wrapper -->
+    </div>
+    <!-- /.row content -->
+</div>
+<!-- /#wrapper -->
 
 <!-- Footer -->
 <footer-generic></footer-generic>
