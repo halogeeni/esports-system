@@ -16,9 +16,9 @@ var teamSchema = new mongoose.Schema(
     },
     players: [
       {
-        // should this be required: true?
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
       }
     ],
     pastUsers: [
