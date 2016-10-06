@@ -7,27 +7,29 @@
 
   teamCtrl.$inject = ['$scope', '$routeParams', 'authentication', 'playerDataservice', 'teamDataservice'];
 
-  function teamCtrl($scope, $routeParams,  authentication, playerDataservice, teamDataservice) {
-    
+  function teamCtrl($scope, $routeParams, authentication, playerDataservice, teamDataservice) {
+
     var vm = this;
-    
+
     var teamId = $routeParams.id;
+
     vm.joinTeam = joinTeam;
     vm.leaveTeam = leaveTeam;
-    vm.userAlreadyInTeam = userAlreadyInTeam;
-    
+
     ////
 
     activate();
-    
+
     ////
 
     function activate() {
       return getTeam().then(function() {
+        // this variable must be post activation!
+        vm.userAlreadyInTeam = userAlreadyInTeam;
         getCaptain();
         console.info('Activated Team View');
       });
-      
+
       function getTeam() {
         return teamDataservice.getTeam(teamId).then(function(data) {
           vm.team = data;
@@ -42,29 +44,29 @@
         });
       }
     }
-    
+
     function joinTeam() {
       teamDataservice.addPlayer(loggedInUser());
     }
-    
+
     function leaveTeam() {
       teamDataservice.removePlayer(loggedInUser());
     }
-    
+
     function loggedInUser() {
       return authentication.currentUserId();
     }
-    
+
     function userAlreadyInTeam() {
       for (var i = 0; i < vm.team.players.length; i++) {
         if (vm.team.players[i]._id === loggedInUser()) {
-          console.log('User found.'); 
-          return true; 
+          console.log('User found.');
+          return true;
         }
       }
       console.log('User NOT found.');
       return false;
     }
-
   }
-}());
+
+})();
