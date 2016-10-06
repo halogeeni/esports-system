@@ -11,9 +11,9 @@
             <h2>Rekisteröidy</h2>
             <form ng-submit="vm.onSubmit()" class="form-horizontal">
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="name">Etunimi:</label>
+                    <label class="control-label col-md-4" for="firstname">Etunimi:</label>
                     <div class="col-md-5">
-                        <input type="text" class="form-control" id="name" placeholder="Etunimi" ng-model="vm.credentials.firstname">
+                        <input type="text" class="form-control" id="firstname" placeholder="Etunimi" ng-model="vm.credentials.firstname">
                     </div>
                 </div>
 
@@ -29,16 +29,16 @@
                 <!-- Contact info -->
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="address">Osoite:</label>
+                    <label class="control-label col-md-4" for="streetAddress">Osoite:</label>
                     <div class="col-md-5">
-                        <input type="text" class="form-control" id="address" placeholder="Osoite" ng-model="vm.credentials.streetAddress">
+                        <input type="text" class="form-control" id="streetAddress" placeholder="Osoite" ng-model="vm.credentials.streetAddress">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="postalcode">Postinumero:</label>
+                    <label class="control-label col-md-4" for="postalCode">Postinumero:</label>
                     <div class="col-md-5">
-                        <input type="text" class="form-control" id="postalcode" placeholder="Postinumero" ng-model="vm.credentials.postalCode">
+                        <input type="text" class="form-control" id="postalCode" placeholder="Postinumero" ng-model="vm.credentials.postalCode">
                     </div>
                 </div>
 
@@ -66,21 +66,21 @@
                 <div class="form-group">
                     <label class="control-label col-md-4" for="birthday">Syntymäpäivä:</label>
                     <div class="col-md-5">
-                        <input type="date" class="form-control" id="address" ng-model="vm.credentials.birthday">
+                        <input type="date" class="form-control" id="birthday" ng-model="vm.credentials.birthday">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="phonenumber">Puhelinnumero:</label>
+                    <label class="control-label col-md-4" for="phone">Puhelinnumero:</label>
                     <div class="col-md-5">
-                        <input type="tel" class="form-control" id="phonenumber" placeholder="Puhelinnumero" ng-model="vm.credentials.phone">
+                        <input type="tel" class="form-control" id="phone" placeholder="Puhelinnumero" ng-model="vm.credentials.phone">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="webpage">Kotisivut:</label>
+                    <label class="control-label col-md-4" for="website">Kotisivut:</label>
                     <div class="col-md-5">
-                        <input type="text" class="form-control" id="webpage" placeholder="Kotisivut" ng-model="vm.credentials.website">
+                        <input type="text" class="form-control" id="website" placeholder="Kotisivut" ng-model="vm.credentials.website">
                     </div>
                 </div>
 
@@ -104,16 +104,16 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="pwd">Salasana:</label>
+                    <label class="control-label col-md-4" for="password">Salasana:</label>
                     <div class="col-md-5">
-                        <input type="password" class="form-control" id="pwd" placeholder="Salasana" ng-model="vm.credentials.password">
+                        <input type="password" class="form-control" id="password" placeholder="Salasana" ng-model="vm.credentials.password">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="pwd2">Kirjoita salasana uudelleen:</label>
+                    <label class="control-label col-md-4" for="verifyPassword">Kirjoita salasana uudelleen:</label>
                     <div class="col-md-5">
-                        <input type="password" class="form-control" id="pwd2" placeholder="Salasana" ng-model="vm.credentials.verifyPassword">
+                        <input type="password" class="form-control" id="verifyPassword" placeholder="Salasana" ng-model="vm.credentials.verifyPassword">
                     </div>
                 </div>
 

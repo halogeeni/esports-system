@@ -58,7 +58,7 @@ router.post('/users', ctrlUsers.addUser);
 
 router.delete('/users/:id', ctrlUsers.deleteUser);
 router.get('/users/:id', ctrlUsers.getUser);
-//router.put('/users/:id', ctrlUsers.updateUser);
+router.put('/users/:id', ctrlUsers.updateUser);
 
 // login
 router.post('/login', ctrlAuth.login);

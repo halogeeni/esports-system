@@ -14,22 +14,21 @@ var sendJsonResponse = function(res, status, content) {
 // insert new user to database
 module.exports.addUser = function(req, res) {
   if (!req.body.firstname ||
-      !req.body.lastname ||
-      !req.body.nickname ||
-      !req.body.email ||
-      !req.body.birthday ||
-      !req.body.streetAddress ||
-      !req.body.postalCode ||
-      !req.body.city ||
-      !req.body.country ||
-      !req.body.phone ||
-      !req.body.website ||
-      !req.body.password)
-  {
-      sendJsonResponse(res, 400, {
-          "message": "all fields are required"
-      });
-      return;
+    !req.body.lastname ||
+    !req.body.nickname ||
+    !req.body.email ||
+    !req.body.birthday ||
+    !req.body.streetAddress ||
+    !req.body.postalCode ||
+    !req.body.city ||
+    !req.body.country ||
+    !req.body.phone ||
+    !req.body.website ||
+    !req.body.password) {
+    sendJsonResponse(res, 400, {
+      "message": "all fields are required"
+    });
+    return;
   }
 
   ContactInfo.create({
@@ -53,13 +52,15 @@ module.exports.addUser = function(req, res) {
         _contactInfo: contactInfo._id,
         salt: _salt,
         hash: crypto.pbkdf2Sync(req.body.password, _salt, 10000, 512, 'sha512')
-                    .toString('hex')
+          .toString('hex')
       }, function(err, user) {
         if (err) {
           sendJsonResponse(res, 400, err);
         } else {
           // we shouldn't return any payload on successful creation, only 201
-          sendJsonResponse(res, 201, { "message" : "user created" });
+          sendJsonResponse(res, 201, {
+            "message": "user created"
+          });
         }
       });
     }
@@ -68,7 +69,7 @@ module.exports.addUser = function(req, res) {
 
 module.exports.deleteUser = function(req, res) {
   // TODO related ContactInfo should be deleted as well
-  var userid = req.params.userid;
+  var userid = req.params.id;
   if (userid) {
     User
       .findByIdAndRemove(userid)
@@ -130,81 +131,80 @@ module.exports.getUsers = function(req, res) {
     });
 };
 
-/*
-
--WIP-
-
 module.exports.updateUser = function(req, res) {
-    if (!req.params.userid) {
-        sendJsonResponse(res, 404, {
-            "messsage": "userid is required"
-        });
-        return;
+  var playerIdParam = req.params.id;
+  var contactInfoId;
+
+  if (!playerIdParam) {
+    sendJsonResponse(res, 404, {
+      "message": "userid is required"
+    });
+    return;
+  }
+
+  if (!req.body.firstname ||
+    !req.body.lastname ||
+    !req.body.nickname ||
+    !req.body.email ||
+    !req.body.birthday ||
+    !req.body.streetAddress ||
+    !req.body.postalCode ||
+    !req.body.city ||
+    !req.body.country ||
+    !req.body.phone ||
+    !req.body.website
+    /*||
+         !req.body.password*/
+  ) {
+    sendJsonResponse(res, 400, {
+      "message": "all fields are required"
+    });
+    return;
+  }
+
+  User.findByIdAndUpdate({
+    _id: playerIdParam
+  }, {
+    $set: {
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      nickname: req.body.nickname,
+      birthday: req.body.birthday,
+      additionalInfo: req.body.additionalInfo
     }
-
-    Vid
-        .findById(req.params.userid)
-        .exec(
-            function(err, user) {
-                if (!vuser) {
-                    sendJsonResponse(res, 404, {
-                        "message": "userid not found"
-                    });
-                    return;
-                } else if (err) {
-                    sendJsonResponse(res, 404, err);
-                    return;
-                }
-
-                video.title = req.body.title;
-                video.description = req.body.description;
-                video.save(function(err, video) {
-                    if (err) {
-                        sendJsonResponse(res, 404, err);
-                    } else {
-                        sendJsonResponse(res, 200, video);
-                    }
-                });
-            });
-};
-
-
-
-EXAMPLE CODE
-
-// update existing video by id
-module.exports.videosUpdateOne = function(req, res) {
-    if (!req.params.videoid) {
-        sendJsonResponse(res, 404, {
-            "messsage": "videoid is required"
-        });
-        return;
+  }, {
+    new: true
+  }, function(err, user) {
+    if (err) {
+      sendJsonResponse(res, 404, err);
+      return;
+    } else {
+      contactInfoId = user._contactInfo;
+      // update the contactinfo as well
+      ContactInfo.findByIdAndUpdate({
+        _id: contactInfoId
+      }, {
+        $set: {
+          email: req.body.email,
+          streetAddress: req.body.streetAddress,
+          postalCode: req.body.postalCode,
+          city: req.body.city,
+          country: req.body.country,
+          phone: req.body.phone,
+          website: req.body.website
+        }
+      }, {
+        new: true
+      }, function(err, contactInfo) {
+        if (err) {
+          sendJsonResponse(res, 404, err);
+          return;
+        } else {
+          sendJsonResponse(res, 200, {
+            'message': 'update ok'
+          });
+        }
+      });
     }
-
-    Vid
-        .findById(req.params.videoid)
-        .exec(
-            function(err, video) {
-                if (!video) {
-                    sendJsonResponse(res, 404, {
-                        "message": "videoid not found"
-                    });
-                    return;
-                } else if (err) {
-                    sendJsonResponse(res, 404, err);
-                    return;
-                }
-
-                video.title = req.body.title;
-                video.description = req.body.description;
-                video.save(function(err, video) {
-                    if (err) {
-                        sendJsonResponse(res, 404, err);
-                    } else {
-                        sendJsonResponse(res, 200, video);
-                    }
-                });
-            });
+  });
 };
-
-*/
