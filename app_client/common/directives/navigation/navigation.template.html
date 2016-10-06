@@ -17,12 +17,24 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="/">Etusivu <span class="sr-only">(current)</span></a></li>
-        <li><a href="/tournaments">Turnaukset</a></li>
-        <li><a href="/leagues">Liigat</a></li>
-        <li><a href="/players">Pelaajat</a></li>
-        <li><a href="/teams">Joukkueet</a></li>
-        <li ng-show="!navvm.isLoggedIn"><a href="/register">Rekisteröidy</a></li>
+        <li ng-class="{ active: navvm.isActive === '/' }">
+          <a href="/">Etusivu <span class="sr-only">(current)</span></a>
+        </li>
+        <li ng-class="{ active: navvm.currentPath === '/tournaments' }">
+          <a href="/tournaments">Turnaukset</a>
+        </li>
+        <li ng-class="{ active: navvm.currentPath === '/leagues' }">
+          <a href="/leagues">Liigat</a>
+        </li>
+        <li ng-class="{ active: navvm.currentPath === '/players' }">
+          <a href="/players">Pelaajat</a>
+        </li>
+        <li ng-class="{ active: navvm.currentPath === '/teams' }">
+          <a href="/teams">Joukkueet</a>
+        </li>
+        <li ng-show="!navvm.isLoggedIn" ng-class="{ active: navvm.currentPath === '/register' }">
+          <a href="/register">Rekisteröidy</a>
+        </li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
@@ -36,10 +48,10 @@
           <a class="dropdown-toggle" data-toggle="dropdown"
              role="button" aria-haspopup="true" aria-expanded="false">{{ navvm.currentUser }} <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a ng-href="/user/{{ navvm.currentUserId }}">Profiili</a></li>
+            <li><a ng-href="/user/{{ navvm.currentUserId }}"><i class="fa fa-user" aria-hidden="true"></i> Profiili</a></li>
             <li role="separator" class="divider"></li>
             <li>
-              <a href="/" ng-click="navvm.logout()">Kirjaudu ulos <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+              <a href="/" ng-click="navvm.logout()"><i class="fa fa-sign-out" aria-hidden="true"></i> Kirjaudu ulos</a>
             </li>
           </ul>
         </li>

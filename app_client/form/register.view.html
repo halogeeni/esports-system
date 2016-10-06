@@ -10,7 +10,6 @@
             <!-- Register form -->
             <h2>Rekisteröidy</h2>
             <form ng-submit="vm.onSubmit()" class="form-horizontal">
-                <div role="alert" ng-show="vm.formError" class="alert alert-danger">{{ vm.formError }}</div>
                 <div class="form-group">
                     <label class="control-label col-md-4" for="name">Etunimi:</label>
                     <div class="col-md-5">
@@ -25,11 +24,10 @@
                     </div>
                 </div>
 
-                
                 <hr>
 
                 <!-- Contact info -->
-            
+
                 <div class="form-group">
                     <label class="control-label col-md-4" for="address">Osoite:</label>
                     <div class="col-md-5">
@@ -55,16 +53,16 @@
                 <div class="form-group">
                     <label class="control-label col-md-4" for="country">Maa:</label>
                     <div class="col-md-5">
-                      <select type="text" class="form-control" id="country" ng-model="vm.credentials.country">
-                        <option value="finland">Finland</option>
-                        <option value="sweden">Sweden</option>
-                        <option value="norway">Norway</option>
-                        <option value="denmark">Denmark</option>
-                        <option value="estonia">Estonia</option>
-                      </select>
+                        <select type="text" class="form-control" id="country" ng-model="vm.credentials.country">
+                            <option value="finland">Finland</option>
+                            <option value="sweden">Sweden</option>
+                            <option value="norway">Norway</option>
+                            <option value="denmark">Denmark</option>
+                            <option value="estonia">Estonia</option>
+                        </select>
                     </div>
                 </div>
-              
+
                 <div class="form-group">
                     <label class="control-label col-md-4" for="birthday">Syntymäpäivä:</label>
                     <div class="col-md-5">
@@ -90,9 +88,9 @@
 
                 <!-- Nickname, add check that if already in use -->
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="nickname">Pelaaja nimi:</label>
+                    <label class="control-label col-md-4" for="nickname">Käyttäjänimi:</label>
                     <div class="col-md-5">
-                        <input type="text" class="form-control" id="nickname" placeholder="Pelaaja nimi" ng-model="vm.credentials.nickname">
+                        <input type="text" class="form-control" id="nickname" placeholder="Alias" ng-model="vm.credentials.nickname">
                     </div>
                 </div>
 
@@ -120,68 +118,102 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="terms">Käyttöehdot:</label>
+                    <label class="control-label col-md-4">Hyväksyn käyttöehdot:</label>
                     <div class="col-md-5">
                         <div class="checkbox">
-                          <label><input type="checkbox" name="terms" required> <a href="" data-toggle="modal" data-target="#terms">Hyväksyn käyttöehdot</a></label>
-                        </div>
-                    </div>
-                </div>
-              
-              <div class="form-group">
-                    <label class="control-label col-md-4" for="rules">Säännöt:</label>
-                    <div class="col-md-5">
-                        <div class="checkbox">
-                          <label><input type="checkbox" name="rules" required> <a href="" data-toggle="modal" data-target="#rules"> Hyväksyn palvelun säännöt</a></label>
+                            <label><input type="checkbox" name="terms" required>
+                                <a href="" data-toggle="modal" data-target="#terms">Palvelun käyttöehdot</a>
+                            </label>
                         </div>
                     </div>
                 </div>
 
-              
-              <!-- Modal for terms of use -->
-              <div class="modal fade" id="terms">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title">Käyttöehdot</h4>
+                <div class="form-group">
+                    <label class="control-label col-md-4" for="rules">Hyväksyn säännöt:</label>
+                    <div class="col-md-5">
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="rules" required>
+                                <a href="" data-toggle="modal" data-target="#rules">
+                                    Palvelun säännöt</a>
+                            </label>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.<br><br>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Selvä</button>
-                    </div>
-                  </div>
                 </div>
-              </div>
-              
-              
-               <!-- Modal for terms of service -->
-              <div class="modal fade" id="rules">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title">Palvelun säännöt</h4>
+
+                <!-- Modal for terms -->
+                <div class="modal fade" id="terms">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title">Käyttöehdot</h4>
+                            </div>
+                            <div class="modal-body">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
+                                occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                laboris nisi ut aliquip ex ea commodo.<br><br>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
+                                occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                laboris nisi ut aliquip ex ea commodo consequat.
+                            </div>
+                            <div class="modal-footer">
+                                <span>
+                                    <button type="button" id="checkboxterms" class="btn btn-success" data-dismiss="modal">Hyväksyn</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">En hyväksy</button>
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.<br><br>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Selvä</button>
-                    </div>
-                  </div>
                 </div>
-              </div>
-                        
+
+                <!-- Modal for rules -->
+                <div class="modal fade" id="rules">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title">Palvelun säännöt</h4>
+                            </div>
+                            <div class="modal-body">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
+                                occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                laboris nisi ut aliquip ex ea commodo.<br><br>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
+                                occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                laboris nisi ut aliquip ex ea commodo consequat.
+                            </div>
+                            <div class="modal-footer">
+                                <span>
+                                    <button type="button" id="checkboxrules" class="btn btn-success" data-dismiss="modal">Hyväksyn</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">En hyväksy</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <div class="col-md-offset-4 col-md-5">
                         <button type="submit" class="btn btn-default">Lähetä</button>
                     </div>
                 </div>
+
+                <div role="alert" ng-show="vm.formError" class="alert alert-danger">{{ vm.formError }}</div>
+
+                <script>
+                    $('#checkboxterms').click(function() {
+                        $('input[name=terms]').prop('checked', true);
+                    });
+
+                    $('#checkboxrules').click(function() {
+                        $('input[name=rules]').prop('checked', true);
+                    });
+                </script>
+
             </form>
             <!-- /.form-horizontal -->
         </div>
