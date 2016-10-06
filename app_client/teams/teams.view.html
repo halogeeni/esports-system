@@ -45,14 +45,18 @@
                   <div class="form-group">
                     <label for="teamName">Tiimin nimi</label>
                       <input type="text" class="form-control"
-                      id="teamName" placeholder="Tiimi nimi"/>
+                      id="teamName" placeholder="Tiimi nimi" ng-model="vm.credentials.name"/>
                   </div>
+                                
                   <div class="form-group">
                     <label for="additionalInfo">Info</label>
                       <input type="text" class="form-control"
-                          id="additionalInfo" placeholder="Info"/>
+                          id="additionalInfo" placeholder="Info"
+                             ng-model="vm.credentials.additionalInfo"/>
                   </div>
-                  <button type="submit" class="btn btn-default">Submit</button>
+                  <div class="form-group">
+                  <button type="submit" class="btn btn-default" class="col-md-offset-4 col-md-5">Submit</button>
+                  </div>
                 </form>
                 
                 
