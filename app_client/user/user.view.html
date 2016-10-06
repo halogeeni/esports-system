@@ -45,6 +45,18 @@
                         </small>
                     </p>
                 </div>
+              
+              
+              <div class="panel panel-default">
+                <div class="panel-heading custom-colors">
+                  <h3 class="panel-title">Joukkueet</h3>
+                </div>
+                <div class="panel-body">
+                  <div class="list-group" ng-repeat="team in vm.player.teams">
+                    <a ng-href="team/{{ team }}" class="list-group-item">{{ team }}</a>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div ng-show="vm.isEditable()">
