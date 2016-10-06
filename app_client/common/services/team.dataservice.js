@@ -15,6 +15,7 @@
     
     return {
       addPlayer: addPlayer,
+      createTeam: createTeam,
       getTeam: getTeam,
       getTeams: getTeams,
       getTeamByName: getTeamByName,
@@ -36,6 +37,20 @@
 
       function addPlayerFailed(error) {
         console.error('XHR Failed for addPlayer.' + error.data);
+      }
+    }
+    
+    function createTeam(team) {
+      return $http.post(baseURL)
+        .then(createTeamComplete)
+        .catch(createTeamFailed);
+      
+      function createTeamComplete(response) {
+        return response.data;
+      }
+
+      function createTeamFailed(error) {
+        console.error('XHR Failed for createTeam.' + error.data);
       }
     }
     
