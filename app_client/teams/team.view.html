@@ -1,0 +1,47 @@
+<!-- Navigation -->
+<navigation></navigation>
+
+<!-- Alert / info / notification -->
+<notification></notification>
+
+<!-- Main content -->
+<div id="wrapper" class="container text-center">
+  <div class="row content">
+
+    <!-- Content -->
+    <div id="main_content" class="col-md-9 text-left">
+      <h2>{{ vm.team.name }}</h2>
+      <ul>
+        <li>Players
+          <ul ng-repeat="player in vm.team.players">
+            <li><a ng-href="user/{{ player._id }}">{{ player.nickname }}</a><span ng-if="vm.team.captain._id === player._id"> (Kapteeni)</span></li>
+          </ul>
+        </li>
+        <li>Info: {{ vm.team.additionalInfo }}</li>
+      </ul>
+      
+      <p>
+        <small>
+          <i>Registered: {{ vm.team.createdAt }}</i>
+        </small>
+      </p>
+      <p>
+        <small>
+          <i>Team updated: {{ vm.team.updatedAt }}</i>
+        </small>
+      </p>
+      
+      <div class="btn-group" role="group" aria-label="...">
+        <button type="button" class="btn btn-success" ng-click="vm.joinTeam()" ng-disabled="vm.userAlreadyInTeam()">Liity</button>
+        <button type="button" class="btn btn-danger" ng-click="vm.leaveTeam()">Poistu</button>
+      </div>
+    </div>
+
+    <!-- Sidenav -->
+    <side-navigation></side-navigation>
+
+  </div><!-- /.row content -->
+</div><!-- /#wrapper -->
+
+<!-- Footer -->
+<footer-generic></footer-generic>

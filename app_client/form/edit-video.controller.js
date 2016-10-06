@@ -7,6 +7,9 @@
   editVideoCtrl.$inject = ['$scope', '$resource', '$location', '$routeParams', 'authentication'];
 
   function editVideoCtrl($scope, $resource, $location, $routeParams, authentication) {
+
+    // this is stored here to be used as example code for auth-enabled requests
+
     var vm = this;
 
     vm.isLoggedIn = authentication.isLoggedIn();

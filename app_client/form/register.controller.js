@@ -47,7 +47,12 @@
           !vm.credentials.password  ||
           !vm.credentials.verifyPassword)
       {
+        console.log(vm.credentials);
+
         vm.formError = "Täytä kaikki kentät";
+        return false;
+      } else if (vm.credentials.password !== vm.credentials.verifyPassword) {
+        vm.formError = "Salasanat eivät täsmää";
         return false;
       } else {
         vm.doRegister();
