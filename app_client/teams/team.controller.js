@@ -5,9 +5,9 @@
     .module('washbear')
     .controller('teamCtrl', teamCtrl);
 
-  teamCtrl.$inject = ['$scope', '$routeParams', 'teamDataservice', 'authentication'];
+  teamCtrl.$inject = ['$scope', '$routeParams', 'authentication', 'playerDataservice', 'teamDataservice'];
 
-  function teamCtrl($scope, $routeParams, teamDataservice, authentication) {
+  function teamCtrl($scope, $routeParams,  authentication, playerDataservice, teamDataservice) {
     
     var vm = this;
     
@@ -21,17 +21,24 @@
 
     function activate() {
       return getTeam().then(function() {
+        getCaptain();
         console.info('Activated Team View');
       });
-    }
+      
+      function getTeam() {
+        return teamDataservice.getTeam(teamId).then(function(data) {
+          vm.team = data;
+          return vm.team;
+        });
+      }
 
-    function getTeam() {
-      return teamDataservice.getTeam(teamId).then(function(data) {
-        vm.team = data;
-        return vm.team = data;
-      });
+      function getCaptain() {
+        return playerDataservice.getPlayerById(vm.team._adminUser).then(function(data) {
+          vm.team.captain = data;
+          return vm.team;
+        });
+      }
     }
 
   }
-
 }());
