@@ -65,12 +65,17 @@
                     </div>
                 </div>
             </div>
-
-            <ul ng-repeat="team in vm.teams">
-                <li>
-                    <a ng-href="team/{{ team._id }}">{{ team.name }}</a>
-                </li>
-            </ul>
+          
+          <div class="panel panel-default">
+            <div class="panel-heading custom-colors">
+              <h2 class="panel-title">Joukkueet</h2>
+            </div>
+            <div class="panel-body">
+              <div class="list-group" ng-repeat="team in vm.teams">
+                <a ng-href="team/{{ team._id }}" class="list-group-item" style="margin-bottom: 2px;">{{ team.name }}</a>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Sidenav -->
