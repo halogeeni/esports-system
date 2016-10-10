@@ -6,7 +6,7 @@
     </div>
     <div class="panel-body">
       <ul class="list-group text-left" ng-repeat="event in vm.events">
-        <li class="list-group-item"><a href="">{{ event.name }}</a></li>
+        <li class="list-group-item"><a ng-href="/events/{{ event._id }}">{{ event.name }}</a></li>
       </ul>
     </div>
     <div class="panel-footer">

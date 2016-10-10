@@ -6,6 +6,7 @@ var Event = mongoose.model('Event');
 var Tournament = mongoose.model('Tournament');
 var ContactInfo = mongoose.model('ContactInfo');
 var Match = mongoose.model('Match');
+var Game = mongoose.model('Game');
 
 var sendJsonResponse = function(res, status, content) {
   res.status(status);
@@ -75,7 +76,13 @@ module.exports.getEvent = function(req, res) { 
     Event
       .findById(req.params.id)
       .populate('_contactInfo')
-      //.populate('tournaments')
+      .populate({
+        path: 'tournaments',
+        populate: {
+          path: '_game',
+          model: 'Game'
+        }  
+      })
       //.populate('sponsors')
       .exec(function(err, event) {
         if (!event) {
@@ -114,31 +121,53 @@ module.exports.getEvents = function(req, res) {
 // tournaments
 
 module.exports.addTournament = function(req, res) {
-  Tournament.create({
-    name: req.body.name,
-    _game: req.body.game,
-    _event: req.body.event,
-    matches: req.body.matches,
-    info: req.body.info,
-    rules: req.body.rules,
-    tournamentStructure: req.body.tournamentStructure,
-    hasGroupStage: req.body.hasGroupStage,
-    groups: req.body.groups,
-    isFinished: req.body.isFinished,
-    sponsors: req.body.sponsors,
-    startDate: req.body.startDate,
-    endDate: req.body.endDate,
-    maxTeams: req.body.maxTeams,
-    teams: req.body.teams,
-    checkInStartDate: req.body.checkInStartDate,
-    checkInEndDate: req.body.checkInEndDate
-  }, function(err, tournament) {
-    if (err) {
-      sendJsonResponse(res, 400, err);
-    } else {
-      sendJsonResponse(res, 201, tournament);
-    }
-  });
+  // tournaments are currently added to events only
+  // that means that, so far, every online tournament needs an associated event as well
+
+  var eventId = req.params.id;
+
+  if (req.params && eventId) {
+    Tournament.create({
+      name: req.body.name,
+      _game: req.body.game,
+      _event: eventId,
+      matches: req.body.matches,
+      info: req.body.info,
+      rules: req.body.rules,
+      tournamentStructure: req.body.tournamentStructure,
+      hasGroupStage: req.body.hasGroupStage,
+      groups: req.body.groups,
+      isFinished: req.body.isFinished,
+      sponsors: req.body.sponsors,
+      startDate: req.body.startDate,
+      endDate: req.body.endDate,
+      maxTeams: req.body.maxTeams,
+      teams: req.body.teams,
+      checkInStartDate: req.body.checkInStartDate,
+      checkInEndDate: req.body.checkInEndDate
+    }, function(err, tournament) {
+      if (err) {
+        sendJsonResponse(res, 400, err);
+      } else {
+        // add tournament to event
+        Event
+          .findByIdAndUpdate(eventId, {
+              $push: {
+                "tournaments": tournament._id
+              }
+            },
+            function(err, team) {
+              if (err) {
+                sendJsonResponse(res, 404, err);
+              }
+            }
+          );
+
+        // all OK - send tournament as response
+        sendJsonResponse(res, 201, tournament);
+      }
+    });
+  }
 };
 
 module.exports.deleteTournament = function(req, res) {
@@ -147,13 +176,13 @@ module.exports.deleteTournament = function(req, res) {
   if (tournamentId) {
     Tournament
       .findByIdAndRemove(tournamentId).exec(
-      function(err, tournament) {
-        if (err) {
-          sendJsonResponse(res, 404, err);
-          return;
-        }
-        sendJsonResponse(res, 204, null);
-      });
+        function(err, tournament) {
+          if (err) {
+            sendJsonResponse(res, 404, err);
+            return;
+          }
+          sendJsonResponse(res, 204, null);
+        });
   } else {
     sendJsonResponse(res, 404, {
       "message": "no tournamentid in request"
@@ -171,18 +200,18 @@ module.exports.getTournament = function(req, res) { 
       .populate('matches')
       .populate('teams')
       .exec(
-      function(err, tournament) {
-        if (!tournament) {
-          sendJsonResponse(res, 404, {
-            "message": "tournamentid not found"
-          });
-          return;
-        } else if (err) {
-          sendJsonResponse(res, 404, err);
-          return;
-        }
-        sendJsonResponse(res, 200, tournament);
-      });
+        function(err, tournament) {
+          if (!tournament) {
+            sendJsonResponse(res, 404, {
+              "message": "tournamentid not found"
+            });
+            return;
+          } else if (err) {
+            sendJsonResponse(res, 404, err);
+            return;
+          }
+          sendJsonResponse(res, 200, tournament);
+        });
   } else {
     sendJsonResponse(res, 404, {
       "message": "no tournamentid in request"
@@ -193,7 +222,9 @@ module.exports.getTournament = function(req, res) { 
 module.exports.getTournaments = function(req, res) {
   var eventId = req.params.tournamentId;
 
-  Tournament.find({ _event : eventId }, null, {
+  Tournament.find({
+    _event: eventId
+  }, null, {
     sort: {
       name: 1
     }
@@ -232,13 +263,13 @@ module.exports.deleteMatch = function(req, res) {
   if (matchId) {
     Match
       .findByIdAndRemove(matchId).exec(
-      function(err, match) {
-        if (err) {
-          sendJsonResponse(res, 404, err);
-          return;
-        }
-        sendJsonResponse(res, 204, null);
-      });
+        function(err, match) {
+          if (err) {
+            sendJsonResponse(res, 404, err);
+            return;
+          }
+          sendJsonResponse(res, 204, null);
+        });
   } else {
     sendJsonResponse(res, 404, {
       "message": "no matchid in request"
@@ -256,18 +287,18 @@ module.exports.getMatch = function(req, res) { 
       .populate('_team')
       .populate('players')
       .exec(
-      function(err, match) {
-        if (!match) {
-          sendJsonResponse(res, 404, {
-            "message": "matchid not found"
-          });
-          return;
-        } else if (err) {
-          sendJsonResponse(res, 404, err);
-          return;
-        }
-        sendJsonResponse(res, 200, match);
-      });
+        function(err, match) {
+          if (!match) {
+            sendJsonResponse(res, 404, {
+              "message": "matchid not found"
+            });
+            return;
+          } else if (err) {
+            sendJsonResponse(res, 404, err);
+            return;
+          }
+          sendJsonResponse(res, 200, match);
+        });
   } else {
     sendJsonResponse(res, 404, {
       "message": "no matchid in request"
@@ -280,9 +311,11 @@ module.exports.getMatches = function(req, res) {
 
   console.log('in getMatches');
 
-  if(req.params && tournamentId) {
+  if (req.params && tournamentId) {
     // TODO so far this returns all matches in the db
-    Match.find({ _tournament: tournamentId }, null, {
+    Match.find({
+      _tournament: tournamentId
+    }, null, {
       sort: {
         name: 1
       }

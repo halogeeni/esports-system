@@ -50,6 +50,11 @@
         controller: 'teamCtrl',
         controllerAs: 'vm'
       })
+      .when('/events/:id', {
+        templateUrl: '/event/event.view.html',
+        controller: 'eventCtrl',
+        controllerAs: 'vm'
+      })
       .otherwise({
         redirectTo: '/'
       });

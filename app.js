@@ -33,12 +33,14 @@ var appClientFiles = [
   'app_client/auth/login/login.controller.js',
   'app_client/players/players.controller.js',
   'app_client/event/events.controller.js',
+  'app_client/event/event.controller.js',
   'app_client/teams/teams.controller.js',
   'app_client/teams/team.controller.js',
   'app_client/user/user.controller.js',
   'app_client/common/services/event.dataservice.js',
   'app_client/common/services/player.dataservice.js',
   'app_client/common/services/team.dataservice.js',
+  'app_client/common/services/game.dataservice.js',
   'app_client/common/directives/navigation/navigation.controller.js',
   'app_client/common/directives/footer/footerGeneric.directive.js',
   'app_client/common/directives/navigation/navigation.directive.js',
@@ -71,8 +73,6 @@ app.use(express.static(path.join(__dirname, 'app_client')));
 app.use('/api', routesApi);
 
 // catch all unidentified requests and respond with index.html
-// KILLS HEROKU !!!
-
 app.use(function(req, res) {
   res.sendFile(path.join(__dirname, 'app_client', 'index.html'));
 });

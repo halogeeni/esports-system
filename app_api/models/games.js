@@ -14,9 +14,15 @@ var mapSchema = new mongoose.Schema(
 
 var gameSchema = new mongoose.Schema(
   {
-    name: {
-        type: String,
-        required: true
+    fullName: {
+      type: String,
+      required: true
+    },
+    // short name is an alternate title for displaying when space is scarce
+    // i.e. Counter Strike: Global Offensive -> CS:GO
+    shortName: {
+      type: String,
+      required: true
     },
     maps: [mapSchema],
     minPlayerCount: {

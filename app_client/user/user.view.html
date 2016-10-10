@@ -38,18 +38,18 @@
                     <p>
                         <small>
                             <i>Registered:
-                                {{vm.player.createdAt}}</i>
+                                {{vm.player.createdAt | date:'dd.MM.yyyy HH:mm:ss' | lowercase }}</i>
                         </small>
                     </p>
                     <p>
                         <small>
                             <i>Profile updated:
-                                {{vm.player.updatedAt}}</i>
+                                {{vm.player.updatedAt | date:'dd.MM.yyyy HH:mm:ss' | lowercase }}</i>
                         </small>
                     </p>
                 </div>
-              
-              
+
+
               <div class="panel panel-default">
                 <div class="panel-heading custom-colors">
                   <h3 class="panel-title">Joukkueet</h3>

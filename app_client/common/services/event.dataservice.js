@@ -8,13 +8,14 @@
   eventDataservice.$inject = ['$http'];
 
   function eventDataservice($http) {
-    
+
     var baseURL = '/api/events';
-    
+
     ////
 
     return {
-      getEvents: getEvents
+      getEvents: getEvents,
+      getEventById: getEventById
     };
 
     ////
@@ -33,5 +34,19 @@
       }
     }
 
+    function getEventById(eventId) {
+      var eventURL = baseURL + '/' + eventId;
+      return $http.get(eventURL)
+        .then(getEventComplete)
+        .catch(getEventFailed);
+
+      function getEventComplete(response) {
+        return response.data;
+      }
+
+      function getEventFailed(error) {
+        console.error('XHR Failed for getEventById.' + error.data);
+      }
+    }
   }
 })();

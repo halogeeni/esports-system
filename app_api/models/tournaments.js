@@ -56,7 +56,6 @@ var tournamentSchema = new mongoose.Schema(
     groups: [groupSchema],
     isFinished: {
       type: Boolean,
-      required: true,
       default: false
     },
     sponsors: [
@@ -72,7 +71,7 @@ var tournamentSchema = new mongoose.Schema(
       type: Date
     },
     maxTeams: {
-      type: Number
+      type: Number,
     },
     teams: [
       {

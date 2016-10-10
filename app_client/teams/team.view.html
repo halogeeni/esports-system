@@ -22,12 +22,12 @@
 
       <p>
         <small>
-          <i>Registered: {{ vm.team.createdAt }}</i>
+          <i>Registered: {{ vm.team.createdAt | date:'dd.MM.yyyy HH:mm:ss' | lowercase }}</i>
         </small>
       </p>
       <p>
         <small>
-          <i>Team updated: {{ vm.team.updatedAt }}</i>
+          <i>Team updated: {{ vm.team.updatedAt | date:'dd.MM.yyyy HH:mm:ss' | lowercase }}</i>
         </small>
       </p>
 

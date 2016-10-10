@@ -11,7 +11,8 @@ var sendJsonResponse = function (res, status, content) {
 
 module.exports.addGame = function (req, res) {
   Game.create({
-    name: req.body.name,
+    fullName: req.body.fullName,
+    shortName: req.body.shortName,
     maps: req.body.maps,
     minPlayerCount: req.body.minPlayerCount,
     maxPlayerCount: req.body.maxPlayerCount
