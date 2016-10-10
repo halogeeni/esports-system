@@ -7,6 +7,9 @@
   addVideoCtrl.$inject = ['$scope', '$resource', '$location', 'authentication'];
 
   function addVideoCtrl($scope, $resource, $location, authentication) {
+
+    // this is stored here to be used as example code for auth-enabled requests
+
     var vm = this;
 
     vm.isLoggedIn = authentication.isLoggedIn();

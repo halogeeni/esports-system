@@ -8,19 +8,43 @@
   teamDataservice.$inject = ['$http'];
 
   function teamDataservice($http) {
-    
     var baseURL = '/api/teams';
-    
+
+    var createTeam = function(team) {
+      return $http.post(baseURL, team).success(function(data) {
+        // should we do something here?
+      });
+    };
+
     ////
-    
+
     return {
+      addPlayer: addPlayer,
+      createTeam: createTeam,
       getTeam: getTeam,
       getTeams: getTeams,
-      getTeamByName: getTeamByName
+      getTeamByName: getTeamByName,
+      removePlayer: removePlayer
     };
-    
+
     ////
-    
+
+    function addPlayer(playerId, teamId) {
+      var teamURL = (baseURL + '/' + teamId + '/addplayer/' + playerId);
+
+      return $http.post(teamURL)
+        .then(addPlayerComplete)
+        .catch(addPlayerFailed);
+
+      function addPlayerComplete(response) {
+        return response.data;
+      }
+
+      function addPlayerFailed(error) {
+        console.error('XHR Failed for addplayer.' + error.data);
+      }
+    }
+
     function getTeam(id) {
       var teamURL = (baseURL + '/' + id);
       return $http.get(teamURL)
@@ -35,7 +59,7 @@
         console.error('XHR Failed for getTeam.' + error.data);
       }
     }
-    
+
     function getTeams() {
       return $http.get(baseURL)
         .then(getTeamsComplete)
@@ -64,5 +88,20 @@
       }
     }
 
+    function removePlayer(playerId, teamId) {
+      var teamURL = (baseURL + '/' + teamId + '/removeplayer/' + playerId);
+
+      return $http.delete(teamURL)
+        .then(removePlayerComplete)
+        .catch(removePlayerFailed);
+
+      function removePlayerComplete(response) {
+        return response.data;
+      }
+
+      function removePlayerFailed(error) {
+        console.error('XHR Failed for removePlayer.' + error.data);
+      }
+    }
   }
 })();

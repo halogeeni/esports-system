@@ -51,6 +51,8 @@ router.post('/teams', ctrlTeams.addTeam);
 router.delete('/teams/:id', ctrlTeams.deleteTeam);
 router.get('/teams/:id', ctrlTeams.getTeam);
 //router.put('/teams/:id', ctrlTeams.updateTeam);
+router.post('/teams/:teamid/addplayer/:playerid', ctrlTeams.addPlayer);
+//router.delete('/teams/:teamid/addplayer/:playerid', ctrlTeams.removePlayer);
 
 // /api/users
 router.get('/users', ctrlUsers.getUsers);
@@ -58,7 +60,7 @@ router.post('/users', ctrlUsers.addUser);
 
 router.delete('/users/:id', ctrlUsers.deleteUser);
 router.get('/users/:id', ctrlUsers.getUser);
-//router.put('/users/:id', ctrlUsers.updateUser);
+router.put('/users/:id', ctrlUsers.updateUser);
 
 // login
 router.post('/login', ctrlAuth.login);

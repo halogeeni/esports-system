@@ -41,12 +41,23 @@
         var payload = JSON.parse($window.atob(token.split('.')[1]));
         return payload._id;
       }
-    }
+    };
 
     register = function(user) {
       return $http.post('/api/users', user).success(function(data) {
         //saveToken(data.token);
       });
+    };
+
+    update = function(userId, user) {
+      var url = ('/api/users/' + userId);
+      var currentUser = currentUserId();
+      // quick check to see if currently logged in user is in fact the one to update
+      if(currentUser === userId) {
+        return $http.put(url, user).success(function(data) {
+          // should we do something here? :D
+        });
+      }
     };
 
     login = function(user) {
@@ -66,6 +77,7 @@
       getToken: getToken,
       isLoggedIn: isLoggedIn,
       register: register,
+      update: update,
       login: login,
       logout: logout
     };
