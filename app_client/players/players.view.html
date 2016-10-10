@@ -11,13 +11,19 @@
     <!-- Content -->
     <div id="main_content" class="col-md-9 text-left">
       <h2>Pelaajarekisteri</h2>
-      <ul ng-repeat="player in vm.players">
-        <li>
-          <a ng-href="/user/{{ player._id }}">
-            {{ player.firstname }} <strong>"{{ player.nickname }}"</strong> {{ player.lastname }}
-          </a>
-        </li>
-      </ul>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading custom-colors">
+          <h2 class="panel-title">Pelaajarekisteri</h2>
+        </div>
+        <div class="panel-body">
+          <div class="list-group" ng-repeat="player in vm.players">
+            <a ng-href="/user/{{ player._id }}" class="list-group-item" style="margin-bottom: 2px;">
+              {{ player.firstname }} <strong>"{{ player.nickname }}"</strong> {{ player.lastname }}
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Sidenav -->

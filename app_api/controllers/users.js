@@ -90,11 +90,13 @@ module.exports.deleteUser = function(req, res) {
 };
 
 // get single user by id
+// TODO add populate to tournaments etc.
 module.exports.getUser = function(req, res) { 
   if (req.params && req.params.id) {
     User
       .findById(req.params.id)
       .populate('_contactInfo')
+      .populate('teams')
       .exec(function(err, user) {
         if (!user) {
           sendJsonResponse(res, 404, {
