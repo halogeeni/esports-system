@@ -64,7 +64,7 @@ module.exports.getTeam = function(req, res) { 
       .findById(teamid)
       //.populate('_adminUser')
       .populate('players')
-      .populate('pastPlayers')
+      .populate('pastUsers')
       //.populate('teamStats')
       .exec(
         function(err, team) {
@@ -113,6 +113,9 @@ module.exports.addPlayer = function(req, res) {
       .findByIdAndUpdate(teamId, {
           $push: {
             "players": playerId
+          },
+          $pull: {
+            "pastUsers": playerId
           }
         }, {
           new: true
@@ -150,6 +153,9 @@ module.exports.removePlayer = function(req, res) {
       .findByIdAndUpdate(teamId, {
           $pull: {
             "players": playerId
+          },
+          $push: {
+            "pastUsers": playerId
           }
         }, {
           new: true
