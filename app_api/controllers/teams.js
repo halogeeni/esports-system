@@ -126,3 +126,40 @@ module.exports.addPlayer = function(req, res) {
         });
   }
 };
+
+module.exports.removePlayer = function(req, res) {
+  var teamId = req.params.teamid;
+  var playerId = req.params.playerid;
+
+  console.log('in removePlayer - teamId: ' + teamId + ', playerId: ' + playerId);
+
+  if (req.params && playerId && teamId) {
+    console.log('in removePlayer - passed param check');
+    Team
+      .findByIdAndUpdate(teamId, {
+          $pull: {
+            "players": playerId
+          }
+        }, {
+          new: true
+        },
+        function(err, team) {
+          if (err) {
+            sendJsonResponse(res, 404, err);
+          } else {
+            // remove respective teamid from player as well
+            User.findByIdAndUpdate(playerId, {
+              $pull: {
+                "teams": teamId
+              }
+            }, function(err, player) {
+              if (err) {
+                sendJsonResponse(res, 404, err);
+              } else {
+                sendJsonResponse(res, 200, team);
+              }
+            });
+          }
+        });
+  }
+};

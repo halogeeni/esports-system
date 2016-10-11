@@ -52,7 +52,7 @@ router.delete('/teams/:id', ctrlTeams.deleteTeam);
 router.get('/teams/:id', ctrlTeams.getTeam);
 //router.put('/teams/:id', ctrlTeams.updateTeam);
 router.post('/teams/:teamid/addplayer/:playerid', ctrlTeams.addPlayer);
-//router.delete('/teams/:teamid/addplayer/:playerid', ctrlTeams.removePlayer);
+router.delete('/teams/:teamid/removeplayer/:playerid', ctrlTeams.removePlayer);
 
 // /api/users
 router.get('/users', ctrlUsers.getUsers);

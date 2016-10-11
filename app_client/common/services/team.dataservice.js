@@ -30,9 +30,9 @@
     ////
 
     function addPlayer(playerId, teamId) {
-      var teamURL = (baseURL + '/' + teamId + '/addplayer/' + playerId);
+      var addPlayerURL = (baseURL + '/' + teamId + '/addplayer/' + playerId);
 
-      return $http.post(teamURL)
+      return $http.post(addPlayerURL)
         .then(addPlayerComplete)
         .catch(addPlayerFailed);
 
@@ -89,9 +89,9 @@
     }
 
     function removePlayer(playerId, teamId) {
-      var teamURL = (baseURL + '/' + teamId + '/removeplayer/' + playerId);
+      var removePlayerURL = (baseURL + '/' + teamId + '/removeplayer/' + playerId);
 
-      return $http.delete(teamURL)
+      return $http.delete(removePlayerURL)
         .then(removePlayerComplete)
         .catch(removePlayerFailed);
 
