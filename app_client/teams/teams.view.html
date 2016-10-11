@@ -20,7 +20,7 @@
         <div class="col-md-3 text-right">
           <!-- Button trigger modal -->
           <span>
-            <button class="btn btn-primary btn-md button-fix" data-toggle="modal" data-target="#myModalNorm" ng-show="vm.isLoggedIn()">
+            <button class="btn btn-success btn-md button-fix" data-toggle="modal" data-target="#myModalNorm" ng-show="vm.isLoggedIn()">
               Lisää uusi joukkue
             </button>
           </span>
@@ -44,7 +44,7 @@
 
             <!-- Modal Body -->
             <div class="modal-body">
-              <form ng-submit="vm.onSubmit()" role="form">
+              <form ng-submit="vm.createTeam()" role="form">
                 <div class="form-group">
                   <label for="teamName">Joukkueen nimi</label>
                   <input type="text" class="form-control" id="teamName" placeholder="Joukkueen nimi" ng-model="vm.credentials.name"/>
