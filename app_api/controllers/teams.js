@@ -172,6 +172,25 @@ module.exports.removePlayer = function(req, res) {
             }, function(err, player) {
               if (err) {
                 sendJsonResponse(res, 404, err);
+              } else if (team._adminUser.equals(playerId) &&
+                team.players.length >= 1) {
+                console.log('team players length: ' + team.players.length);
+                // assign new team captain if needed and players are available
+                Team.findByIdAndUpdate(
+                  team._id, {
+                    $set: {
+                      _adminUser: team.players[0]
+                    }
+                  }, {
+                    new: true
+                  },
+                  function(err, team) {
+                    if (err) {
+                      sendJsonResponse(res, 404, err);
+                    } else {
+                      sendJsonResponse(res, 200, team);
+                    }
+                  });
               } else {
                 sendJsonResponse(res, 200, team);
               }
@@ -179,4 +198,5 @@ module.exports.removePlayer = function(req, res) {
           }
         });
   }
+
 };
