@@ -47,7 +47,7 @@
         teamDataservice.createTeam(vm.credentials).error(function(err) {
           vm.formError = err;
         }).then(function() {
-          // TODO close modal
+          // close modal
           activate();
         });
       }
