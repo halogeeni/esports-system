@@ -78,6 +78,10 @@
   margin-top: 15px;
 }
 
+.teamLogo {
+  margin-bottom: 10px;
+}
+
 .row.content {
   height: 800px;
 }
