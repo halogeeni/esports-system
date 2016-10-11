@@ -61,8 +61,8 @@
           vm.formError = err;
         })
         .then(function() {
-          /*$location.search('page', null);
-          $location.path('/teams');*/
+          // TODO close modal
+          
           activate();
         });
     };

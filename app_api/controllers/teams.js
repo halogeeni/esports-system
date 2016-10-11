@@ -11,15 +11,26 @@ var sendJsonResponse = function(res, status, content) {
 };
 
 module.exports.addTeam = function(req, res) {
+  var captain = req.body.adminUser;
+
   Team.create({
     name: req.body.name,
-    _adminUser: req.body.adminUser,
-    players: req.body.adminUser,
+    _adminUser: captain,
+    players: captain,
     additionalInfo: req.body.additionalInfo
   }, function(err, team) {
     if (err) {
       sendJsonResponse(res, 400, err);
     } else {
+      User.findByIdAndUpdate(captain, {
+        $push: {
+          "teams": team._id
+        }
+      }, function(err, player) {
+        if (err) {
+          sendJsonResponse(res, 404, err);
+        }
+      });
       sendJsonResponse(res, 201, team);
     }
   });
