@@ -13,6 +13,8 @@
 
     vm.player = [];
 
+    vm.isInEditMode = false;
+
     vm.credentials = {
       firstname: "",
       lastname: "",
@@ -25,16 +27,17 @@
       city: "",
       country: "",
       phone: "",
-      website: ""/*,
-      password: "",
-      verifyPassword: ""*/
+      website: ""
+        /*,
+              password: "",
+              verifyPassword: ""*/
     };
 
     activate();
 
     function activate() {
       return getPlayer().then(function() {
-        if(vm.isEditable()) {
+        if (vm.isEditable() && vm.isInEditMode) {
           // populate credentials in order to prefill the form
           vm.credentials.firstname = vm.player.firstname;
           vm.credentials.lastname = vm.player.lastname;
@@ -60,6 +63,16 @@
       });
     }
 
+    vm.enterEditMode = function() {
+      vm.isInEditMode = true;
+      activate();
+    };
+
+    vm.exitEditMode = function() {
+      vm.isInEditMode = false;
+      activate();
+    };
+
     vm.isEditable = function() {
       return playerId === authentication.currentUserId();
     };
@@ -67,19 +80,20 @@
     vm.onSubmit = function() {
       vm.formError = "";
       if (!vm.credentials.firstname ||
-          !vm.credentials.lastname ||
-          !vm.credentials.nickname ||
-          !vm.credentials.email ||
-          !vm.credentials.birthday ||
-          !vm.credentials.streetAddress ||
-          !vm.credentials.postalCode ||
-          !vm.credentials.city ||
-          !vm.credentials.country ||
-          !vm.credentials.phone ||
-          !vm.credentials.website /*||
-          !vm.credentials.password  ||
-          !vm.credentials.verifyPassword*/)
-      {
+        !vm.credentials.lastname ||
+        !vm.credentials.nickname ||
+        !vm.credentials.email ||
+        !vm.credentials.birthday ||
+        !vm.credentials.streetAddress ||
+        !vm.credentials.postalCode ||
+        !vm.credentials.city ||
+        !vm.credentials.country ||
+        !vm.credentials.phone ||
+        !vm.credentials.website
+        /*||
+                 !vm.credentials.password  ||
+                 !vm.credentials.verifyPassword*/
+      ) {
         // debug
         console.log(vm.credentials);
 
@@ -98,8 +112,8 @@
           vm.formError = err;
         })
         .then(function() {
-          $location.search('page', null);
-          $location.path(vm.returnPage);
+          vm.isInEditMode = false;
+          activate();
         });
     };
   }

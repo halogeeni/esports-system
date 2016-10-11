@@ -11,15 +11,26 @@ var sendJsonResponse = function(res, status, content) {
 };
 
 module.exports.addTeam = function(req, res) {
+  var captain = req.body.adminUser;
+
   Team.create({
     name: req.body.name,
-    _adminUser: req.body.adminUser,
-    players: req.body.adminUser,
+    _adminUser: captain,
+    players: captain,
     additionalInfo: req.body.additionalInfo
   }, function(err, team) {
     if (err) {
       sendJsonResponse(res, 400, err);
     } else {
+      User.findByIdAndUpdate(captain, {
+        $push: {
+          "teams": team._id
+        }
+      }, function(err, player) {
+        if (err) {
+          sendJsonResponse(res, 404, err);
+        }
+      });
       sendJsonResponse(res, 201, team);
     }
   });
@@ -53,7 +64,7 @@ module.exports.getTeam = function(req, res) { 
       .findById(teamid)
       //.populate('_adminUser')
       .populate('players')
-      .populate('pastPlayers')
+      .populate('pastUsers')
       //.populate('teamStats')
       .exec(
         function(err, team) {
@@ -102,6 +113,9 @@ module.exports.addPlayer = function(req, res) {
       .findByIdAndUpdate(teamId, {
           $push: {
             "players": playerId
+          },
+          $pull: {
+            "pastUsers": playerId
           }
         }, {
           new: true
@@ -125,4 +139,64 @@ module.exports.addPlayer = function(req, res) {
           }
         });
   }
+};
+
+module.exports.removePlayer = function(req, res) {
+  var teamId = req.params.teamid;
+  var playerId = req.params.playerid;
+
+  console.log('in removePlayer - teamId: ' + teamId + ', playerId: ' + playerId);
+
+  if (req.params && playerId && teamId) {
+    console.log('in removePlayer - passed param check');
+    Team
+      .findByIdAndUpdate(teamId, {
+          $pull: {
+            "players": playerId
+          },
+          $push: {
+            "pastUsers": playerId
+          }
+        }, {
+          new: true
+        },
+        function(err, team) {
+          if (err) {
+            sendJsonResponse(res, 404, err);
+          } else {
+            // remove respective teamid from player as well
+            User.findByIdAndUpdate(playerId, {
+              $pull: {
+                "teams": teamId
+              }
+            }, function(err, player) {
+              if (err) {
+                sendJsonResponse(res, 404, err);
+              } else if (team._adminUser.equals(playerId) &&
+                team.players.length >= 1) {
+                console.log('team players length: ' + team.players.length);
+                // assign new team captain if needed and players are available
+                Team.findByIdAndUpdate(
+                  team._id, {
+                    $set: {
+                      _adminUser: team.players[0]
+                    }
+                  }, {
+                    new: true
+                  },
+                  function(err, team) {
+                    if (err) {
+                      sendJsonResponse(res, 404, err);
+                    } else {
+                      sendJsonResponse(res, 200, team);
+                    }
+                  });
+              } else {
+                sendJsonResponse(res, 200, team);
+              }
+            });
+          }
+        });
+  }
+
 };
