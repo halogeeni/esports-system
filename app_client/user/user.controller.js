@@ -66,12 +66,12 @@
     vm.enterEditMode = function() {
       vm.isInEditMode = true;
       activate();
-    }
+    };
 
     vm.exitEditMode = function() {
       vm.isInEditMode = false;
       activate();
-    }
+    };
 
     vm.isEditable = function() {
       return playerId === authentication.currentUserId();
