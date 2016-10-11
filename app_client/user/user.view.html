@@ -69,9 +69,6 @@
 
             <div ng-show="vm.isInEditMode">
                 <h2>Oma profiili ({{vm.player.nickname}})</h2>
-                <button class="btn btn-danger" ng-show="vm.isEditable()" ng-click="vm.exitEditMode()">
-                    Hylkää muutokset
-                </button>
                 <form ng-submit="vm.onSubmit()" class="form-horizontal">
                     <div class="form-group">
                         <label class="control-label col-md-4" for="firstname">Etunimi:</label>
@@ -192,9 +189,10 @@
                     -->
 
                     <div class="form-group">
-                        <div class="col-md-offset-4 col-md-5">
-                            <button type="submit" class="btn btn-default">Päivitä</button>
-                        </div>
+                      <div class="col-md-offset-4 col-md-5">
+                        <button type="submit" class="btn btn-primary">Päivitä</button>
+                        <button class="btn btn-warning" ng-show="vm.isEditable()" ng-click="vm.exitEditMode()">Hylkää muutokset</button>
+                      </div>
                     </div>
 
                     <div role="alert" ng-show="vm.formError" class="alert alert-danger">{{ vm.formError }}</div>
