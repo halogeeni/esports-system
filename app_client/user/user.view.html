@@ -81,134 +81,138 @@
       </div>
 
       <div ng-show="vm.isInEditMode">
-        <h2>Oma profiili ({{vm.player.nickname}})</h2>
+        <h3>Oma profiili ({{ vm.player.nickname }})</h3>
         <form ng-submit="vm.onSubmit()" class="form-horizontal">
-            <div class="form-group">
-                <label class="control-label col-md-4" for="firstname">Etunimi:</label>
-                <div class="col-md-5">
-                    <input type="text" class="form-control" id="firstname" placeholder="Etunimi" ng-model="vm.credentials.firstname" ng-init="vm.credentials.firstname = vm.player.firstname">
-                </div>
+          <div class="form-group">
+            <label class="control-label col-md-4" for="firstname">Etunimi:</label>
+            <div class="col-md-5">
+              <input type="text" class="form-control" id="firstname" placeholder="Etunimi" ng-model="vm.credentials.firstname" ng-init="vm.credentials.firstname = vm.player.firstname">
             </div>
+          </div>
 
-            <div class="form-group">
-                <label class="control-label col-md-4" for="lastname">Sukunimi:</label>
-                <div class="col-md-5">
-                    <input type="text" class="form-control" id="lastname" placeholder="Sukunimi" ng-model="vm.credentials.lastname" ng-init="vm.credentials.lastname = vm.player.lastname">
-                </div>
+          <div class="form-group">
+            <label class="control-label col-md-4" for="lastname">Sukunimi:</label>
+            <div class="col-md-5">
+              <input type="text" class="form-control" id="lastname" placeholder="Sukunimi" ng-model="vm.credentials.lastname" ng-init="vm.credentials.lastname = vm.player.lastname">
             </div>
+          </div>
 
-            <hr>
+          <hr>
 
-            <!-- Contact info -->
+          <!-- Contact info -->
 
-            <div class="form-group">
-                <label class="control-label col-md-4" for="streetAddress">Osoite:</label>
-                <div class="col-md-5">
-                    <input type="text" class="form-control" id="streetAddress" placeholder="Osoite" ng-model="vm.credentials.streetAddress" ng-init="vm.credentials.streetAddress = vm.player._contactInfo.streetAddress">
-                </div>
+          <div class="form-group">
+            <label class="control-label col-md-4" for="streetAddress">Osoite:</label>
+            <div class="col-md-5">
+              <input type="text" class="form-control" id="streetAddress" 
+                     placeholder="Osoite" ng-model="vm.credentials.streetAddress" ng-init="vm.credentials.streetAddress = vm.player._contactInfo.streetAddress">
             </div>
+          </div>
 
-            <div class="form-group">
-                <label class="control-label col-md-4" for="postalCode">Postinumero:</label>
-                <div class="col-md-5">
-                    <input type="text" class="form-control" id="postalCode" placeholder="Postinumero" ng-model="vm.credentials.postalCode" ng-init="vm.credentials.postalCode = vm.player._contactInfo.postalCode">
-                </div>
+          <div class="form-group">
+            <label class="control-label col-md-4" for="postalCode">Postinumero:</label>
+            <div class="col-md-5">
+              <input type="text" class="form-control" id="postalCode" 
+                     placeholder="Postinumero" ng-model="vm.credentials.postalCode" ng-init="vm.credentials.postalCode = vm.player._contactInfo.postalCode">
             </div>
+          </div>
 
-            <div class="form-group">
-                <label class="control-label col-md-4" for="city">Postitoimipaikka:</label>
-                <div class="col-md-5">
-                    <input type="text" class="form-control" id="city" placeholder="Postitoimipaikka" ng-model="vm.credentials.city" ng-init="vm.credentials.city = vm.player._contactInfo.city">
-                </div>
+          <div class="form-group">
+            <label class="control-label col-md-4" for="city">Postitoimipaikka:</label>
+            <div class="col-md-5">
+              <input type="text" class="form-control" id="city" 
+                     placeholder="Postitoimipaikka" ng-model="vm.credentials.city" ng-init="vm.credentials.city = vm.player._contactInfo.city">
             </div>
+          </div>
 
-            <!-- Populate dropdown from country list in DB -->
-            <div class="form-group">
-                <label class="control-label col-md-4" for="country">Maa:</label>
-                <div class="col-md-5">
-                    <select type="text" class="form-control" id="country" ng-model="vm.credentials.country" ng-init="vm.credentials.country = vm.player._contactInfo.country">
-                        <option value="finland">Finland</option>
-                        <option value="sweden">Sweden</option>
-                        <option value="norway">Norway</option>
-                        <option value="denmark">Denmark</option>
-                        <option value="estonia">Estonia</option>
-                    </select>
-                </div>
+          <!-- Populate dropdown from country list in DB -->
+          <div class="form-group">
+            <label class="control-label col-md-4" for="country">Maa:</label>
+            <div class="col-md-5">
+              <select type="text" class="form-control" id="country" ng-model="vm.credentials.country" ng-init="vm.credentials.country = vm.player._contactInfo.country">
+                <option value="finland">Finland</option>
+                <option value="sweden">Sweden</option>
+                <option value="norway">Norway</option>
+                <option value="denmark">Denmark</option>
+                <option value="estonia">Estonia</option>
+              </select>
             </div>
+          </div>
 
-            <div class="form-group">
-                <label class="control-label col-md-4" for="birthday">Syntymäpäivä:</label>
-                <div class="col-md-5">
-                    <input type="text" class="form-control" id="birthday" ng-model="vm.credentials.birthday" ng-init="vm.credentials.birthday = vm.player.birthday">
-                </div>
+          <div class="form-group">
+            <label class="control-label col-md-4" for="birthday">Syntymäpäivä:</label>
+            <div class="col-md-5">
+              <input type="text" class="form-control" id="birthday" ng-model="vm.credentials.birthday" ng-init="vm.credentials.birthday = vm.player.birthday">
             </div>
+          </div>
 
-            <div class="form-group">
-                <label class="control-label col-md-4" for="phone">Puhelinnumero:</label>
-                <div class="col-md-5">
-                    <input type="tel" class="form-control" id="phone" placeholder="Puhelinnumero" ng-model="vm.credentials.phone" ng-init="vm.credentials.phone = vm.player._contactInfo.phone">
-                </div>
+          <div class="form-group">
+            <label class="control-label col-md-4" for="phone">Puhelinnumero:</label>
+            <div class="col-md-5">
+              <input type="tel" class="form-control" id="phone" placeholder="Puhelinnumero" ng-model="vm.credentials.phone" ng-init="vm.credentials.phone = vm.player._contactInfo.phone">
             </div>
+          </div>
 
-            <div class="form-group">
-                <label class="control-label col-md-4" for="website">Kotisivut:</label>
-                <div class="col-md-5">
-                    <input type="text" class="form-control" id="website" placeholder="Kotisivut" ng-model="vm.credentials.website" ng-init="vm.credentials.website = vm.player._contactInfo.website">
-                </div>
+          <div class="form-group">
+            <label class="control-label col-md-4" for="website">Kotisivut:</label>
+            <div class="col-md-5">
+              <input type="text" class="form-control" id="website" placeholder="Kotisivut" ng-model="vm.credentials.website" ng-init="vm.credentials.website = vm.player._contactInfo.website">
             </div>
+          </div>
 
-            <hr>
+          <hr>
 
-            <!-- Nickname, add check that if already in use -->
-            <div class="form-group">
-                <label class="control-label col-md-4" for="nickname">Käyttäjänimi:</label>
-                <div class="col-md-5">
-                    <input type="text" class="form-control" id="nickname" placeholder="Käyttäjänimi" ng-model="vm.credentials.nickname" ng-init="vm.credentials.nickname = vm.player.nickname">
-                </div>
+          <!-- Nickname, add check that if already in use -->
+          <div class="form-group">
+            <label class="control-label col-md-4" for="nickname">Käyttäjänimi:</label>
+            <div class="col-md-5">
+              <input type="text" class="form-control" id="nickname" placeholder="Käyttäjänimi" ng-model="vm.credentials.nickname" ng-init="vm.credentials.nickname = vm.player.nickname">
             </div>
+          </div>
 
-            <div class="form-group">
-                <label class="control-label col-md-4" for="additionalInfo">Lisätiedot:</label>
-                <div class="col-md-5">
-                    <input type="text" class="form-control" id="additionalInfo" placeholder="Esim. lisenssit, pelit" ng-model="vm.credentials.additionalInfo" ng-init="vm.credentials.additionalInfo = vm.player.additionalInfo">
-                </div>
+          <div class="form-group">
+            <label class="control-label col-md-4" for="additionalInfo">Lisätiedot:</label>
+            <div class="col-md-5">
+              <input type="text" class="form-control" id="additionalInfo" 
+                     placeholder="Esim. lisenssit, pelit" ng-model="vm.credentials.additionalInfo" ng-init="vm.credentials.additionalInfo = vm.player.additionalInfo">
             </div>
+          </div>
 
-            <hr>
+          <hr>
 
-            <div class="form-group">
-                <label class="control-label col-md-4" for="email">Sähköposti:</label>
-                <div class="col-md-5">
-                    <input type="email" class="form-control" id="email" placeholder="Sähköposti" ng-model="vm.credentials.email" ng-init="vm.credentials.email = vm.player._contactInfo.email">
-                </div>
+          <div class="form-group">
+            <label class="control-label col-md-4" for="email">Sähköposti:</label>
+            <div class="col-md-5">
+              <input type="email" class="form-control" id="email" placeholder="Sähköposti" ng-model="vm.credentials.email" ng-init="vm.credentials.email = vm.player._contactInfo.email">
             </div>
+          </div>
 
-            <!-- Implement password changing?
+          <!-- Implement password changing?
 
-            <div class="form-group">
-                <label class="control-label col-md-4" for="password">Salasana:</label>
-                <div class="col-md-5">
-                    <input type="password" class="form-control" id="password" placeholder="Salasana" ng-model="vm.credentials.password">
-                </div>
+          <div class="form-group">
+            <label class="control-label col-md-4" for="password">Salasana:</label>
+            <div class="col-md-5">
+              <input type="password" class="form-control" id="password" placeholder="Salasana" ng-model="vm.credentials.password">
             </div>
+          </div>
 
-            <div class="form-group">
-                <label class="control-label col-md-4" for="verifyPassword">Kirjoita salasana uudelleen:</label>
-                <div class="col-md-5">
-                    <input type="password" class="form-control" id="verifyPassword" placeholder="Salasana" ng-model="vm.credentials.verifyPassword">
-                </div>
+          <div class="form-group">
+            <label class="control-label col-md-4" for="verifyPassword">Kirjoita salasana uudelleen:</label>
+            <div class="col-md-5">
+              <input type="password" class="form-control" id="verifyPassword" placeholder="Salasana" ng-model="vm.credentials.verifyPassword">
             </div>
+          </div>
 
-            -->
+          -->
 
-            <div class="form-group">
-              <div class="col-md-offset-4 col-md-5">
-                <button type="submit" class="btn btn-primary">Päivitä</button>
-                <button class="btn btn-warning" ng-show="vm.isEditable()" ng-click="vm.exitEditMode()">Hylkää muutokset</button>
-              </div>
+          <div class="form-group">
+            <div class="col-md-offset-4 col-md-5">
+              <button type="submit" class="btn btn-primary">Päivitä</button>
+              <button class="btn btn-warning" ng-show="vm.isEditable()" ng-click="vm.exitEditMode()">Hylkää muutokset</button>
             </div>
+          </div>
 
-            <div role="alert" ng-show="vm.formError" class="alert alert-danger">{{ vm.formError }}</div>
+          <div role="alert" ng-show="vm.formError" class="alert alert-info">{{ vm.formError }}</div>
 
         </form><!-- /.form-horizontal -->
       </div>
