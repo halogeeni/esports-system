@@ -12,8 +12,14 @@
 
         <!-- Main content -->
         <div id="main_content" class="col-md-7 text-left">
-            <div ng-hide="vm.isEditable()">
-                <h2>Pelaajaprofiili</h2>
+            <div ng-hide="vm.isInEditMode">
+                <div>
+                    <h2>Pelaajaprofiili</h2>
+                </div>
+                <button class="btn btn-success" ng-show="vm.isEditable()" ng-click="vm.enterEditMode()">
+                    Muokkaa
+                </button>
+
                 <h3>{{vm.player.nickname}}</h3>
 
                 <p>
@@ -49,20 +55,19 @@
                     </p>
                 </div>
 
-
-              <div class="panel panel-default">
-                <div class="panel-heading custom-colors">
-                  <h3 class="panel-title">Joukkueet</h3>
+                <div class="panel panel-default">
+                    <div class="panel-heading custom-colors">
+                        <h3 class="panel-title">Joukkueet</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="list-group" ng-repeat="team in vm.player.teams">
+                            <a ng-href="team/{{ team._id }}" class="list-group-item">{{ team.name }}</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="panel-body">
-                  <div class="list-group" ng-repeat="team in vm.player.teams">
-                    <a ng-href="team/{{ team._id }}" class="list-group-item">{{ team.name }}</a>
-                  </div>
-                </div>
-              </div>
             </div>
 
-            <div ng-show="vm.isEditable()">
+            <div ng-show="vm.isInEditMode">
                 <h2>Oma profiili ({{vm.player.nickname}})</h2>
                 <form ng-submit="vm.onSubmit()" class="form-horizontal">
                     <div class="form-group">
