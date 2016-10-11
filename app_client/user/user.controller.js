@@ -13,6 +13,8 @@
 
     vm.player = [];
 
+    vm.isInEditMode = false;
+
     vm.credentials = {
       firstname: "",
       lastname: "",
@@ -34,7 +36,7 @@
 
     function activate() {
       return getPlayer().then(function() {
-        if(vm.isEditable()) {
+        if(vm.isEditable() && vm.isInEditMode) {
           // populate credentials in order to prefill the form
           vm.credentials.firstname = vm.player.firstname;
           vm.credentials.lastname = vm.player.lastname;
@@ -58,6 +60,11 @@
         vm.player = data;
         return vm.player;
       });
+    }
+
+    vm.enterEditMode = function() {
+      vm.isInEditMode = true;
+      activate();
     }
 
     vm.isEditable = function() {
@@ -98,8 +105,8 @@
           vm.formError = err;
         })
         .then(function() {
-          $location.search('page', null);
-          $location.path(vm.returnPage);
+          vm.isInEditMode = false;
+          activate();
         });
     };
   }
