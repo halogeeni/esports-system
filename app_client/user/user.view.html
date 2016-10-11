@@ -7,13 +7,13 @@
 <!-- Main content -->
 <div id="wrapper" class="container text-center">
   <div class="row content">
-    
+
     <adbanner-left></adbanner-left>
 
     <!-- Content -->
     <div id="main_content" class="col-md-7 text-left">
       <div ng-hide="vm.isInEditMode">
-        
+
         <div class="row">
           <div class="col-md-9">
             <h3>{{vm.player.nickname}} <small>(ID: {{ vm.player._id }})</small></h3>
@@ -39,13 +39,13 @@
                <strong>Nimi:</strong> {{ vm.player.firstname }} {{ vm.player.lastname }}
               </small>
             </p>
-            
+
             <p>
               <small>
                 <strong>Sijainti:</strong> {{ vm.player._contactInfo.city }}, {{ vm.player._contactInfo.country }}
               </small>
             </p>
-            
+
             <p>
               <small>
                 <strong>Lisätiedot:</strong> {{ vm.player.additionalInfo }}
@@ -71,7 +71,7 @@
           <div class="panel-heading custom-colors">
             <h3 class="panel-title">Joukkueet</h3>
           </div>
-          
+
           <div class="panel-body">
             <div class="list-group" ng-repeat="team in vm.player.teams">
               <a ng-href="team/{{ team._id }}" class="list-group-item">{{ team.name }}</a>
@@ -104,7 +104,7 @@
           <div class="form-group">
             <label class="control-label col-md-4" for="streetAddress">Osoite:</label>
             <div class="col-md-5">
-              <input type="text" class="form-control" id="streetAddress" 
+              <input type="text" class="form-control" id="streetAddress"
                      placeholder="Osoite" ng-model="vm.credentials.streetAddress" ng-init="vm.credentials.streetAddress = vm.player._contactInfo.streetAddress">
             </div>
           </div>
@@ -112,7 +112,7 @@
           <div class="form-group">
             <label class="control-label col-md-4" for="postalCode">Postinumero:</label>
             <div class="col-md-5">
-              <input type="text" class="form-control" id="postalCode" 
+              <input type="text" class="form-control" id="postalCode"
                      placeholder="Postinumero" ng-model="vm.credentials.postalCode" ng-init="vm.credentials.postalCode = vm.player._contactInfo.postalCode">
             </div>
           </div>
@@ -120,7 +120,7 @@
           <div class="form-group">
             <label class="control-label col-md-4" for="city">Postitoimipaikka:</label>
             <div class="col-md-5">
-              <input type="text" class="form-control" id="city" 
+              <input type="text" class="form-control" id="city"
                      placeholder="Postitoimipaikka" ng-model="vm.credentials.city" ng-init="vm.credentials.city = vm.player._contactInfo.city">
             </div>
           </div>
@@ -130,11 +130,11 @@
             <label class="control-label col-md-4" for="country">Maa:</label>
             <div class="col-md-5">
               <select type="text" class="form-control" id="country" ng-model="vm.credentials.country" ng-init="vm.credentials.country = vm.player._contactInfo.country">
-                <option value="finland">Finland</option>
-                <option value="sweden">Sweden</option>
-                <option value="norway">Norway</option>
-                <option value="denmark">Denmark</option>
-                <option value="estonia">Estonia</option>
+                <option value="Finland">Finland</option>
+                <option value="Sweden">Sweden</option>
+                <option value="Norway">Norway</option>
+                <option value="Denmark">Denmark</option>
+                <option value="Estonia">Estonia</option>
               </select>
             </div>
           </div>
@@ -173,7 +173,7 @@
           <div class="form-group">
             <label class="control-label col-md-4" for="additionalInfo">Lisätiedot:</label>
             <div class="col-md-5">
-              <input type="text" class="form-control" id="additionalInfo" 
+              <input type="text" class="form-control" id="additionalInfo"
                      placeholder="Esim. lisenssit, pelit" ng-model="vm.credentials.additionalInfo" ng-init="vm.credentials.additionalInfo = vm.player.additionalInfo">
             </div>
           </div>
