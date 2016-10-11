@@ -74,6 +74,10 @@
 }
 */
 
+.button-fix {
+  margin-top: 15px;
+}
+
 .row.content {
   height: 800px;
 }
