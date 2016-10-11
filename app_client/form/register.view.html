@@ -64,9 +64,14 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="birthday">Syntymäpäivä:</label>
+                    <label class="control-label col-md-4" for="birthday-days">Syntymäpäivä:</label>
                     <div class="col-md-5">
-                        <input type="text" class="form-control" id="birthday" ng-model="vm.credentials.birthday">
+                      <select id="birthday-days" ng-model="vm.birthdayPartials.birthdayDay"></select>
+                      <select id="birthday-months" ng-model="vm.birthdayPartials.birthdayMonth"></select>
+                      <select id="birthday-years" ng-model="vm.birthdayPartials.birthdayYear"></select>
+                      <!--
+                      <input type="text" class="form-control" id="birthday" ng-model="vm.credentials.birthday">
+                      -->
                     </div>
                 </div>
 
@@ -221,3 +226,40 @@
 </div>
 
 <footer-generic></footer-generic>
+
+<script type="text/javascript">
+  $(function () {
+
+          for (i = new Date().getFullYear() ; i > 1900; i--) {
+              $('#birthday-years').append($('<option />').val(i).html(i));
+          }
+
+          for (i = 1; i < 13; i++) {
+              $('#birthday-months').append($('<option />').val(i).html(i));
+          }
+          updateNumberOfDays();
+
+          $('#birthday-years, #birthday-months').change(function () {
+
+              updateNumberOfDays();
+
+          });
+
+      });
+
+      function updateNumberOfDays() {
+          $('#birthday-days').html('');
+          month = $('#birthday-months').val();
+          year = $('#birthday-years').val();
+          days = daysInMonth(month, year);
+
+          for (i = 1; i < days + 1 ; i++) {
+              $('#birthday-days').append($('<option />').val(i).html(i));
+          }
+
+      }
+
+      function daysInMonth(month, year) {
+          return new Date(year, month, 0).getDate();
+      }
+</script>
