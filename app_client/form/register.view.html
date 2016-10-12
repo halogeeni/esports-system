@@ -9,16 +9,23 @@
 
             <!-- Register form -->
             <h2>Rekisteröidy</h2>
+
+            <p class="text-center">
+              <small>Kaikki tähdellä merkityt kentät ovat pakollisia</small>
+            </p>
+
             <form ng-submit="vm.onSubmit()" class="form-horizontal">
+
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="firstname">Etunimi:</label>
+
+                    <label class="control-label col-md-4" for="firstname">* Etunimi:</label>
                     <div class="col-md-5">
                         <input type="text" class="form-control" id="firstname" placeholder="Etunimi" ng-model="vm.credentials.firstname">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="lastname">Sukunimi:</label>
+                    <label class="control-label col-md-4" for="lastname">* Sukunimi:</label>
                     <div class="col-md-5">
                         <input type="text" class="form-control" id="lastname" placeholder="Sukunimi" ng-model="vm.credentials.lastname">
                     </div>
@@ -29,21 +36,21 @@
                 <!-- Contact info -->
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="streetAddress">Osoite:</label>
+                    <label class="control-label col-md-4" for="streetAddress">* Osoite:</label>
                     <div class="col-md-5">
                         <input type="text" class="form-control" id="streetAddress" placeholder="Osoite" ng-model="vm.credentials.streetAddress">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="postalCode">Postinumero:</label>
+                    <label class="control-label col-md-4" for="postalCode">* Postinumero:</label>
                     <div class="col-md-5">
                         <input type="text" class="form-control" id="postalCode" placeholder="Postinumero" ng-model="vm.credentials.postalCode">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="city">Postitoimipaikka:</label>
+                    <label class="control-label col-md-4" for="city">* Postitoimipaikka:</label>
                     <div class="col-md-5">
                         <input type="text" class="form-control" id="city" placeholder="Postitoimipaikka" ng-model="vm.credentials.city">
                     </div>
@@ -51,7 +58,7 @@
 
                 <!-- Change this to dropdown -->
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="country">Maa:</label>
+                    <label class="control-label col-md-4" for="country">* Maa:</label>
                     <div class="col-md-5">
                         <select type="text" class="form-control" id="country" ng-model="vm.credentials.country">
                             <option value="Finland">Finland</option>
@@ -64,7 +71,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="birthday-days">Syntymäpäivä:</label>
+                    <label class="control-label col-md-4" for="birthday-days">* Syntymäpäivä:</label>
                     <div class="col-md-5">
                       <select id="birthday-days" ng-model="vm.birthdayPartials.birthdayDay"></select>
                       <select id="birthday-months" ng-model="vm.birthdayPartials.birthdayMonth"></select>
@@ -76,14 +83,14 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="phone">Puhelinnumero:</label>
+                    <label class="control-label col-md-4" for="phone">* Puhelinnumero:</label>
                     <div class="col-md-5">
                         <input type="tel" class="form-control" id="phone" placeholder="Puhelinnumero" ng-model="vm.credentials.phone">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="website">Kotisivut:</label>
+                    <label class="control-label col-md-4" for="website">Kotisivu:</label>
                     <div class="col-md-5">
                         <input type="text" class="form-control" id="website" placeholder="Kotisivut" ng-model="vm.credentials.website">
                     </div>
@@ -93,7 +100,7 @@
 
                 <!-- Nickname, add check that if already in use -->
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="nickname">Käyttäjänimi:</label>
+                    <label class="control-label col-md-4" for="nickname">* Käyttäjänimi:</label>
                     <div class="col-md-5">
                         <input type="text" class="form-control" id="nickname" placeholder="Alias" ng-model="vm.credentials.nickname">
                     </div>
@@ -102,31 +109,31 @@
                 <hr>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="email">Sähköposti:</label>
+                    <label class="control-label col-md-4" for="email">* Sähköposti:</label>
                     <div class="col-md-5">
                         <input type="email" class="form-control" id="email" placeholder="Sähköposti" ng-model="vm.credentials.email">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="password">Salasana:</label>
+                    <label class="control-label col-md-4" for="password">* Salasana:</label>
                     <div class="col-md-5">
                         <input type="password" class="form-control" id="password" placeholder="Salasana" ng-model="vm.credentials.password">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="verifyPassword">Kirjoita salasana uudelleen:</label>
+                    <label class="control-label col-md-4" for="verifyPassword">* Kirjoita salasana uudelleen:</label>
                     <div class="col-md-5">
                         <input type="password" class="form-control" id="verifyPassword" placeholder="Salasana" ng-model="vm.credentials.verifyPassword">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4">Hyväksyn käyttöehdot:</label>
+                    <label class="control-label col-md-4">* Hyväksyn käyttöehdot:</label>
                     <div class="col-md-5">
                         <div class="checkbox">
-                            <label><input type="checkbox" name="terms" required>
+                            <label><input type="checkbox" name="terms" ng-model="vm.credentials.agreesTOS" required>
                                 <a href="" data-toggle="modal" data-target="#terms">Palvelun käyttöehdot</a>
                             </label>
                         </div>
@@ -134,10 +141,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="rules">Hyväksyn säännöt:</label>
+                    <label class="control-label col-md-4" for="rules">* Hyväksyn säännöt:</label>
                     <div class="col-md-5">
                         <div class="checkbox">
-                            <label><input type="checkbox" name="rules" required>
+                            <label><input type="checkbox" name="rules" ng-model="vm.credentials.agreesRules" required>
                                 <a href="" data-toggle="modal" data-target="#rules">
                                     Palvelun säännöt</a>
                             </label>

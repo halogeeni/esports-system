@@ -17,6 +17,7 @@ var sendJsonResponse = function(res, status, content) {
 
 // insert new event to database
 module.exports.addEvent = function(req, res) {
+  // implement fullph validation
   ContactInfo.create({
     email: req.body.email,
     streetAddress: req.body.streetAddress,
@@ -81,7 +82,7 @@ module.exports.getEvent = function(req, res) { 
         populate: {
           path: '_game',
           model: 'Game'
-        }  
+        }
       })
       //.populate('sponsors')
       .exec(function(err, event) {

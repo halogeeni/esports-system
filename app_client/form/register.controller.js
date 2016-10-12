@@ -32,7 +32,9 @@
       phone: "",
       website: "",
       password: "",
-      verifyPassword: ""
+      verifyPassword: "",
+      agreesTOS: false,
+      agreesRules: false
     };
 
     vm.returnPage = $location.search().page || '/';
@@ -51,10 +53,12 @@
         !vm.credentials.city ||
         !vm.credentials.country ||
         !vm.credentials.phone ||
-        !vm.credentials.website ||
         !vm.credentials.password  ||
         !vm.credentials.verifyPassword) {
         vm.formError = "Täytä kaikki kentät";
+        return false;
+      } else if (!vm.credentials.agreesTOS || !vm.credentials.agreesRules) {
+        vm.formError= "Rekisteröityminen edellyttää käyttöehtojen ja sääntöjen hyväksymistä";
         return false;
       } else if (vm.credentials.password !== vm.credentials.verifyPassword) {
         vm.formError = "Salasanat eivät täsmää";
