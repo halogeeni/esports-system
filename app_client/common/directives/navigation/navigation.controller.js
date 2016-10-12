@@ -3,9 +3,9 @@
     .module('washbear')
     .controller('navigationCtrl', navigationCtrl);
 
-  navigationCtrl.$inject = ['$location', 'authentication'];
+  navigationCtrl.$inject = ['$window', '$location', 'authentication'];
 
-  function navigationCtrl($location, authentication) {
+  function navigationCtrl($window, $location, authentication) {
 
     var vm = this;
 
@@ -17,7 +17,11 @@
 
     function logout() {
       authentication.logout();
-      $location.path('/');
+      if($location.path() !== '/') {
+        $location.path('/');
+      } else {
+        $window.location.reload();
+      }
     }
 
     /*function HeaderController($scope, $location) {

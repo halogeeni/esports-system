@@ -5,17 +5,17 @@
     .module('washbear')
     .controller('teamsCtrl', teamsCtrl);
 
-  teamsCtrl.$inject = ['$scope', '$location', 'teamDataservice', 'authentication'];
+  teamsCtrl.$inject = ['$scope', '$window', 'teamDataservice', 'authentication'];
 
-  function teamsCtrl($scope, $location, teamDataservice, authentication) {
-    
+  function teamsCtrl($scope, $window, teamDataservice, authentication) {
+
     var vm = this;
 
     vm.createTeam = createTeam;
     vm.credentials = {};
     vm.isLoggedIn = authentication.isLoggedIn;
     vm.teams = [];
-    
+
     ////
 
     activate();
@@ -29,11 +29,11 @@
           adminUser: "",
           additionalInfo: ""
         };
-        
+
         console.info('Activated Teams View');
       });
     }
-    
+
     function createTeam() {
       console.log('createTeam');
       vm.formError = "";
@@ -47,8 +47,8 @@
         teamDataservice.createTeam(vm.credentials).error(function(err) {
           vm.formError = err;
         }).then(function() {
-          // close modal
-          activate();
+          // quick and dirty fix to close the modal
+          $window.location.reload();
         });
       }
     }

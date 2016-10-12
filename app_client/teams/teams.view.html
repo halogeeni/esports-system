@@ -11,12 +11,12 @@
 
     <!-- Content -->
     <div id="main_content" class="col-md-9 text-left">
-      
+
       <div class="row">
         <div class="col-md-9">
           <h3>Joukkuerekisteri</h3>
         </div>
-        
+
         <div class="col-md-3 text-right">
           <!-- Button trigger modal -->
           <span>
@@ -52,9 +52,11 @@
 
                 <div class="form-group">
                   <label for="additionalInfo">Info</label>
-                  <input type="text" class="form-control" id="additionalInfo" placeholder="Info" 
+                  <input type="text" class="form-control" id="additionalInfo" placeholder="Info"
                          ng-model="vm.credentials.additionalInfo"/>
                 </div>
+
+                <div role="alert" ng-show="vm.formError" class="alert alert-danger">{{ vm.formError }}</div>
 
                 <div class="form-group">
                   <button type="submit" class="btn btn-info" class="col-md-offset-4 col-md-5">Lisää</button>
@@ -75,13 +77,13 @@
         <div class="panel-heading custom-colors">
           <h2 class="panel-title">Joukkueet</h2>
         </div>
-        
+
         <div class="panel-body">
           <div class="list-group" ng-repeat="team in vm.teams">
             <a ng-href="team/{{ team._id }}" class="list-group-item" style="margin-bottom: 2px;">{{ team.name }}</a>
           </div>
         </div>
-        
+
       </div>
     </div>
 
