@@ -4,6 +4,7 @@
 <div id="wrapper" class="container text-center">
 
     <div class="row content">
+
         <!-- Main content -->
         <div id="main_content" class="col-md-9 text-left">
 
@@ -11,7 +12,7 @@
             <h2>Rekisteröidy</h2>
 
             <p class="text-center">
-              <small>Kaikki tähdellä merkityt kentät ovat pakollisia</small>
+                <small>Kaikki tähdellä merkityt kentät ovat pakollisia</small>
             </p>
 
             <form ng-submit="vm.onSubmit()" class="form-horizontal">
@@ -73,10 +74,10 @@
                 <div class="form-group">
                     <label class="control-label col-md-4" for="birthday-days">* Syntymäpäivä:</label>
                     <div class="col-md-5">
-                      <select id="birthday-days" ng-model="vm.birthdayPartials.birthdayDay"></select>
-                      <select id="birthday-months" ng-model="vm.birthdayPartials.birthdayMonth"></select>
-                      <select id="birthday-years" ng-model="vm.birthdayPartials.birthdayYear"></select>
-                      <!--
+                        <select id="birthday-days" ng-model="vm.birthdayPartials.birthdayDay"></select>
+                        <select id="birthday-months" ng-model="vm.birthdayPartials.birthdayMonth"></select>
+                        <select id="birthday-years" ng-model="vm.birthdayPartials.birthdayYear"></select>
+                        <!--
                       <input type="text" class="form-control" id="birthday" ng-model="vm.credentials.birthday">
                       -->
                     </div>
@@ -229,44 +230,45 @@
             </form>
             <!-- /.form-horizontal -->
         </div>
+        <side-navigation></side-navigation>
     </div>
 </div>
 
 <footer-generic></footer-generic>
 
 <script type="text/javascript">
-  $(function () {
+    $(function() {
 
-          for (i = new Date().getFullYear() ; i > 1900; i--) {
-              $('#birthday-years').append($('<option />').val(i).html(i));
-          }
+        for (i = new Date().getFullYear(); i > 1900; i--) {
+            $('#birthday-years').append($('<option />').val(i).html(i));
+        }
 
-          for (i = 1; i < 13; i++) {
-              $('#birthday-months').append($('<option />').val(i).html(i));
-          }
-          updateNumberOfDays();
+        for (i = 1; i < 13; i++) {
+            $('#birthday-months').append($('<option />').val(i).html(i));
+        }
+        updateNumberOfDays();
 
-          $('#birthday-years, #birthday-months').change(function () {
+        $('#birthday-years, #birthday-months').change(function() {
 
-              updateNumberOfDays();
+            updateNumberOfDays();
 
-          });
+        });
 
-      });
+    });
 
-      function updateNumberOfDays() {
-          $('#birthday-days').html('');
-          month = $('#birthday-months').val();
-          year = $('#birthday-years').val();
-          days = daysInMonth(month, year);
+    function updateNumberOfDays() {
+        $('#birthday-days').html('');
+        month = $('#birthday-months').val();
+        year = $('#birthday-years').val();
+        days = daysInMonth(month, year);
 
-          for (i = 1; i < days + 1 ; i++) {
-              $('#birthday-days').append($('<option />').val(i).html(i));
-          }
+        for (i = 1; i < days + 1; i++) {
+            $('#birthday-days').append($('<option />').val(i).html(i));
+        }
 
-      }
+    }
 
-      function daysInMonth(month, year) {
-          return new Date(year, month, 0).getDate();
-      }
+    function daysInMonth(month, year) {
+        return new Date(year, month, 0).getDate();
+    }
 </script>
